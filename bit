@@ -13,15 +13,14 @@ PACKAGES="avl-1.4.0 ncurses-5.3 readline-4.3 libtecla-1.4.1"
 
 for p in $PACKAGES
 do
-	(
-        cd $p
-        makefile="../RTEMS_Makefiles/Makefile.$p"
-        if [ \! -r "$makefile" ]
-        then
-            makefile="`echo $makefile | sed -e '/-.*/s///'`"
-        fi
-        make -w -f "$makefile"
-    )
+    cd $p
+    makefile="../RTEMS_Makefiles/Makefile.$p"
+    if [ \! -r "$makefile" ]
+    then
+        makefile="`echo $makefile | sed -e '/-.*/s///'`"
+    fi
+    make -w -f "$makefile"
+    cd ..
 done
 
 for p in $PACKAGES
