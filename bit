@@ -9,7 +9,7 @@
 #
 set -ex
 
-PACKAGES="avl-1.4.0 ncurses-5.3 readline-4.3 libtecla-1.4.1 zlib-1.1.4"
+PACKAGES="rtemsNfs-1.1 avl-1.4.0 ncurses-5.3 readline-4.3 libtecla-1.4.1 zlib-1.1.4"
 
 for p in $PACKAGES
 do
@@ -19,7 +19,13 @@ do
     then
         makefile="`echo $makefile | sed -e '/-.*/s///'`"
     fi
-    make -w -f "$makefile"
+    if [ -r "$makefile" ]
+    then
+        make -w -f "$makefile"
+    else
+        make -w 
+        make -w install
+    fi
     cd ..
 done
 
