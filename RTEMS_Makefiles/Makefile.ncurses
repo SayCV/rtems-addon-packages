@@ -14,7 +14,7 @@ include ../RTEMS_Makefiles/Makefile.common
 #
 all:
 	cf_cv_type_of_bool=char CXX="$(CC)" ./configure \
-		--host=`uname -m`-$(RTEMS_HOST) \
+		--host=$(RTEMS_CPU)-rtems \
 		--prefix=$(exec_prefix) \
 		--libdir=$(exec_prefix)/$(RTEMS_BSP)/lib \
 		--includedir=$(exec_prefix)/$(RTEMS_BSP)/lib/include \
