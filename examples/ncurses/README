@@ -1,0 +1,4 @@
+This directory contains a script and a makefile to build RTEMS
+executable images of the ncurses test programs.  To build all
+the tests:
+	sh BuildTests.sh
