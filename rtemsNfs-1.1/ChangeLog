@@ -1,0 +1,30 @@
+Changes since RTEMS-NFS 1.3.beta
+ NFS:
+ - fixed possible string overrun in nfsMount
+ - nfs_read_dir() must reset the 'eofreached' flag if it skipped
+   dirents present in the xdr but not fitting into the user buffer.
+ - nfsMountsShow() released the wrong lock!
+ RPCIO:
+ - cannot delete locked binary semaphore (authlock) -- must unlock
+   first (authlock was never deleted and hence effectively leaked)
+ - added ASSERT paranoia around mutex primitives
+ - Relaxed paranoia check / ASSERTion failure:
+   paranoia_free() is called more than once on an ext_buf - it must
+   undo calls to paranoia_refcnt() - hence the 0 == --refcnt check
+   is too strict.
+ - Added a DEBUG flag to introduce random packet losses for testing
+   retransmission.
+ xdr_mbuf:
+ - make sure we do a signed comparison
+
+Changes since rtemsNFS-1.0.beta2:
+ - moved 'tar' command to the 'config' area; use
+   predefined 'make-tar' in individual Makefiles
+ - use INSTALL_CHANGE for headers, not INSTALL_VARIANT (probably doesn't
+   matter, though)
+ - use LD not LD_FOR_TARGET (to get absolute path)
+ - fixed assertion failure print format
+ - print requestor id if send_event fails - had just experienced this :-(
+ - hint about fprintf using FP registers is probably PPC specific
+ - provided implementation for xdrmbuf_getlong_aligned(). i386-rtems
+   seems to use it.
