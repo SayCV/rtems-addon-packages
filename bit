@@ -1,0 +1,16 @@
+#!/bin/sh
+
+set -ex
+
+PACKAGES="avl-1.4.0 ncurses-5.2 readline-4.2"
+
+for p in $PACKAGES
+do
+	pname=`echo $p | sed -e '/-.*/s///'`
+	(cd $p ; make -f ../RTEMS_Makefiles/Makefile.$pname)
+done
+
+for p in $PACKAGES
+do
+	(cd $p ; make distclean)
+done
