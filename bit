@@ -2,12 +2,19 @@
 
 set -ex
 
-PACKAGES="avl-1.4.0 ncurses-5.2 readline-4.2"
+PACKAGES="avl-1.4.0 ncurses-5.2 readline-4.3"
 
 for p in $PACKAGES
 do
-	pname=`echo $p | sed -e '/-.*/s///'`
-	(cd $p ; make -f ../RTEMS_Makefiles/Makefile.$pname)
+	(
+        cd $p
+        makefile="../RTEMS_Makefiles/Makefile.$p"
+        if [ \! -r "$makefile" ]
+        then
+            makefile="`echo $makefile | sed -e '/-.*/s///'`"
+        fi
+        make -f "$makefile"
+    )
 done
 
 for p in $PACKAGES
