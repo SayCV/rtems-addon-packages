@@ -1,0 +1,28 @@
+#
+# Declare supported terminal types.
+# This value can be augmented/overridden by the site-configuration file
+#
+TERMINALS=xterm,vt100,linux
+
+include ../RTEMS_Makefiles/Makefile.common
+
+#
+# The following will work only if you have the latest ncurses version
+# of infocmp installed before trying to build for an RTEMS target.
+# The cf_cv_type_of_bool hack works around a bug when configuring
+# for a cross-target.
+#
+all:
+	cf_cv_type_of_bool=char CXX="$(CC)" ./configure \
+		--host=`uname -m`-$(RTEMS_HOST) \
+		--prefix=$(exec_prefix) \
+		--libdir=$(exec_prefix)/$(RTEMS_BSP)/lib \
+		--includedir=$(exec_prefix)/$(RTEMS_BSP)/lib/include \
+		--without-ada \
+		--without-progs \
+		--without-cxx-binding \
+		--disable-sigwinch \
+		--disable-database \
+		--with-fallbacks="$(TERMINALS)"
+	make "HOSTCC=gcc" "HOSTCCFLAGS=-I. -I../include" HOSTLDFLAGS=""
+	make install
