@@ -1,5 +1,8 @@
 #!/bin/sh
 
+#
+# Build all add-on packages for the current RTEMS_MAKEFILE_PATH architecture.
+#
 set -ex
 
 PACKAGES="avl-1.4.0 ncurses-5.2 readline-4.3"
