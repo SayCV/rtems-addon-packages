@@ -2,7 +2,7 @@
 # Declare supported terminal types.
 # This value can be augmented/overridden by the site-configuration file
 #
-TERMINALS=xterm,vt100,linux
+TERMINALS=xterm,vt100,linux,ansi
 
 include ../RTEMS_Makefiles/Makefile.common
 
