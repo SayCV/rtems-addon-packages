@@ -1,6 +1,10 @@
 #!/bin/sh
 
 #
+# $Id$
+#
+
+#
 # Build all add-on packages for the current RTEMS_MAKEFILE_PATH architecture.
 #
 set -ex
@@ -16,11 +20,11 @@ do
         then
             makefile="`echo $makefile | sed -e '/-.*/s///'`"
         fi
-        make -f "$makefile"
+        make -w -f "$makefile"
     )
 done
 
 for p in $PACKAGES
 do
-	(cd $p ; make distclean)
+	(cd $p ; make clean distclean || true)
 done
