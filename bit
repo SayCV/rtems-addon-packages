@@ -9,7 +9,7 @@
 #
 set -ex
 
-PACKAGES="avl-1.4.0 ncurses-5.2 readline-4.3 libtecla-1.4.1"
+PACKAGES="avl-1.4.0 ncurses-5.3 readline-4.3 libtecla-1.4.1"
 
 for p in $PACKAGES
 do

@@ -1,3 +1,7 @@
+2002-12-19	Eric Norum <eric.norum@usask.ca>
+
+    * ncurses-5.3 bit: Update ncurses add-on package.
+
 2002-11-28	Eric Norum <eric.norum@usask.ca>
 
     * RTEMS_Makefiles/Makefile.bfd: New file
