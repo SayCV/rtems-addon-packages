@@ -1,0 +1,14 @@
+#
+# Configure/build/install the libtecla library
+#
+include ../RTEMS_Makefiles/Makefile.common
+
+all:
+	./configure \
+		--prefix=$(exec_prefix) \
+		--libdir=$(exec_prefix)/$(RTEMS_BSP)/lib \
+		--includedir=$(exec_prefix)/$(RTEMS_BSP)/lib/include
+	make 
+	make reentrant
+	make install
+	make distclean
