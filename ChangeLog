@@ -1,3 +1,7 @@
+2002-09-12	Eric Norum <eric.norum@usask.ca>
+
+    * RTEMS_Makefiles/Makefile.ncurses: Added ansi terminal type.
+
 2002-07-30	Joel Sherrill <joel@OARcorp.com>
 
 	* VERSION: Updated to rtems-addon-packages-20020730a.
