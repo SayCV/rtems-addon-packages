@@ -1,4 +1,11 @@
-Changes since RTEMS-NFS 1.3.beta
+Changes since RTEMS-NFS 1.1:
+ NFS:
+ - unlink() didnt work. The underlying RTEMS filesystem code evaluates
+   a '..' path on a non-directory node to find out the file's parent
+   directory. Workaround to this semantically inelegant RTEMS feature
+   was implemented.
+  
+Changes since RTEMS-NFS 1.0.beta3:
  NFS:
  - fixed possible string overrun in nfsMount
  - nfs_read_dir() must reset the 'eofreached' flag if it skipped

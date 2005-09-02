@@ -1,3 +1,27 @@
+2005-09-02	Joel Sherrill <joel@OARcorp.com>
+
+	* bit, ncurses-5.3/misc/run_tic.sh: Added rtemsNfs 1.2
+	* rtemsNfs/ChangeLog, rtemsNfs/LICENSE, rtemsNfs/Makefile,
+	rtemsNfs/README, rtemsNfs/rtems-filesystem-patch,
+	rtemsNfs/proto/Makefile, rtemsNfs/proto/mount_prot.h,
+	rtemsNfs/proto/mount_prot.x, rtemsNfs/proto/mount_prot_xdr.c,
+	rtemsNfs/proto/nfs_prot.h, rtemsNfs/proto/nfs_prot.x,
+	rtemsNfs/proto/nfs_prot_xdr.c, rtemsNfs/src/Makefile,
+	rtemsNfs/src/cexphelp.c, rtemsNfs/src/dirutils.c,
+	rtemsNfs/src/librtemsNfs.h, rtemsNfs/src/nfs.c,
+	rtemsNfs/src/nfs.modini.c, rtemsNfs/src/rpcio.c,
+	rtemsNfs/src/rpcio.h, rtemsNfs/src/rpcio.modini.c,
+	rtemsNfs/src/sock_mbuf.c, rtemsNfs/src/xdr_mbuf.c: New files.
+	* rtemsNfs-1.1/ChangeLog, rtemsNfs-1.1/LICENSE, rtemsNfs-1.1/Makefile,
+	rtemsNfs-1.1/README, rtemsNfs-1.1/rtems-filesystem-patch,
+	rtemsNfs-1.1/proto/Makefile, rtemsNfs-1.1/proto/mount_prot.x,
+	rtemsNfs-1.1/proto/nfs_prot.x, rtemsNfs-1.1/src/Makefile,
+	rtemsNfs-1.1/src/cexphelp.c, rtemsNfs-1.1/src/dirutils.c,
+	rtemsNfs-1.1/src/librtemsNfs.h, rtemsNfs-1.1/src/nfs.c,
+	rtemsNfs-1.1/src/nfs.modini.c, rtemsNfs-1.1/src/rpcio.c,
+	rtemsNfs-1.1/src/rpcio.h, rtemsNfs-1.1/src/rpcio.modini.c,
+	rtemsNfs-1.1/src/sock_mbuf.c, rtemsNfs-1.1/src/xdr_mbuf.c: Removed.
+
 2004-10-18	Joel Sherrill <joel@OARcorp.com>
 
 	* VERSION: Updated to rtems-addon-packages-4.6.2.

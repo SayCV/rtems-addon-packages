@@ -1,4 +1,4 @@
-/* $Id$ */
+/* nfs.c,v 1.33 2004/09/22 22:10:41 till Exp */
 
 /* NFS client implementation for RTEMS; hooks into the RTEMS filesystem */
 
@@ -928,8 +928,8 @@ nfsInit(int smallPoolDepth, int bigPoolDepth)
 {  
 entry	dummy;
 
-	fprintf(stderr,"This is RTEMS-NFS Release $Name$\n");
-	fprintf(stderr,"($Id$)\n\n");
+	fprintf(stderr,"This is RTEMS-NFS Release SSRL_RTEMS_20041202\n");
+	fprintf(stderr,"(nfs.c,v 1.33 2004/09/22 22:10:41 till Exp)\n\n");
 	fprintf(stderr,"Till Straumann, Stanford/SLAC/SSRL 2002\n");
 	fprintf(stderr,"See LICENSE file for licensing info\n");
 
@@ -1347,6 +1347,24 @@ RpcUdpServer	server = nfs->server;
 	}
 
 	pathloc->node_access = node;
+
+	/* Special case: the RTEMS filesystem code
+	 * may emit '..' on a regular file node to
+	 * find the parent directory :-(.
+	 * (eval.c: rtems_filesystem_evaluate_parent())
+	 * Try to catch this case here:
+	 */
+	if ( NFDIR != SERP_ATTR(node).type && '.'==*p && '.'==*(p+1) ) {
+		for ( part = p+2; '/'==*part; part++ )
+			/* skip trailing '/' */;
+		if ( !*part ) {
+			/* this is it; back out dir and let them look up the dir itself... */
+			memcpy( &SERP_FILE(node),
+					&node->args.dir,
+					sizeof(node->args.dir));
+			*(p+1)=0;
+		}
+	}
 
 	for (part=p; part && *part; part=del) {
 
