@@ -42,7 +42,8 @@ include $(RTEMS_ROOT)/make/lib.cfg
 DEFINES  +=
 CPPFLAGS +=
 # inline declarations require -O
-CFLAGS   += -O2 -Winline
+# rpcgen produces unused variables
+CFLAGS   += -O2 -Winline -Wno-unused-variable
 
 #
 # Add your list of files to delete here.  The config files

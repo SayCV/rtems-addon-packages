@@ -85,6 +85,8 @@ SOFTWARE.
 #include <rtems/error.h>
 
 #define KERNEL
+#define _KERNEL
+#define __BSD_VISIBLE	1
 #include <rtems/rtems_bsdnet.h>
 
 #include <sys/errno.h>

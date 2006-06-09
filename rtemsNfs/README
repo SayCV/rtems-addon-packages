@@ -458,6 +458,12 @@ I recommend to use the patch distributed with RTEMS-NFS.
       
  o NOTE: RTEMS 'mount()' / 'unmount()' are NOT THREAD SAFE.
 
+ o The NFS protocol has no 'append' or 'seek_end' primitive. The client
+   must query the current file size (this client uses cached info) and
+   change the local file pointer accordingly (in 'O_APPEND' mode).
+   Obviously, this involves a race condition and hence multiple clients
+   writing the same file may lead to corruption.
+
 IV Licensing & Disclaimers
 --------------------------
 

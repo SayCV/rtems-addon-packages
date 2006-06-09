@@ -60,8 +60,6 @@
 #include <cexpHelp.h>
 #endif
 
-#define BUFFERSZ 10000
-
 #ifndef __vxworks
 int
 pwd(void)
@@ -158,16 +156,15 @@ int
 cp(char *from, char *to, char *opts)
 {
 struct stat	st;
-int			got,put,tot;
-char		*buf  = 0;
 int			rval  = -1;
-int			ffd   = -1;
-int			tfd   = -1;
+int			fd    = -1;
+FILE		*fst  = 0;
+FILE		*tst  = 0;
 int			flags = O_CREAT | O_WRONLY | O_TRUNC | O_EXCL;
 
 	if (from) {
 
-	if ((ffd=open(from,O_RDONLY,0)) < 0) {
+	if ((fd=open(from,O_RDONLY,0)) < 0) {
 		fprintf(stderr,
 				"Opening %s for reading: %s\n",
 				from,
@@ -175,7 +172,7 @@ int			flags = O_CREAT | O_WRONLY | O_TRUNC | O_EXCL;
 		goto cleanup;
 	}
 
-	if (fstat(ffd, &st)) {
+	if (fstat(fd, &st)) {
 		fprintf(stderr,
 				"rstat(%s): %s\n",
 				from,
@@ -189,58 +186,95 @@ int			flags = O_CREAT | O_WRONLY | O_TRUNC | O_EXCL;
 		errno = EINVAL;
 		goto cleanup;
 	}
+	/* Now create a stream -- I experienced occasional weirdness
+	 * when circumventing the streams attached to fildno(stdin)
+	 * by reading/writing to the underlying fd's directly ->
+	 * for now we always go through buffered I/O...
+	 */
+	if ( !(fst=fdopen(fd,"r")) ) {
+		fprintf(stderr,
+				"Opening input stream [fdopen()] failed: %s\n",
+				strerror(errno));
+		goto cleanup;
+	}
+	/* at this point, we have a stream and don't need 'fd' anymore */
+	fd = -1;
 
 	} else {
-		ffd        = fileno(stdin);
-		st.st_mode = 0644;
+		fst			= stdin;
+		st.st_mode	= 0644;
 	}
 
 	if (opts && strchr(opts,'f'))
 		flags &= ~ O_EXCL;
 
 	if (to) {
-		if ((tfd=open(to,flags,st.st_mode)) < 0) {
+		if ( (fd=open(to,flags,st.st_mode)) < 0 ) {
 			fprintf(stderr,
 					"Opening %s for writing: %s\n",
 					to,
 					strerror(errno));
 			goto cleanup;
 		}
-	} else {
-		tfd = fileno(stdout);
-	}
-
-	if ( !(buf = malloc(BUFFERSZ)) ) {
-		fprintf(stderr,"cp: unable to allocate buffer - out of memory\n");
-		errno = ENOMEM;
-		goto cleanup;
-	}
-
-	tot = 0;
-	while ( (got=read(ffd,buf,BUFFERSZ)) > 0 ) {
-		if (got !=(put=write(tfd,buf,got))) {
-			if (put<0) {
-				fprintf(stderr,"Write error: %s\n",strerror(errno));
-			} else {
-				fprintf(stderr,"Write error: unable to write whole block\n");
-			}
+		if ( !(tst=fdopen(fd, "w")) ) {
+			fprintf(stderr,
+					"Opening output stream [fdopen()] failed: %s\n",
+					strerror(errno));
 			goto cleanup;
 		}
-		tot += got;
+		/* at this point we have a stream and don't need 'fd' anymore */
+		fd = -1;
+	} else {
+		tst = stdout;
 	}
-	if (got < 0) {
+
+	/* clear old errors */
+	clearerr(fst);
+	clearerr(tst);
+
+	/* use macro versions on register vars; stdio is already buffered,
+	 * there's nothing to be gained by reading/writing blocks into
+	 * a secondary buffer...
+	 */
+	{
+	register int ch;
+	register FILE *f = fst;
+	register FILE *t = tst;
+		while ( EOF != (ch = getc(f)) && EOF != putc(ch, t) )
+			/* nothing else */;
+	}
+
+	if ( ferror(fst) ) {
 		fprintf(stderr,"Read error: %s\n",strerror(errno));
 		goto cleanup;
 	}
+	if ( ferror(tst) ) {
+		fprintf(stderr,"Write error: %s\n",strerror(errno));
+		goto cleanup;
+	}
+
 	rval = 0;
 
 cleanup:
-	free(buf);
 
-	if (from && ffd>=0)
-		close(ffd);
-	if (to && tfd>=0)
-		close(tfd);
+	if ( fd >= 0 )
+		close(fd);
+
+	if ( fst ) {
+		if ( from )
+			fclose(fst);
+		else
+			clearerr(fst);
+	}
+	if ( tst ) {
+		if ( to )
+			fclose(tst);
+		else {
+			/* flush stdout */
+			fflush(tst);
+			clearerr(tst);
+		}
+	}
 
 	return rval;
 }
@@ -288,7 +322,7 @@ cd(char *path)
 }
 
 #ifdef HAVE_CEXP
-static CexpHelpTabRec _cexpHelpTabDirutils[]={
+static CexpHelpTabRec _cexpHelpTabDirutils[] __attribute__((unused)) = {
 	HELP(
 "copy a file: cp(""from"",[""to""[,""-f""]])\n\
                  from = NULL <-- stdin\n\

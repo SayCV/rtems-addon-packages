@@ -764,7 +764,7 @@ va_list			ap;
 	/* increment transaction ID */
 	xact->obuf.xid += XACT_HASHS;
 	XDR_SETPOS(xdrs, xact->xdrpos);
-	if ( !XDR_PUTLONG(xdrs,&proc) || !locked_marshal(srvr, xdrs) ||
+	if ( !XDR_PUTLONG(xdrs,(long*)&proc) || !locked_marshal(srvr, xdrs) ||
 		 !xargs(xdrs, pargs) ) {
 		va_end(ap);
 		return(xact->status.re_status=RPC_CANTENCODEARGS);
@@ -1106,7 +1106,7 @@ rtems_interval    next_retrans, then, unow;
 long			  now;	/* need to do signed comparison with age! */
 rtems_event_set   events;
 ListNode          newList;
-rtems_unsigned32  size;
+uint32_t	  size;
 rtems_id          q          =  0;
 ListNodeRec       listHead   = {0};
 unsigned long     epoch      = RPCIOD_EPOCH_SECS * ticksPerSec;
@@ -1489,8 +1489,8 @@ RpcUdpXact xact;
 RpcUdpXact
 rpcUdpXactPoolGet(RpcUdpXactPool pool, XactPoolGetMode mode)
 {
-RpcUdpXact		 xact = 0;
-rtems_unsigned32 size;
+RpcUdpXact	 xact = 0;
+uint32_t	 size;
 
 	if (RTEMS_SUCCESSFUL != rtems_message_queue_receive(
 								pool->box,
@@ -1534,6 +1534,7 @@ RpcUdpXactPool pool;
  */
 
 #define KERNEL
+#define _KERNEL
 #include <sys/mbuf.h>
 
 ssize_t

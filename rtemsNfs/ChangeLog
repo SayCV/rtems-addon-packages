@@ -1,3 +1,39 @@
+Changes since RTEMS-NFS 1.2:
+ NFS:
+ - replaced inet_aton -> inet_pton
+ - replaced unsigned32 -> uint32_t
+ - added _KERNEL definition for 4.7 compilation
+ - silenced compiler warnings (4.7)
+ - added -Wno-unused-variable in 'proto' -- rpcgen produces a lot of them.
+ - new locking scheme. The 'in-use' counters cannot be protected by a mutex
+   because files might be closed when a thread is deleted from a dispatch-disabled
+   section where mutexes must not be locked. The counters are now protected by
+   disabling interrupts.
+   The only critical race-condition I can see ATM is while the NFS is being
+   unmounted and the mount point is crossed by another thread. It should be the
+   generic FS code's responsibility to handle that (but AFAIK, it doesn't) --
+   it's out of our scope...
+ - ftruncate didn't work. The functionality is achieved by nfs_sattr()
+   setting the file size to 0. However, nfs_sattr() always tried to set
+   all attributes (re-applying the current values to fields we didn't
+   want to change) which failed (EPERM) if we were not the owner.
+   Now, we restrict modifications to the requested fields (in case of
+   ftruncate this is *only* the size), adhering to rfc1094 (which states
+   that unused fields shall be set to -1).
+ - lseek(SEEK_END) didn't work. The underlying RTEMS filesystem code
+   uses an internal file 'size' field to compute the offset whence SEEK_END.
+   Instead of painfully maintaining 'size' across all system calls, we
+   just tweak the offset for SEEK_END and leave 'size' unused.
+ - fix: O_APPEND wasn't honoured. Note that there is no NFS 'append' call - 
+   the client simply uses the currently available idea of the file size
+   to set the write offset. This obviously is subject to race conditions
+   if multiple clients are writing the same file.
+ dirutils:
+ - replaced read/write calls by stdio; In case of copying to stdout, I
+   experienced occasional crashes when write(fileno(stdout),...) -- according
+   to the standard, mixing low-level i/o with stdio might produce undefined
+   results; there we go...
+
 Changes since RTEMS-NFS 1.1:
  NFS:
  - unlink() didnt work. The underlying RTEMS filesystem code evaluates
