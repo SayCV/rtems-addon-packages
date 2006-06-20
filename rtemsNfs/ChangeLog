@@ -1,3 +1,8 @@
+Changes since RTEMS-NFS 1.3_pre2:
+ RPCIOD:
+ - fix a problem with NFS server clusters (reply comes from an IP address
+   different from the destination of the request) by relaxing paranoia checks.
+
 Changes since RTEMS-NFS 1.2:
  NFS:
  - replaced inet_aton -> inet_pton

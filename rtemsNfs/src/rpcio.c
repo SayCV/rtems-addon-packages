@@ -95,6 +95,13 @@
 						 *  interface is used. 
 						 */
 
+#undef REJECT_SERVERIP_MISMATCH
+						/* If defined, RPC replies must come from the server
+						 * that was queried. Eric Norum has reported problems
+						 * with clustered NFS servers. So we disable this
+						 * reducing paranoia...
+						 */
+
 /* daemon task parameters */
 #define RPCIOD_STACK		10000
 #define RPCIOD_PRIO			50
@@ -1657,11 +1664,16 @@ RpcUdpXact			xact     = 0;
 
 	if ( !(xact=xactHashTbl[i])                                             ||
 		   xact->obuf.xid                     != xid                        ||
+#ifdef REJECT_SERVERIP_MISMATCH
 		   xact->server->addr.sin_addr.s_addr != fromAddr.sin_addr.s_addr	||
+#endif
 		   xact->server->addr.sin_port        != fromAddr.sin_port ) {
 
 		if (xact) {
-			if (xact->server->addr.sin_addr.s_addr == fromAddr.sin_addr.s_addr &&
+			if (
+#ifdef REJECT_SERVERIP_MISMATCH
+			    xact->server->addr.sin_addr.s_addr == fromAddr.sin_addr.s_addr &&
+#endif
 		        xact->server->addr.sin_port        == fromAddr.sin_port        &&
 			    ( xact->obuf.xid                   == xid + XACT_HASHS   ||
 				  xact->obuf.xid                   == xid + 2*XACT_HASHS    )

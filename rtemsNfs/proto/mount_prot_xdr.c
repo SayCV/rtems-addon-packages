@@ -6,129 +6,119 @@
 #include "mount_prot.h"
 
 bool_t
-xdr_fhandle(xdrs, objp)
-	XDR *xdrs;
-	fhandle objp;
+xdr_fhandle (XDR *xdrs, fhandle objp)
 {
+	register int32_t *buf;
 
-	if (!xdr_opaque(xdrs, objp, FHSIZE))
-		return (FALSE);
-	return (TRUE);
+	 if (!xdr_opaque (xdrs, objp, FHSIZE))
+		 return FALSE;
+	return TRUE;
 }
 
 bool_t
-xdr_fhstatus(xdrs, objp)
-	XDR *xdrs;
-	fhstatus *objp;
+xdr_fhstatus (XDR *xdrs, fhstatus *objp)
 {
+	register int32_t *buf;
 
-	if (!xdr_u_int(xdrs, &objp->fhs_status))
-		return (FALSE);
+	 if (!xdr_u_int (xdrs, &objp->fhs_status))
+		 return FALSE;
 	switch (objp->fhs_status) {
 	case 0:
-		if (!xdr_fhandle(xdrs, objp->fhstatus_u.fhs_fhandle))
-			return (FALSE);
+		 if (!xdr_fhandle (xdrs, objp->fhstatus_u.fhs_fhandle))
+			 return FALSE;
 		break;
 	default:
 		break;
 	}
-	return (TRUE);
+	return TRUE;
 }
 
 bool_t
-xdr_dirpath(xdrs, objp)
-	XDR *xdrs;
-	dirpath *objp;
+xdr_dirpath (XDR *xdrs, dirpath *objp)
 {
+	register int32_t *buf;
 
-	if (!xdr_string(xdrs, objp, MNTPATHLEN))
-		return (FALSE);
-	return (TRUE);
+	 if (!xdr_string (xdrs, objp, MNTPATHLEN))
+		 return FALSE;
+	return TRUE;
 }
 
 bool_t
-xdr_name(xdrs, objp)
-	XDR *xdrs;
-	name *objp;
+xdr_name (XDR *xdrs, name *objp)
 {
+	register int32_t *buf;
 
-	if (!xdr_string(xdrs, objp, MNTNAMLEN))
-		return (FALSE);
-	return (TRUE);
+	 if (!xdr_string (xdrs, objp, MNTNAMLEN))
+		 return FALSE;
+	return TRUE;
 }
 
 bool_t
-xdr_mountlist(xdrs, objp)
-	XDR *xdrs;
-	mountlist *objp;
+xdr_mountlist (XDR *xdrs, mountlist *objp)
 {
+	register int32_t *buf;
 
-	if (!xdr_pointer(xdrs, (char **)objp, sizeof(struct mountbody), (xdrproc_t)xdr_mountbody))
-		return (FALSE);
-	return (TRUE);
+	 if (!xdr_pointer (xdrs, (char **)objp, sizeof (struct mountbody), (xdrproc_t) xdr_mountbody))
+		 return FALSE;
+	return TRUE;
 }
 
 bool_t
-xdr_mountbody(xdrs, objp)
-	XDR *xdrs;
-	mountbody *objp;
+xdr_mountbody (XDR *xdrs, mountbody *objp)
 {
+	register int32_t *buf;
 
-	if (!xdr_name(xdrs, &objp->ml_hostname))
-		return (FALSE);
-	if (!xdr_dirpath(xdrs, &objp->ml_directory))
-		return (FALSE);
-	if (!xdr_mountlist(xdrs, &objp->ml_next))
-		return (FALSE);
-	return (TRUE);
+	 if (!xdr_name (xdrs, &objp->ml_hostname))
+		 return FALSE;
+	 if (!xdr_dirpath (xdrs, &objp->ml_directory))
+		 return FALSE;
+	 if (!xdr_mountlist (xdrs, &objp->ml_next))
+		 return FALSE;
+	return TRUE;
 }
 
 bool_t
-xdr_groups(xdrs, objp)
-	XDR *xdrs;
-	groups *objp;
+xdr_groups (XDR *xdrs, groups *objp)
 {
+	register int32_t *buf;
 
-	if (!xdr_pointer(xdrs, (char **)objp, sizeof(struct groupnode), (xdrproc_t)xdr_groupnode))
-		return (FALSE);
-	return (TRUE);
+	 if (!xdr_pointer (xdrs, (char **)objp, sizeof (struct groupnode), (xdrproc_t) xdr_groupnode))
+		 return FALSE;
+	return TRUE;
 }
 
 bool_t
-xdr_groupnode(xdrs, objp)
-	XDR *xdrs;
-	groupnode *objp;
+xdr_groupnode (XDR *xdrs, groupnode *objp)
 {
+	register int32_t *buf;
 
-	if (!xdr_name(xdrs, &objp->gr_name))
-		return (FALSE);
-	if (!xdr_groups(xdrs, &objp->gr_next))
-		return (FALSE);
-	return (TRUE);
+	 if (!xdr_name (xdrs, &objp->gr_name))
+		 return FALSE;
+	 if (!xdr_groups (xdrs, &objp->gr_next))
+		 return FALSE;
+	return TRUE;
 }
 
 bool_t
-xdr_exports(xdrs, objp)
-	XDR *xdrs;
-	exports *objp;
+xdr_exports (XDR *xdrs, exports *objp)
 {
+	register int32_t *buf;
 
-	if (!xdr_pointer(xdrs, (char **)objp, sizeof(struct exportnode), (xdrproc_t)xdr_exportnode))
-		return (FALSE);
-	return (TRUE);
+	 if (!xdr_pointer (xdrs, (char **)objp, sizeof (struct exportnode), (xdrproc_t) xdr_exportnode))
+		 return FALSE;
+	return TRUE;
 }
 
 bool_t
-xdr_exportnode(xdrs, objp)
-	XDR *xdrs;
-	exportnode *objp;
+xdr_exportnode (XDR *xdrs, exportnode *objp)
 {
+	register int32_t *buf;
 
-	if (!xdr_dirpath(xdrs, &objp->ex_dir))
-		return (FALSE);
-	if (!xdr_groups(xdrs, &objp->ex_groups))
-		return (FALSE);
-	if (!xdr_exports(xdrs, &objp->ex_next))
-		return (FALSE);
-	return (TRUE);
+	 if (!xdr_dirpath (xdrs, &objp->ex_dir))
+		 return FALSE;
+	 if (!xdr_groups (xdrs, &objp->ex_groups))
+		 return FALSE;
+	 if (!xdr_exports (xdrs, &objp->ex_next))
+		 return FALSE;
+	return TRUE;
 }
