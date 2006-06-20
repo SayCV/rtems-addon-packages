@@ -7,7 +7,7 @@
 
 # if you have CEXP set this variable to 'YES'
 # and some "help" info will be compiled in.
-HAVE_CEXP=YES
+HAVE_CEXP=NO
 
 # C source names, if any, go here -- minus the .c
 C_PIECES_YES=rpcio nfs sock_mbuf xdr_mbuf dirutils rpcio.modini nfs.modini cexphelp
