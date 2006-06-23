@@ -63,7 +63,7 @@ CFLAGS   +=
 # CFLAGS_DEBUG_V += -qrtems_debug
 #
 
-LDFLAGS   +=
+LDFLAGS   += $(CPU_CFLAGS)
 
 #
 # Add your list of files to delete here.  The config files
@@ -80,13 +80,13 @@ RTEMS_SITE_INSTALLDIR = $(PROJECT_RELEASE)
 endif
 
 %nfs.obj: %nfs.o %nfs.modini.o
-	$(LD) -r -o $@ $^ -L../proto/$(ARCH) -lnfsprot
+	$(LD) $(LDFLAGS) -r -o $@ $^ -L../proto/$(ARCH) -lnfsprot
 
 %rpcio.obj: %rpcio.o %sock_mbuf.o %xdr_mbuf.o %rpcio.modini.o
-	$(LD) -r -o $@ $^
+	$(LD) $(LDFLAGS) -r -o $@ $^
 
 %dirutils.obj: %dirutils.o
-	$(LD) -r -o $@ $^
+	$(LD) $(LDFLAGS) -r -o $@ $^
 
 $(LIB): $(OBJS)
 	$(make-library)
