@@ -1,3 +1,7 @@
+2006-08-30	Joel Sherrill <joel@OARcorp.com>
+
+	* src/rpcio.c: Remove printf format warnings.
+
 Changes since RTEMS-NFS 1.3_pre2:
  RPCIOD:
  - fix a problem with NFS server clusters (reply comes from an IP address

@@ -66,6 +66,7 @@
 #include <stdio.h>
 #include <errno.h>
 #include <string.h>
+#include <inttypes.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
@@ -627,7 +628,7 @@ RpcUdpServer s;
 						s->requests, s->retrans);
 		fprintf(f,"         timed out: %10ld,   send errors: %10ld\n",
 						s->timeouts, s->errors);
-		fprintf(f,"  current retransmission interval: %dms\n",
+		fprintf(f,"  current retransmission interval: %" PRId32 "ms\n",
 						s->retry_period * 1000 / ticksPerSec );
 	}
 	MU_UNLOCK(llock);
