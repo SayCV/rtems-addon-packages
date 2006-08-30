@@ -1,0 +1,18 @@
+#!/bin/sh
+
+#
+# $Id$
+#
+
+#
+# Where to find the binutils source
+#
+BINUTILS_SRC_DIR=~/src/RTEMS/bt/binutils-2.13.1
+set -ex
+
+rm -rf build
+mkdir build
+cd build
+make -w BINUTILS_SRC_DIR="$BINUTILS_SRC_DIR" -f ../RTEMS_Makefiles/Makefile.bfd
+cd ..
+rm -rf build

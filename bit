@@ -1,0 +1,36 @@
+#!/bin/sh
+
+#
+# $Id$
+#
+
+#
+# Build all add-on packages for the current RTEMS_MAKEFILE_PATH architecture.
+#
+set -ex
+
+# rtemsNfs is version 1.2
+PACKAGES="rtemsNfs avl-1.4.0 ncurses-5.3 readline-4.3 libtecla-1.4.1 zlib-1.1.4"
+
+for p in $PACKAGES
+do
+    cd $p
+    makefile="../RTEMS_Makefiles/Makefile.$p"
+    if [ \! -r "$makefile" ]
+    then
+        makefile="`echo $makefile | sed -e '/-.*/s///'`"
+    fi
+    if [ -r "$makefile" ]
+    then
+        make -w -f "$makefile"
+    else
+        make -w 
+        make -w install
+    fi
+    cd ..
+done
+
+for p in $PACKAGES
+do
+	(cd $p ; make clean distclean || true)
+done

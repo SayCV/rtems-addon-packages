@@ -1,0 +1,97 @@
+2006-04-19	Joel Sherrill <joel@OARcorp.com>
+
+	* VERSION: Updated to rtems-addon-packages-4.6.99.3.
+
+2005-09-02	Joel Sherrill <joel@OARcorp.com>
+
+	* VERSION: Updated to rtems-addon-packages-4.6.99.2.
+
+2005-09-02	Joel Sherrill <joel@OARcorp.com>
+
+	* bit, ncurses-5.3/misc/run_tic.sh: Added rtemsNfs 1.2
+	* rtemsNfs/ChangeLog, rtemsNfs/LICENSE, rtemsNfs/Makefile,
+	rtemsNfs/README, rtemsNfs/rtems-filesystem-patch,
+	rtemsNfs/proto/Makefile, rtemsNfs/proto/mount_prot.h,
+	rtemsNfs/proto/mount_prot.x, rtemsNfs/proto/mount_prot_xdr.c,
+	rtemsNfs/proto/nfs_prot.h, rtemsNfs/proto/nfs_prot.x,
+	rtemsNfs/proto/nfs_prot_xdr.c, rtemsNfs/src/Makefile,
+	rtemsNfs/src/cexphelp.c, rtemsNfs/src/dirutils.c,
+	rtemsNfs/src/librtemsNfs.h, rtemsNfs/src/nfs.c,
+	rtemsNfs/src/nfs.modini.c, rtemsNfs/src/rpcio.c,
+	rtemsNfs/src/rpcio.h, rtemsNfs/src/rpcio.modini.c,
+	rtemsNfs/src/sock_mbuf.c, rtemsNfs/src/xdr_mbuf.c: New files.
+	* rtemsNfs-1.1/ChangeLog, rtemsNfs-1.1/LICENSE, rtemsNfs-1.1/Makefile,
+	rtemsNfs-1.1/README, rtemsNfs-1.1/rtems-filesystem-patch,
+	rtemsNfs-1.1/proto/Makefile, rtemsNfs-1.1/proto/mount_prot.x,
+	rtemsNfs-1.1/proto/nfs_prot.x, rtemsNfs-1.1/src/Makefile,
+	rtemsNfs-1.1/src/cexphelp.c, rtemsNfs-1.1/src/dirutils.c,
+	rtemsNfs-1.1/src/librtemsNfs.h, rtemsNfs-1.1/src/nfs.c,
+	rtemsNfs-1.1/src/nfs.modini.c, rtemsNfs-1.1/src/rpcio.c,
+	rtemsNfs-1.1/src/rpcio.h, rtemsNfs-1.1/src/rpcio.modini.c,
+	rtemsNfs-1.1/src/sock_mbuf.c, rtemsNfs-1.1/src/xdr_mbuf.c: Removed.
+
+2004-10-18	Joel Sherrill <joel@OARcorp.com>
+
+	* VERSION: Updated to rtems-addon-packages-4.6.2.
+
+2004-10-18	Joel Sherrill <joel@OARcorp.com>
+
+	* aclocal/version.m4: Updated to rtems-addon-packages-4.6.2.
+
+2003-01-28	Joel Sherrill <joel@OARcorp.com>
+
+	* VERSION: Updated to rtems-addon-packages-20030128.
+
+2003-01-28	Joel Sherrill <joel@OARcorp.com>
+
+	* aclocal/version.m4: Updated to rtems-addon-packages-20030128.
+
+2003-01-20	Joel Sherrill <joel@OARcorp.com>
+
+	* VERSION: Updated to rtems-addon-packages-20030120.
+
+2003-01-20	Joel Sherrill <joel@OARcorp.com>
+
+	* aclocal/version.m4: Updated to rtems-addon-packages-20030120.
+
+2002-12-19	Eric Norum <eric.norum@usask.ca>
+
+    * ncurses-5.3 bit: Update ncurses add-on package.
+
+2002-11-28	Eric Norum <eric.norum@usask.ca>
+
+    * RTEMS_Makefiles/Makefile.bfd: New file
+
+2002-11-21	Eric Norum <eric.norum@usask.ca>
+
+    * bit, bit_bfd: Add support for additional add-ons (libtecla, BFD)
+
+2002-11-19	Joel Sherrill <joel@OARcorp.com>
+
+	* VERSION: Updated to rtems-addon-packages-20021119.
+
+2002-11-19	Joel Sherrill <joel@OARcorp.com>
+
+	* aclocal/version.m4: Updated to rtems-addon-packages-20021119.
+
+2002-11-08	Eric Norum <eric.norum@usask.ca>
+
+    * RTEMS_Makefiles/Makefile.libtecla, bit, libtecla-1.4.1/:
+                Add TECLA command-line editing library.
+
+2002-09-12	Eric Norum <eric.norum@usask.ca>
+
+    * RTEMS_Makefiles/Makefile.ncurses: Added ansi terminal type.
+
+2002-07-30	Joel Sherrill <joel@OARcorp.com>
+
+	* VERSION: Updated to rtems-addon-packages-20020730a.
+
+2002-07-30	Joel Sherrill <joel@OARcorp.com>
+
+	* VERSION: Updated to rtems-addon-packages-20020730.
+
+2002-07-30	Joel Sherrill <joel@OARcorp.com>
+
+	* ChangeLog, VERSION, SUPPORT: New files.
+
