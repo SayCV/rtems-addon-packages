@@ -1,5 +1,9 @@
 2007-03-13	Joel Sherrill <joel@OARcorp.com>
 
+	* VERSION: Updated to rtems-addon-packages-4.7.99.1.
+
+2007-03-13	Joel Sherrill <joel@OARcorp.com>
+
 	* bit: Add clean and fix Id.
 
 2007-02-20	Joel Sherrill <joel@OARcorp.com>
