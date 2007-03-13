@@ -12,6 +12,12 @@ set -ex
 # rtemsNfs is version 1.2
 PACKAGES="rtemsNfs avl-1.4.0 ncurses-5.3 readline-4.3 libtecla-1.4.1 zlib-1.1.4"
 
+# make sure it is clean before we start
+for p in $PACKAGES
+do
+	(cd $p ; make clean distclean || true)
+done
+
 for p in $PACKAGES
 do
     cd $p
