@@ -1930,6 +1930,7 @@ char				*path     = mt_entry->dev;
 
 #if DEBUG & DEBUG_INIT
 	printf( "---> NFS make mount call\n" );
+#endif
 	rtems_time_of_day time;
 	stat = mntcall( &saddr,
 					MOUNTPROC_MNT,
