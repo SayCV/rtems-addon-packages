@@ -1,3 +1,9 @@
+2007-07-16	Joel Sherrill <joel.sherrill@oarcorp.com>
+
+	* proto/nfs_prot_xdr.c: Id string change.
+	* src/Makefile: Fix install point of .h files.
+	* src/nfs.c: Add some more debug.
+
 2006-08-30	Joel Sherrill <joel@OARcorp.com>
 
 	* src/rpcio.c: Remove printf format warnings.

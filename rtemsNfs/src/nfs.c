@@ -159,6 +159,7 @@ static struct timeval _nfscalltimeout = { 10, 0 };	/* {secs, us } */
 #define DEBUG_EVALPATH		(1<<2)
 #define DEBUG_READDIR		(1<<3)
 #define DEBUG_SYSCALLS		(1<<4)
+#define DEBUG_INIT		(1<<5)
 
 /* #define DEBUG	( DEBUG_SYSCALLS | DEBUG_COUNT_NODES ) */
 
@@ -1902,6 +1903,9 @@ char				*path     = mt_entry->dev;
 	/* first, try to ping the NFS server by
 	 * calling the NULL proc.
 	 */
+#if DEBUG & DEBUG_INIT
+	printf( "---> NFS Ping server\n" );
+#endif
 	if ( nfscall(nfsServer,
 					 NFSPROC_NULL,
 					 (xdrproc_t)xdr_void, 0,
@@ -1924,6 +1928,9 @@ char				*path     = mt_entry->dev;
 	 */
 	saddr.sin_port = 0;
 
+#if DEBUG & DEBUG_INIT
+	printf( "---> NFS make mount call\n" );
+	rtems_time_of_day time;
 	stat = mntcall( &saddr,
 					MOUNTPROC_MNT,
 					(xdrproc_t)xdr_dirpath,
@@ -1952,6 +1959,9 @@ char				*path     = mt_entry->dev;
 	/* that seemed to work - we now create the root node
 	 * and we also must obtain the root node attributes
 	 */
+#if DEBUG & DEBUG_INIT
+	printf( "---> NFS remote node attributes\n" );
+#endif
 	assert( rootNode = nfsNodeCreate(nfs, (nfs_fh*)&fhstat.fhstatus_u.fhs_fhandle ) );
 
 	if ( updateAttr(rootNode, 1 /* force */) ) {
@@ -1982,6 +1992,9 @@ char				*path     = mt_entry->dev;
 	e = 0;
 
 cleanup:
+#if DEBUG & DEBUG_INIT
+	printf( "---> NFS mount cleanup\n" );
+#endif
 	if (nfs)
 		nfsDestroy(nfs);
 	if (nfsServer)
