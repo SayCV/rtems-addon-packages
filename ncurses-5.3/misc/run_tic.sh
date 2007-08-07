@@ -43,7 +43,7 @@ echo '** Building terminfo database, please wait...'
 
 : ${suffix=}
 : ${DESTDIR=}
-: ${prefix=/opt/rtems/m68k-rtems}
+: ${prefix=/opt/rtems-test/powerpc-rtems}
 : ${exec_prefix=${prefix}}
 : ${bindir=${exec_prefix}/bin}
 : ${top_srcdir=..}

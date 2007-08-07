@@ -1,0 +1,18 @@
+include ../RTEMS_Makefiles/Makefile.common
+
+#
+# Running make distclean cleans up documentation files that require
+# special tools to regenerate.  Work around this problem by just
+# copying the documentation files from another directory.
+#
+all:
+	bash_cv_have_mbstate_t=yes ./configure \
+		--host=$(RTEMS_CPU)-rtems \
+		--prefix=$(exec_prefix) \
+		--libdir=$(exec_prefix)/$(RTEMS_BSP)/lib \
+		--includedir=$(exec_prefix)/$(RTEMS_BSP)/lib/include \
+		--disable-shared
+	cp ../readline-doc-4.3/doc/????* doc
+	make
+	cd doc ; make
+	make install

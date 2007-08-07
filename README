@@ -1,0 +1,24 @@
+Assorted add-on packages for RTEMS.
+
+The bit script builds and installs all the packages.
+
+To build a package:
+	cd <<whatever_package_you_want_to_build>>
+	make -f ../RTEMS_Makefiles/Makefile.<<package_name>>
+
+Notes
+=====
+1) You must build and install the host version of infocmp before trying to
+build ncurses.
+2) You must build and install ncurses before trying to build readline.
+3) To add ncurses support for other terminals, change the declaration
+   of TERMINALS.
+
+Cautions
+========
+The readline and ncurses `configure' scripts check for the presence of
+select().  Because the RTEMS dummy.rel file does not include network
+configuration information the scripts decide that select() does not
+exist.  This is correct since although RTEMS does have a select() call
+it is not supported on tty devices.  The fact that one shortcoming is
+covering up another is not really satisfactory, though.
