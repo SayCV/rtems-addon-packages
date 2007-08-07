@@ -1,5 +1,9 @@
 2007-08-07	Joel Sherrill <joel.sherrill@OARcorp.com>
 
+	* VERSION: Updated to rtems-addon-packages-4.7.99.2.
+
+2007-08-07	Joel Sherrill <joel.sherrill@OARcorp.com>
+
 	* bit: NFS Client is now merged into main RTEMS source tree.
 	* rtemsNfs/ChangeLog, rtemsNfs/LICENSE, rtemsNfs/Makefile,
 	rtemsNfs/README, rtemsNfs/rfc1094.txt,
