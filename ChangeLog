@@ -1,3 +1,18 @@
+2007-08-07	Joel Sherrill <joel.sherrill@OARcorp.com>
+
+	* bit: NFS Client is now merged into main RTEMS source tree.
+	* rtemsNfs/ChangeLog, rtemsNfs/LICENSE, rtemsNfs/Makefile,
+	rtemsNfs/README, rtemsNfs/rfc1094.txt,
+	rtemsNfs/rtems-filesystem-patch, rtemsNfs/proto/Makefile,
+	rtemsNfs/proto/mount_prot.h, rtemsNfs/proto/mount_prot.x,
+	rtemsNfs/proto/mount_prot_xdr.c, rtemsNfs/proto/nfs_prot.h,
+	rtemsNfs/proto/nfs_prot.x, rtemsNfs/proto/nfs_prot_xdr.c,
+	rtemsNfs/src/Makefile, rtemsNfs/src/cexphelp.c,
+	rtemsNfs/src/dirutils.c, rtemsNfs/src/librtemsNfs.h,
+	rtemsNfs/src/nfs.c, rtemsNfs/src/nfs.modini.c, rtemsNfs/src/rpcio.c,
+	rtemsNfs/src/rpcio.h, rtemsNfs/src/rpcio.modini.c,
+	rtemsNfs/src/sock_mbuf.c, rtemsNfs/src/xdr_mbuf.c: Removed.
+
 2007-03-13	Joel Sherrill <joel@OARcorp.com>
 
 	* VERSION: Updated to rtems-addon-packages-4.7.99.1.
