@@ -350,7 +350,7 @@ get_term_capabilities (bp)
 #  ifdef __LCC__
     *(tc_strings[i].tc_value) = tgetstr ((char *)tc_strings[i].tc_var, bp);
 #  else
-    *(tc_strings[i].tc_value) = tgetstr (tc_strings[i].tc_var, bp);
+    *(tc_strings[i].tc_value) = tgetstr ((char *)tc_strings[i].tc_var, bp);
 #  endif
 #endif
   tcap_initialized = 1;

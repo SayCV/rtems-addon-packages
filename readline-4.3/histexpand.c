@@ -211,8 +211,8 @@ get_history_event (string, caller_index, delimiting_quote)
 	memset (&ps, 0, sizeof (mbstate_t));
 	/* These produce warnings because we're passing a const string to a
 	   function that takes a non-const string. */
-	_rl_adjust_point (string, i, &ps);
-	if ((v = _rl_get_char_len (string + i, &ps)) > 1)
+	_rl_adjust_point ((char *)string, i, &ps);
+	if ((v = _rl_get_char_len ((char *)string + i, &ps)) > 1)
 	  {
 	    i += v - 1;
 	    continue;

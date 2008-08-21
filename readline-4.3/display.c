@@ -1604,7 +1604,7 @@ _rl_move_cursor_relative (new, data)
     }
 
   if (MB_CUR_MAX > 1 && rl_byte_oriented == 0)
-    _rl_last_c_pos =  _rl_col_width (data, 0, new);
+    _rl_last_c_pos =  _rl_col_width ((char *)data, 0, new);
   else
     _rl_last_c_pos = new;
 }
