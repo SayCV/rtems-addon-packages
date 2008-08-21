@@ -1,0 +1,23 @@
+###########################################################
+# Meta-Makefile for compiling packages to work with RTEMS #
+###########################################################
+
+#
+# Pick up RTEMS configuration
+#
+include $(RTEMS_MAKEFILE_PATH)/Makefile.inc
+include $(RTEMS_CUSTOM)
+include $(PROJECT_ROOT)/make/leaf.cfg
+CC += $(CPU_CFLAGS)
+
+#
+# For some reason RTEMS Makefiles don't export this
+#
+export RANLIB
+
+.PHONY: all
+
+#
+# Include site-specific options
+#
+include ../RTEMS_Makefiles/Makefile.site
