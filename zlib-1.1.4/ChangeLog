@@ -1,3 +1,8 @@
+2008-09-17	Joel Sherrill <joel.sherrill@oarcorp.com>
+
+	* Makefile: Rename STACK_CHECKER_ON to more appropriate
+	CONFIGURE_STACK_CHECKER_ENABLED.
+
 
 		ChangeLog file for zlib
 

@@ -12,7 +12,7 @@
 # To install in $HOME instead of /usr/local, use:
 #    make install prefix=$HOME
 
-CC=m68k-rtems-gcc --pipe -B/opt/rtems/m68k-rtems/mvme167/lib/ -specs bsp_specs -qrtems   -m68040
+CC=powerpc-rtems4.9-gcc --pipe -B/home/joel/rtems-4.9-work/bsp-install/powerpc-rtems4.9/psim/lib/ -specs bsp_specs -qrtems   -mcpu=603e  -Dppc603e
 
 CFLAGS=-O3 -DHAVE_UNISTD_H
 #CFLAGS=-O -DMAX_WBITS=14 -DMAX_MEM_LEVEL=7
@@ -21,22 +21,22 @@ CFLAGS=-O3 -DHAVE_UNISTD_H
 #           -Wstrict-prototypes -Wmissing-prototypes
 
 LDFLAGS=-L. -lz
-LDSHARED=m68k-rtems-gcc --pipe -B/opt/rtems/m68k-rtems/mvme167/lib/ -specs bsp_specs -qrtems   -m68040
-CPP=m68k-rtems-gcc --pipe -B/opt/rtems/m68k-rtems/mvme167/lib/ -specs bsp_specs -qrtems   -m68040 -E
+LDSHARED=powerpc-rtems4.9-gcc --pipe -B/home/joel/rtems-4.9-work/bsp-install/powerpc-rtems4.9/psim/lib/ -specs bsp_specs -qrtems   -mcpu=603e  -Dppc603e
+CPP=powerpc-rtems4.9-gcc --pipe -B/home/joel/rtems-4.9-work/bsp-install/powerpc-rtems4.9/psim/lib/ -specs bsp_specs -qrtems   -mcpu=603e  -Dppc603e -E
 
 VER=1.1.4
 LIBS=libz.a
 SHAREDLIB=libz.so
 
-AR=m68k-rtems-ar cr
-RANLIB=m68k-rtems-ranlib
+AR=powerpc-rtems4.9-ar cr
+RANLIB=powerpc-rtems4.9-ranlib
 TAR=tar
 SHELL=/bin/sh
 
-prefix =/opt/rtems/m68k-rtems
+prefix =/home/joel/rtems-4.9-work/bsp-install/powerpc-rtems4.9
 exec_prefix =${prefix}
-libdir =/opt/rtems/m68k-rtems/mvme167/lib
-includedir =/opt/rtems/m68k-rtems/mvme167/lib/include
+libdir =/home/joel/rtems-4.9-work/bsp-install/powerpc-rtems4.9/psim/lib
+includedir =/home/joel/rtems-4.9-work/bsp-install/powerpc-rtems4.9/psim/lib/include
 
 OBJS = adler32.o compress.o crc32.o gzio.o uncompr.o deflate.o trees.o \
        zutil.o inflate.o infblock.o inftrees.o infcodes.o infutil.o inffast.o
