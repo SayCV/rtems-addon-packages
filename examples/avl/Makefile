@@ -47,7 +47,7 @@ CFLAGS   +=
 LD_PATHS  += 
 LD_LIBS   += 
 CFLAGS_LD   += -Wl,--defsym -Wl,HeapSize=0x200000 # network needs more space
-CFLAGS_DEBUG_V   += -DSTACK_CHECKER_ON
+CFLAGS_DEBUG_V   +=
 
 #
 # Add your list of files to delete here.  The config files

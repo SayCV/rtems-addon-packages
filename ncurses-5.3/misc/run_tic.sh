@@ -43,7 +43,7 @@ echo '** Building terminfo database, please wait...'
 
 : ${suffix=}
 : ${DESTDIR=}
-: ${prefix=/opt/rtems-test/powerpc-rtems}
+: ${prefix=/home/joel/rtems-4.9-work/bsp-install/powerpc-rtems4.9}
 : ${exec_prefix=${prefix}}
 : ${bindir=${exec_prefix}/bin}
 : ${top_srcdir=..}
