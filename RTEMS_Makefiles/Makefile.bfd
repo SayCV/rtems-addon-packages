@@ -1,0 +1,14 @@
+#
+# Configure/build/install the libtecla library
+#
+include ../RTEMS_Makefiles/Makefile.common
+
+all:
+	$(BINUTILS_SRC_DIR)/bfd/configure \
+		--host=$(RTEMS_CPU)-rtems \
+		--disable-nls \
+		--prefix=$(exec_prefix) \
+		--libdir=$(exec_prefix)/$(RTEMS_BSP)/lib \
+		--includedir=$(exec_prefix)/$(RTEMS_BSP)/lib/include
+	make
+	make install

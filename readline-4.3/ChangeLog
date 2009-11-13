@@ -1,0 +1,5 @@
+2008-08-21	Joel Sherrill <joel.sherrill@OARcorp.com>
+
+	* display.c, histexpand.c, terminal.c: Fix warnings.
+	* ChangeLog: New file.
+
