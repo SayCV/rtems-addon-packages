@@ -1,3 +1,7 @@
+2009-11-13	Joel Sherrill <joel.sherrill@OARcorp.com>
+
+	* VERSION: Updated to rtems-addon-packages-4.9.3.
+
 2008-09-17	Joel Sherrill <joel.sherrill@oarcorp.com>
 
 	* examples/avl/Makefile, examples/ncurses/Makefile,
