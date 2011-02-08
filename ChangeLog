@@ -1,5 +1,9 @@
 2011-02-08	Joel Sherrill <joel.sherrilL@OARcorp.com>
 
+	* VERSION: Updated to rtems-addon-packages-4.10.0.
+
+2011-02-08	Joel Sherrill <joel.sherrilL@OARcorp.com>
+
 	* ncurses-5.3/config.log: Removed.
 
 2009-11-13	Joel Sherrill <joel.sherrill@OARcorp.com>
