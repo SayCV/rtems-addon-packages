@@ -1,0 +1,19 @@
+#
+# Declare supported terminal types.
+# This value can be augmented/overridden by the site-configuration file
+#
+include ../RTEMS_Makefiles/Makefile.common
+
+#
+# The following will work only if you have the latest ncurses version
+# of infocmp installed before trying to build for an RTEMS target.
+# The cf_cv_type_of_bool hack works around a bug when configuring
+# for a cross-target.
+#
+all:
+	./configure --host=$(RTEMS_CPU)-rtems$(RTEMS_API) \
+		--prefix=$(exec_prefix) \
+		--includedir=$(exec_prefix)/lib/include \
+		--disable-shared
+	make
+	make install
