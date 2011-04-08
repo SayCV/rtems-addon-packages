@@ -1,5 +1,24 @@
 2011-04-08	Joel Sherrill <joel.sherrill@oarcorp.com>
 
+	* ncurses-5.2/ANNOUNCE, ncurses-5.2/INSTALL, ncurses-5.2/MANIFEST,
+	ncurses-5.2/Makefile.glibc, ncurses-5.2/Makefile.in,
+	ncurses-5.2/Makefile.os2, ncurses-5.2/NEWS, ncurses-5.2/README,
+	ncurses-5.2/README.emx, ncurses-5.2/README.glibc, ncurses-5.2/TO-DO,
+	ncurses-5.2/aclocal.m4, ncurses-5.2/announce.html.in,
+	ncurses-5.2/config.guess, ncurses-5.2/config.sub,
+	ncurses-5.2/configure, ncurses-5.2/configure.in,
+	ncurses-5.2/convert_configure.pl, ncurses-5.2/dist.mk,
+	ncurses-5.2/install-sh, ncurses-5.2/mk-0th.awk,
+	ncurses-5.2/mk-1st.awk, ncurses-5.2/mk-2nd.awk,
+	ncurses-5.2/mkinstalldirs, ncurses-5.2/tar-copy.sh,
+	ncurses-5.2/Ada95/Makefile.in, ncurses-5.2/Ada95/README,
+	ncurses-5.2/Ada95/TODO, ncurses-5.2/Ada95/gen/Makefile.in,
+	ncurses-5.2/Ada95/gen/gen.c, ncurses-5.2/Ada95/gen/html.m4,
+	ncurses-5.2/Ada95/gen/normal.m4, ncurses-5.2/Ada95/gen/table.m4,
+	ncurses-5.2/Ada95/gen/terminal_interface-curses-aux.ads.m4,
+
+2011-04-08	Joel Sherrill <joel.sherrill@oarcorp.com>
+
 	* ncurses-5.9/ncurses/tty/lib_twait.c: Need conditional on __rtems__.
 
 2011-04-08	Joel Sherrill <joel.sherrill@oarcorp.com>
