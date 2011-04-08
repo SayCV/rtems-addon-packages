@@ -1,5 +1,9 @@
 2011-04-08	Joel Sherrill <joel.sherrill@oarcorp.com>
 
+	* ncurses-5.9/ncurses/tty/lib_twait.c: Need conditional on __rtems__.
+
+2011-04-08	Joel Sherrill <joel.sherrill@oarcorp.com>
+
 	* bit: Update to ncurses-5.9.
 	* ncurses-5.9/ANNOUNCE, ncurses-5.9/AUTHORS, ncurses-5.9/INSTALL,
 	ncurses-5.9/MANIFEST, ncurses-5.9/Makefile.in,

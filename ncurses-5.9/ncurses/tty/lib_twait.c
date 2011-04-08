@@ -68,6 +68,9 @@
 #ifdef __MINGW32__
 #  include <sys/time.h>
 #endif
+#ifdef __rtems__
+#  include <sys/time.h>
+#endif
 #undef CUR
 
 MODULE_ID("$Id$")
