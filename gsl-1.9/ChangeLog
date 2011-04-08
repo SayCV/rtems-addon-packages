@@ -1,0 +1,1355 @@
+2011-04-08	Joel Sherrill <joel.sherrill@oarcorp.com>
+
+	* AUTHORS, BUGS, COPYING, ChangeLog, INSTALL, Makefile.am, Makefile.in,
+	NEWS, README, SUPPORT, THANKS, TODO, acconfig.h, aclocal.m4,
+	autogen.sh, config.guess, config.h.in, config.sub, configure,
+	configure.ac, gsl-config.in, gsl-histogram.c, gsl-randist.c, gsl.m4,
+	gsl.pc.in, gsl.spec.in, gsl_machine.h, gsl_math.h, gsl_mode.h,
+	gsl_nan.h, gsl_pow_int.h, gsl_precision.h, gsl_types.h,
+	gsl_version.h.in, install-sh, ltmain.sh, mdate-sh, missing,
+	mkinstalldirs, templates_off.h, templates_on.h,
+	test_gsl_histogram.sh, version.c, blas/ChangeLog, blas/Makefile.am,
+	blas/Makefile.in, blas/TODO, blas/blas.c, blas/gsl_blas.h,
+	blas/gsl_blas_types.h, block/ChangeLog, block/Makefile.am,
+	block/Makefile.in, block/block.c, block/block_source.c, block/file.c,
+	block/fprintf_source.c, block/fwrite_source.c, block/gsl_block.h,
+	block/gsl_block_char.h, block/gsl_block_complex_double.h,
+	block/gsl_block_complex_float.h,
+	block/gsl_block_complex_long_double.h, block/gsl_block_double.h,
+	block/gsl_block_float.h, block/gsl_block_int.h,
+	block/gsl_block_long.h, block/gsl_block_long_double.h,
+	block/gsl_block_short.h, block/gsl_block_uchar.h,
+	block/gsl_block_uint.h, block/gsl_block_ulong.h,
+	block/gsl_block_ushort.h, block/gsl_check_range.h, block/init.c,
+	block/init_source.c, block/test.c, block/test_complex_io.c,
+	block/test_complex_source.c, block/test_io.c, block/test_source.c,
+	bspline/ChangeLog, bspline/Makefile.am, bspline/Makefile.in,
+	bspline/TODO, bspline/bspline.c, bspline/gsl_bspline.h,
+	bspline/test.c, cblas/ChangeLog, cblas/Makefile.am,
+	cblas/Makefile.in, cblas/TODO, cblas/caxpy.c, cblas/cblas.h,
+	cblas/ccopy.c, cblas/cdotc_sub.c, cblas/cdotu_sub.c, cblas/cgbmv.c,
+	cblas/cgemm.c, cblas/cgemv.c, cblas/cgerc.c, cblas/cgeru.c,
+	cblas/chbmv.c, cblas/chemm.c, cblas/chemv.c, cblas/cher.c,
+	cblas/cher2.c, cblas/cher2k.c, cblas/cherk.c, cblas/chpmv.c,
+	cblas/chpr.c, cblas/chpr2.c, cblas/cscal.c, cblas/csscal.c,
+	cblas/cswap.c, cblas/csymm.c, cblas/csyr2k.c, cblas/csyrk.c,
+	cblas/ctbmv.c, cblas/ctbsv.c, cblas/ctpmv.c, cblas/ctpsv.c,
+	cblas/ctrmm.c, cblas/ctrmv.c, cblas/ctrsm.c, cblas/ctrsv.c,
+	cblas/dasum.c, cblas/daxpy.c, cblas/dcopy.c, cblas/ddot.c,
+	cblas/dgbmv.c, cblas/dgemm.c, cblas/dgemv.c, cblas/dger.c,
+	cblas/dnrm2.c, cblas/drot.c, cblas/drotg.c, cblas/drotm.c,
+	cblas/drotmg.c, cblas/dsbmv.c, cblas/dscal.c, cblas/dsdot.c,
+	cblas/dspmv.c, cblas/dspr.c, cblas/dspr2.c, cblas/dswap.c,
+	cblas/dsymm.c, cblas/dsymv.c, cblas/dsyr.c, cblas/dsyr2.c,
+	cblas/dsyr2k.c, cblas/dsyrk.c, cblas/dtbmv.c, cblas/dtbsv.c,
+	cblas/dtpmv.c, cblas/dtpsv.c, cblas/dtrmm.c, cblas/dtrmv.c,
+	cblas/dtrsm.c, cblas/dtrsv.c, cblas/dzasum.c, cblas/dznrm2.c,
+	cblas/gsl_cblas.h, cblas/hypot.c, cblas/icamax.c, cblas/idamax.c,
+	cblas/isamax.c, cblas/izamax.c, cblas/sasum.c, cblas/saxpy.c,
+	cblas/scasum.c, cblas/scnrm2.c, cblas/scopy.c, cblas/sdot.c,
+	cblas/sdsdot.c, cblas/sgbmv.c, cblas/sgemm.c, cblas/sgemv.c,
+	cblas/sger.c, cblas/snrm2.c, cblas/source_asum_c.h,
+	cblas/source_asum_r.h, cblas/source_axpy_c.h, cblas/source_axpy_r.h,
+	cblas/source_copy_c.h, cblas/source_copy_r.h, cblas/source_dot_c.h,
+	cblas/source_dot_r.h, cblas/source_gbmv_c.h, cblas/source_gbmv_r.h,
+	cblas/source_gemm_c.h, cblas/source_gemm_r.h, cblas/source_gemv_c.h,
+	cblas/source_gemv_r.h, cblas/source_ger.h, cblas/source_gerc.h,
+	cblas/source_geru.h, cblas/source_hbmv.h, cblas/source_hemm.h,
+	cblas/source_hemv.h, cblas/source_her.h, cblas/source_her2.h,
+	cblas/source_her2k.h, cblas/source_herk.h, cblas/source_hpmv.h,
+	cblas/source_hpr.h, cblas/source_hpr2.h, cblas/source_iamax_c.h,
+	cblas/source_iamax_r.h, cblas/source_nrm2_c.h, cblas/source_nrm2_r.h,
+	cblas/source_rot.h, cblas/source_rotg.h, cblas/source_rotm.h,
+	cblas/source_rotmg.h, cblas/source_sbmv.h, cblas/source_scal_c.h,
+	cblas/source_scal_c_s.h, cblas/source_scal_r.h, cblas/source_spmv.h,
+	cblas/source_spr.h, cblas/source_spr2.h, cblas/source_swap_c.h,
+	cblas/source_swap_r.h, cblas/source_symm_c.h, cblas/source_symm_r.h,
+	cblas/source_symv.h, cblas/source_syr.h, cblas/source_syr2.h,
+	cblas/source_syr2k_c.h, cblas/source_syr2k_r.h,
+	cblas/source_syrk_c.h, cblas/source_syrk_r.h, cblas/source_tbmv_c.h,
+	cblas/source_tbmv_r.h, cblas/source_tbsv_c.h, cblas/source_tbsv_r.h,
+	cblas/source_tpmv_c.h, cblas/source_tpmv_r.h, cblas/source_tpsv_c.h,
+	cblas/source_tpsv_r.h, cblas/source_trmm_c.h, cblas/source_trmm_r.h,
+	cblas/source_trmv_c.h, cblas/source_trmv_r.h, cblas/source_trsm_c.h,
+	cblas/source_trsm_r.h, cblas/source_trsv_c.h, cblas/source_trsv_r.h,
+	cblas/srot.c, cblas/srotg.c, cblas/srotm.c, cblas/srotmg.c,
+	cblas/ssbmv.c, cblas/sscal.c, cblas/sspmv.c, cblas/sspr.c,
+	cblas/sspr2.c, cblas/sswap.c, cblas/ssymm.c, cblas/ssymv.c,
+	cblas/ssyr.c, cblas/ssyr2.c, cblas/ssyr2k.c, cblas/ssyrk.c,
+	cblas/stbmv.c, cblas/stbsv.c, cblas/stpmv.c, cblas/stpsv.c,
+	cblas/strmm.c, cblas/strmv.c, cblas/strsm.c, cblas/strsv.c,
+	cblas/test.c, cblas/test_amax.c, cblas/test_asum.c,
+	cblas/test_axpy.c, cblas/test_copy.c, cblas/test_dot.c,
+	cblas/test_gbmv.c, cblas/test_gemm.c, cblas/test_gemv.c,
+	cblas/test_ger.c, cblas/test_hbmv.c, cblas/test_hemm.c,
+	cblas/test_hemv.c, cblas/test_her.c, cblas/test_her2.c,
+	cblas/test_her2k.c, cblas/test_herk.c, cblas/test_hpmv.c,
+	cblas/test_hpr.c, cblas/test_hpr2.c, cblas/test_nrm2.c,
+	cblas/test_rot.c, cblas/test_rotg.c, cblas/test_rotm.c,
+	cblas/test_rotmg.c, cblas/test_sbmv.c, cblas/test_scal.c,
+	cblas/test_spmv.c, cblas/test_spr.c, cblas/test_spr2.c,
+	cblas/test_swap.c, cblas/test_symm.c, cblas/test_symv.c,
+	cblas/test_syr.c, cblas/test_syr2.c, cblas/test_syr2k.c,
+	cblas/test_syrk.c, cblas/test_tbmv.c, cblas/test_tbsv.c,
+	cblas/test_tpmv.c, cblas/test_tpsv.c, cblas/test_trmm.c,
+	cblas/test_trmv.c, cblas/test_trsm.c, cblas/test_trsv.c,
+	cblas/tests.c, cblas/tests.h, cblas/xerbla.c, cblas/zaxpy.c,
+	cblas/zcopy.c, cblas/zdotc_sub.c, cblas/zdotu_sub.c, cblas/zdscal.c,
+	cblas/zgbmv.c, cblas/zgemm.c, cblas/zgemv.c, cblas/zgerc.c,
+	cblas/zgeru.c, cblas/zhbmv.c, cblas/zhemm.c, cblas/zhemv.c,
+	cblas/zher.c, cblas/zher2.c, cblas/zher2k.c, cblas/zherk.c,
+	cblas/zhpmv.c, cblas/zhpr.c, cblas/zhpr2.c, cblas/zscal.c,
+	cblas/zswap.c, cblas/zsymm.c, cblas/zsyr2k.c, cblas/zsyrk.c,
+	cblas/ztbmv.c, cblas/ztbsv.c, cblas/ztpmv.c, cblas/ztpsv.c,
+	cblas/ztrmm.c, cblas/ztrmv.c, cblas/ztrsm.c, cblas/ztrsv.c,
+	cdf/ChangeLog, cdf/Makefile.am, cdf/Makefile.in, cdf/beta.c,
+	cdf/beta_inc.c, cdf/betainv.c, cdf/binomial.c, cdf/cauchy.c,
+	cdf/cauchyinv.c, cdf/chisq.c, cdf/chisqinv.c, cdf/error.h,
+	cdf/exponential.c, cdf/exponentialinv.c, cdf/exppow.c, cdf/fdist.c,
+	cdf/fdistinv.c, cdf/flat.c, cdf/flatinv.c, cdf/gamma.c,
+	cdf/gammainv.c, cdf/gauss.c, cdf/gaussinv.c, cdf/geometric.c,
+	cdf/gsl_cdf.h, cdf/gumbel1.c, cdf/gumbel1inv.c, cdf/gumbel2.c,
+	cdf/gumbel2inv.c, cdf/hypergeometric.c, cdf/laplace.c,
+	cdf/laplaceinv.c, cdf/logistic.c, cdf/logisticinv.c, cdf/lognormal.c,
+	cdf/lognormalinv.c, cdf/nbinomial.c, cdf/pareto.c, cdf/paretoinv.c,
+	cdf/pascal.c, cdf/poisson.c, cdf/rat_eval.h, cdf/rayleigh.c,
+	cdf/rayleighinv.c, cdf/tdist.c, cdf/tdistinv.c, cdf/test.c,
+	cdf/test_auto.c, cdf/weibull.c, cdf/weibullinv.c, cheb/ChangeLog,
+	cheb/Makefile.am, cheb/Makefile.in, cheb/deriv.c, cheb/eval.c,
+	cheb/gsl_chebyshev.h, cheb/init.c, cheb/integ.c, cheb/test.c,
+	combination/ChangeLog, combination/Makefile.am,
+	combination/Makefile.in, combination/combination.c,
+	combination/file.c, combination/gsl_combination.h,
+	combination/init.c, combination/test.c, complex/ChangeLog,
+	complex/Makefile.am, complex/Makefile.in, complex/TODO,
+	complex/gsl_complex.h, complex/gsl_complex_math.h, complex/math.c,
+	complex/results.h, complex/results1.h, complex/results_real.h,
+	complex/test.c, const/ChangeLog, const/Makefile.am,
+	const/Makefile.in, const/TODO, const/gsl_const.h,
+	const/gsl_const_cgs.h, const/gsl_const_cgsm.h, const/gsl_const_mks.h,
+	const/gsl_const_mksa.h, const/gsl_const_num.h, const/test.c,
+	deriv/ChangeLog, deriv/Makefile.am, deriv/Makefile.in, deriv/deriv.c,
+	deriv/gsl_deriv.h, deriv/test.c, dht/ChangeLog, dht/Makefile.am,
+	dht/Makefile.in, dht/dht.c, dht/gsl_dht.h, dht/test.c,
+	diff/ChangeLog, diff/Makefile.am, diff/Makefile.in, diff/diff.c,
+	diff/gsl_diff.h, diff/test.c, doc/12-cities.eps, doc/ChangeLog,
+	doc/Makefile.am, doc/Makefile.in, doc/algorithm.sty,
+	doc/algorithmic.sty, doc/autoconf.texi, doc/blas.texi,
+	doc/bspline.eps, doc/bspline.texi, doc/calc.sty, doc/cblas.texi,
+	doc/cheb.eps, doc/cheb.texi, doc/combination.texi, doc/complex.texi,
+	doc/const.texi, doc/debug.texi, doc/dht.texi, doc/diff.texi,
+	doc/dwt-orig.eps, doc/dwt-samp.eps, doc/dwt.texi, doc/eigen.texi,
+	doc/err.texi, doc/fdl.texi, doc/fft-complex-radix2-f.eps,
+	doc/fft-complex-radix2-t.eps, doc/fft-complex-radix2.eps,
+	doc/fft-real-mixedradix.eps, doc/fft.texi, doc/fftalgorithms.bib,
+	doc/fftalgorithms.tex, doc/final-route.eps, doc/fit-exp.eps,
+	doc/fit-wlinear.eps, doc/fit-wlinear2.eps, doc/fitting.texi,
+	doc/freemanuals.texi, doc/gpl.texi, doc/gsl-config.1,
+	doc/gsl-design.texi, doc/gsl-histogram.1, doc/gsl-randist.1,
+	doc/gsl-ref.info, doc/gsl-ref.info-1, doc/gsl-ref.info-2,
+	doc/gsl-ref.info-3, doc/gsl-ref.info-4, doc/gsl-ref.info-5,
+	doc/gsl-ref.info-6, doc/gsl-ref.texi, doc/gsl.3, doc/histogram.eps,
+	doc/histogram.texi, doc/histogram2d.eps, doc/ieee754.texi,
+	doc/initial-route.eps, doc/integration.texi, doc/interp.texi,
+	doc/interp2.eps, doc/interpp2.eps, doc/intro.texi, doc/landau.dat,
+	doc/linalg.texi, doc/math.texi, doc/mdate-sh, doc/min-interval.eps,
+	doc/min.texi, doc/montecarlo.texi, doc/multifit.texi,
+	doc/multimin.eps, doc/multimin.texi, doc/multiroots.texi,
+	doc/ntuple.eps, doc/ntuple.texi, doc/ode-initval.texi,
+	doc/permutation.texi, doc/poly.texi, doc/qrng.eps, doc/qrng.texi,
+	doc/rand-bernoulli.tex, doc/rand-beta.tex, doc/rand-binomial.tex,
+	doc/rand-bivariate-gaussian.tex, doc/rand-cauchy.tex,
+	doc/rand-chisq.tex, doc/rand-erlang.tex, doc/rand-exponential.tex,
+	doc/rand-exppow.tex, doc/rand-fdist.tex, doc/rand-flat.tex,
+	doc/rand-gamma.tex, doc/rand-gaussian-tail.tex,
+	doc/rand-gaussian.tex, doc/rand-geometric.tex, doc/rand-gumbel.tex,
+	doc/rand-gumbel1.tex, doc/rand-gumbel2.tex,
+	doc/rand-hypergeometric.tex, doc/rand-landau.tex,
+	doc/rand-laplace.tex, doc/rand-levy.tex, doc/rand-levyskew.tex,
+	doc/rand-logarithmic.tex, doc/rand-logistic.tex,
+	doc/rand-lognormal.tex, doc/rand-nbinomial.tex, doc/rand-pareto.tex,
+	doc/rand-pascal.tex, doc/rand-poisson.tex,
+	doc/rand-rayleigh-tail.tex, doc/rand-rayleigh.tex,
+	doc/rand-tdist.tex, doc/rand-weibull.tex, doc/randist.texi,
+	doc/random-walk.tex, doc/randplots.gnp, doc/rng.texi,
+	doc/roots-bisection.eps, doc/roots-false-position.eps,
+	doc/roots-newtons-method.eps, doc/roots-secant-method.eps,
+	doc/roots.texi, doc/siman-energy.eps, doc/siman-test.eps,
+	doc/siman.texi, doc/sort.texi, doc/specfunc-airy.texi,
+	doc/specfunc-bessel.texi, doc/specfunc-clausen.texi,
+	doc/specfunc-coulomb.texi, doc/specfunc-coupling.texi,
+	doc/specfunc-dawson.texi, doc/specfunc-debye.texi,
+	doc/specfunc-dilog.texi, doc/specfunc-elementary.texi,
+	doc/specfunc-ellint.texi, doc/specfunc-elljac.texi,
+	doc/specfunc-erf.texi, doc/specfunc-exp.texi,
+	doc/specfunc-expint.texi, doc/specfunc-fermi-dirac.texi,
+	doc/specfunc-gamma.texi, doc/specfunc-gegenbauer.texi,
+	doc/specfunc-hyperg.texi, doc/specfunc-laguerre.texi,
+	doc/specfunc-lambert.texi, doc/specfunc-legendre.texi,
+	doc/specfunc-log.texi, doc/specfunc-mathieu.texi,
+	doc/specfunc-pow-int.texi, doc/specfunc-psi.texi,
+	doc/specfunc-synchrotron.texi, doc/specfunc-transport.texi,
+	doc/specfunc-trig.texi, doc/specfunc-zeta.texi, doc/specfunc.texi,
+	doc/stamp-vti, doc/statistics.texi, doc/sum.texi, doc/texinfo.tex,
+	doc/usage.texi, doc/vdp.eps, doc/vectors.texi, doc/version-ref.texi,
+	doc/examples/blas.c, doc/examples/blas.out, doc/examples/block.c,
+	doc/examples/block.out, doc/examples/bspline.c, doc/examples/cblas.c,
+	doc/examples/cblas.out, doc/examples/cdf.c, doc/examples/cdf.out,
+	doc/examples/cheb.c, doc/examples/combination.c,
+	doc/examples/combination.out, doc/examples/const.c,
+	doc/examples/const.out, doc/examples/demo_fn.c,
+	doc/examples/demo_fn.h, doc/examples/diff.c, doc/examples/diff.out,
+	doc/examples/dwt.c, doc/examples/dwt.dat, doc/examples/ecg.dat,
+	doc/examples/eigen.c, doc/examples/eigen_nonsymm.c,
+	doc/examples/expfit.c, doc/examples/fft.c, doc/examples/fftmr.c,
+	doc/examples/fftreal.c, doc/examples/fitting.c,
+	doc/examples/fitting2.c, doc/examples/fitting3.c,
+	doc/examples/histogram.c, doc/examples/histogram2d.c,
+	doc/examples/ieee.c, doc/examples/ieeeround.c,
+	doc/examples/integration.c, doc/examples/integration.out,
+	doc/examples/interp.c, doc/examples/interpp.c, doc/examples/intro.c,
+	doc/examples/intro.out, doc/examples/linalglu.c,
+	doc/examples/linalglu.out, doc/examples/matrix.c,
+	doc/examples/matrixw.c, doc/examples/min.c, doc/examples/min.out,
+	doc/examples/monte.c, doc/examples/nlfit.c, doc/examples/ntupler.c,
+	doc/examples/ntuplew.c, doc/examples/ode-initval.c,
+	doc/examples/odefixed.c, doc/examples/permseq.c,
+	doc/examples/permshuffle.c, doc/examples/polyroots.c,
+	doc/examples/polyroots.out, doc/examples/qrng.c,
+	doc/examples/randpoisson.2.out, doc/examples/randpoisson.c,
+	doc/examples/randpoisson.out, doc/examples/randwalk.c,
+	doc/examples/rng.c, doc/examples/rng.out, doc/examples/rngunif.2.out,
+	doc/examples/rngunif.c, doc/examples/rngunif.out,
+	doc/examples/rootnewt.c, doc/examples/roots.c, doc/examples/siman.c,
+	doc/examples/sortsmall.c, doc/examples/sortsmall.out,
+	doc/examples/specfun.c, doc/examples/specfun.out,
+	doc/examples/specfun_e.c, doc/examples/specfun_e.out,
+	doc/examples/stat.c, doc/examples/stat.out, doc/examples/statsort.c,
+	doc/examples/statsort.out, doc/examples/sum.c, doc/examples/sum.out,
+	doc/examples/vector.c, doc/examples/vectorr.c,
+	doc/examples/vectorview.c, doc/examples/vectorview.out,
+	doc/examples/vectorw.c, eigen/ChangeLog, eigen/Makefile.am,
+	eigen/Makefile.in, eigen/TODO, eigen/francis.c, eigen/gsl_eigen.h,
+	eigen/herm.c, eigen/hermv.c, eigen/jacobi.c, eigen/nonsymm.c,
+	eigen/nonsymmv.c, eigen/qrstep.c, eigen/schur.c, eigen/schur.h,
+	eigen/sort.c, eigen/symm.c, eigen/symmv.c, eigen/test.c,
+	err/ChangeLog, err/Makefile.am, err/Makefile.in, err/TODO,
+	err/error.c, err/gsl_errno.h, err/gsl_message.h, err/message.c,
+	err/stream.c, err/strerror.c, err/test.c, fft/ChangeLog,
+	fft/Makefile.am, fft/Makefile.in, fft/TODO, fft/bitreverse.c,
+	fft/bitreverse.h, fft/c_init.c, fft/c_main.c, fft/c_pass.h,
+	fft/c_pass_2.c, fft/c_pass_3.c, fft/c_pass_4.c, fft/c_pass_5.c,
+	fft/c_pass_6.c, fft/c_pass_7.c, fft/c_pass_n.c, fft/c_radix2.c,
+	fft/compare.h, fft/compare_source.c, fft/complex_internal.h,
+	fft/dft.c, fft/dft_source.c, fft/factorize.c, fft/factorize.h,
+	fft/fft.c, fft/gsl_dft_complex.h, fft/gsl_dft_complex_float.h,
+	fft/gsl_fft.h, fft/gsl_fft_complex.h, fft/gsl_fft_complex_float.h,
+	fft/gsl_fft_halfcomplex.h, fft/gsl_fft_halfcomplex_float.h,
+	fft/gsl_fft_real.h, fft/gsl_fft_real_float.h, fft/hc_init.c,
+	fft/hc_main.c, fft/hc_pass.h, fft/hc_pass_2.c, fft/hc_pass_3.c,
+	fft/hc_pass_4.c, fft/hc_pass_5.c, fft/hc_pass_n.c, fft/hc_radix2.c,
+	fft/hc_unpack.c, fft/real_init.c, fft/real_main.c, fft/real_pass.h,
+	fft/real_pass_2.c, fft/real_pass_3.c, fft/real_pass_4.c,
+	fft/real_pass_5.c, fft/real_pass_n.c, fft/real_radix2.c,
+	fft/real_unpack.c, fft/signals.c, fft/signals.h,
+	fft/signals_source.c, fft/test.c, fft/test_complex_source.c,
+	fft/test_real_source.c, fft/test_trap_source.c, fft/urand.c,
+	fit/ChangeLog, fit/Makefile.am, fit/Makefile.in, fit/gsl_fit.h,
+	fit/linear.c, fit/test.c, gsl/Makefile.am, gsl/Makefile.in,
+	histogram/ChangeLog, histogram/Makefile.am, histogram/Makefile.in,
+	histogram/TODO, histogram/add.c, histogram/add2d.c,
+	histogram/calloc_range.c, histogram/calloc_range2d.c,
+	histogram/copy.c, histogram/copy2d.c, histogram/file.c,
+	histogram/file2d.c, histogram/find.c, histogram/find2d.c,
+	histogram/get.c, histogram/get2d.c, histogram/gsl_histogram.h,
+	histogram/gsl_histogram2d.h, histogram/init.c, histogram/init2d.c,
+	histogram/maxval.c, histogram/maxval2d.c, histogram/oper.c,
+	histogram/oper2d.c, histogram/params.c, histogram/params2d.c,
+	histogram/pdf.c, histogram/pdf2d.c, histogram/reset.c,
+	histogram/reset2d.c, histogram/stat.c, histogram/stat2d.c,
+	histogram/test.c, histogram/test1d.c, histogram/test1d_resample.c,
+	histogram/test1d_trap.c, histogram/test2d.c,
+	histogram/test2d_resample.c, histogram/test2d_trap.c,
+	histogram/urand.c, ieee-utils/ChangeLog, ieee-utils/Makefile.am,
+	ieee-utils/Makefile.in, ieee-utils/TODO, ieee-utils/endian.c,
+	ieee-utils/env.c, ieee-utils/fp-aix.c, ieee-utils/fp-darwin.c,
+	ieee-utils/fp-darwin86.c, ieee-utils/fp-freebsd.c,
+	ieee-utils/fp-gnuc99.c, ieee-utils/fp-gnum68k.c,
+	ieee-utils/fp-gnuppc.c, ieee-utils/fp-gnusparc.c,
+	ieee-utils/fp-gnux86.c, ieee-utils/fp-hpux.c, ieee-utils/fp-hpux11.c,
+	ieee-utils/fp-irix.c, ieee-utils/fp-netbsd.c,
+	ieee-utils/fp-openbsd.c, ieee-utils/fp-os2emx.c,
+	ieee-utils/fp-solaris.c, ieee-utils/fp-sunos4.c,
+	ieee-utils/fp-tru64.c, ieee-utils/fp-unknown.c, ieee-utils/fp.c,
+	ieee-utils/gsl_ieee_utils.h, ieee-utils/make_rep.c,
+	ieee-utils/print.c, ieee-utils/read.c, ieee-utils/standardize.c,
+	ieee-utils/test.c, integration/ChangeLog, integration/Makefile.am,
+	integration/Makefile.in, integration/TODO, integration/append.c,
+	integration/err.c, integration/gsl_integration.h,
+	integration/initialise.c, integration/positivity.c,
+	integration/ptsort.c, integration/qag.c, integration/qagp.c,
+	integration/qags.c, integration/qawc.c, integration/qawf.c,
+	integration/qawo.c, integration/qaws.c, integration/qc25c.c,
+	integration/qc25f.c, integration/qc25s.c, integration/qcheb.c,
+	integration/qelg.c, integration/qk.c, integration/qk15.c,
+	integration/qk21.c, integration/qk31.c, integration/qk41.c,
+	integration/qk51.c, integration/qk61.c, integration/qmomo.c,
+	integration/qmomof.c, integration/qng.c, integration/qng.h,
+	integration/qpsrt.c, integration/qpsrt2.c, integration/reset.c,
+	integration/set_initial.c, integration/test.c, integration/tests.c,
+	integration/tests.h, integration/util.c, integration/workspace.c,
+	interpolation/ChangeLog, interpolation/Makefile.am,
+	interpolation/Makefile.in, interpolation/TODO, interpolation/accel.c,
+	interpolation/akima.c, interpolation/bsearch.c,
+	interpolation/bsearch.h, interpolation/cspline.c,
+	interpolation/gsl_interp.h, interpolation/gsl_spline.h,
+	interpolation/integ_eval.h, interpolation/interp.c,
+	interpolation/linear.c, interpolation/poly.c, interpolation/spline.c,
+	interpolation/test.c, linalg/ChangeLog, linalg/Makefile.am,
+	linalg/Makefile.in, linalg/TODO, linalg/apply_givens.c,
+	linalg/balance.c, linalg/balancemat.c, linalg/bidiag.c,
+	linalg/cholesky.c, linalg/exponential.c, linalg/givens.c,
+	linalg/gsl_linalg.h, linalg/hermtd.c, linalg/hessenberg.c,
+	linalg/hh.c, linalg/householder.c, linalg/householdercomplex.c,
+	linalg/lq.c, linalg/lu.c, linalg/luc.c, linalg/multiply.c,
+	linalg/ptlq.c, linalg/qr.c, linalg/qrpt.c, linalg/svd.c,
+	linalg/svdstep.c, linalg/symmtd.c, linalg/test.c, linalg/tridiag.c,
+	linalg/tridiag.h, matrix/ChangeLog, matrix/Makefile.am,
+	matrix/Makefile.in, matrix/TODO, matrix/copy.c, matrix/copy_source.c,
+	matrix/file.c, matrix/file_source.c, matrix/getset.c,
+	matrix/getset_source.c, matrix/gsl_matrix.h,
+	matrix/gsl_matrix_char.h, matrix/gsl_matrix_complex_double.h,
+	matrix/gsl_matrix_complex_float.h,
+	matrix/gsl_matrix_complex_long_double.h, matrix/gsl_matrix_double.h,
+	matrix/gsl_matrix_float.h, matrix/gsl_matrix_int.h,
+	matrix/gsl_matrix_long.h, matrix/gsl_matrix_long_double.h,
+	matrix/gsl_matrix_short.h, matrix/gsl_matrix_uchar.h,
+	matrix/gsl_matrix_uint.h, matrix/gsl_matrix_ulong.h,
+	matrix/gsl_matrix_ushort.h, matrix/init.c, matrix/init_source.c,
+	matrix/matrix.c, matrix/matrix_source.c, matrix/minmax.c,
+	matrix/minmax_source.c, matrix/oper.c, matrix/oper_complex_source.c,
+	matrix/oper_source.c, matrix/prop.c, matrix/prop_source.c,
+	matrix/rowcol.c, matrix/rowcol_source.c, matrix/submatrix.c,
+	matrix/submatrix_source.c, matrix/swap.c, matrix/swap_source.c,
+	matrix/test.c, matrix/test_complex_source.c, matrix/test_source.c,
+	matrix/test_static.c, matrix/view.c, matrix/view.h,
+	matrix/view_source.c, min/ChangeLog, min/Makefile.am,
+	min/Makefile.in, min/bracketing.c, min/brent.c, min/convergence.c,
+	min/fsolver.c, min/golden.c, min/gsl_min.h, min/min.h, min/test.c,
+	min/test.h, min/test_funcs.c, monte/ChangeLog, monte/Makefile.am,
+	monte/Makefile.in, monte/README, monte/TODO, monte/gsl_monte.h,
+	monte/gsl_monte_miser.h, monte/gsl_monte_plain.h,
+	monte/gsl_monte_vegas.h, monte/miser.c, monte/plain.c, monte/test.c,
+	monte/test_main.c, monte/vegas.c, multifit/ChangeLog,
+	multifit/Makefile.am, multifit/Makefile.in, multifit/TODO,
+	multifit/convergence.c, multifit/covar.c, multifit/fdfsolver.c,
+	multifit/fsolver.c, multifit/gradient.c, multifit/gsl_multifit.h,
+	multifit/gsl_multifit_nlin.h, multifit/lmder.c, multifit/lmiterate.c,
+	multifit/lmpar.c, multifit/lmset.c, multifit/lmutil.c,
+	multifit/multilinear.c, multifit/qrsolv.c, multifit/test.c,
+	multifit/test_brown.c, multifit/test_enso.c,
+	multifit/test_estimator.c, multifit/test_filip.c, multifit/test_fn.c,
+	multifit/test_hahn1.c, multifit/test_kirby2.c,
+	multifit/test_longley.c, multifit/test_nelson.c,
+	multifit/test_pontius.c, multifit/work.c, multimin/ChangeLog,
+	multimin/Makefile.am, multimin/Makefile.in, multimin/TODO,
+	multimin/conjugate_fr.c, multimin/conjugate_pr.c,
+	multimin/convergence.c, multimin/diff.c,
+	multimin/directional_minimize.c, multimin/fdfminimizer.c,
+	multimin/fminimizer.c, multimin/gsl_multimin.h,
+	multimin/linear_minimize.c, multimin/linear_wrapper.c,
+	multimin/simplex.c, multimin/steepest_descent.c, multimin/test.c,
+	multimin/test_funcs.c, multimin/test_funcs.h, multimin/vector_bfgs.c,
+	multimin/vector_bfgs2.c, multiroots/ChangeLog,
+	multiroots/Makefile.am, multiroots/Makefile.in, multiroots/broyden.c,
+	multiroots/convergence.c, multiroots/dnewton.c, multiroots/dogleg.c,
+	multiroots/enorm.c, multiroots/fdfsolver.c, multiroots/fdjac.c,
+	multiroots/fsolver.c, multiroots/gnewton.c,
+	multiroots/gsl_multiroots.h, multiroots/hybrid.c,
+	multiroots/hybridj.c, multiroots/newton.c, multiroots/test.c,
+	multiroots/test_funcs.c, multiroots/test_funcs.h, ntuple/ChangeLog,
+	ntuple/Makefile.am, ntuple/Makefile.in, ntuple/gsl_ntuple.h,
+	ntuple/ntuple.c, ntuple/test.c, ode-initval/ChangeLog,
+	ode-initval/Makefile.am, ode-initval/Makefile.in, ode-initval/TODO,
+	ode-initval/bsimp.c, ode-initval/control.c, ode-initval/cscal.c,
+	ode-initval/cstd.c, ode-initval/evolve.c, ode-initval/gear1.c,
+	ode-initval/gear2.c, ode-initval/gsl_odeiv.h,
+	ode-initval/odeiv_util.h, ode-initval/rk2.c, ode-initval/rk2imp.c,
+	ode-initval/rk2simp.c, ode-initval/rk4.c, ode-initval/rk4imp.c,
+	ode-initval/rk8pd.c, ode-initval/rkck.c, ode-initval/rkf45.c,
+	ode-initval/step.c, ode-initval/test.c, permutation/ChangeLog,
+	permutation/Makefile.am, permutation/Makefile.in,
+	permutation/canonical.c, permutation/file.c,
+	permutation/gsl_permutation.h, permutation/gsl_permute.h,
+	permutation/gsl_permute_char.h,
+	permutation/gsl_permute_complex_double.h,
+	permutation/gsl_permute_complex_float.h,
+	permutation/gsl_permute_complex_long_double.h,
+	permutation/gsl_permute_double.h, permutation/gsl_permute_float.h,
+	permutation/gsl_permute_int.h, permutation/gsl_permute_long.h,
+	permutation/gsl_permute_long_double.h,
+	permutation/gsl_permute_short.h, permutation/gsl_permute_uchar.h,
+	permutation/gsl_permute_uint.h, permutation/gsl_permute_ulong.h,
+	permutation/gsl_permute_ushort.h, permutation/gsl_permute_vector.h,
+	permutation/gsl_permute_vector_char.h,
+	permutation/gsl_permute_vector_complex_double.h,
+	permutation/gsl_permute_vector_complex_float.h,
+	permutation/gsl_permute_vector_complex_long_double.h,
+	permutation/gsl_permute_vector_double.h,
+	permutation/gsl_permute_vector_float.h,
+	permutation/gsl_permute_vector_int.h,
+	permutation/gsl_permute_vector_long.h,
+	permutation/gsl_permute_vector_long_double.h,
+	permutation/gsl_permute_vector_short.h,
+	permutation/gsl_permute_vector_uchar.h,
+	permutation/gsl_permute_vector_uint.h,
+	permutation/gsl_permute_vector_ulong.h,
+	permutation/gsl_permute_vector_ushort.h, permutation/init.c,
+	permutation/permutation.c, permutation/permute.c,
+	permutation/permute_source.c, permutation/test.c, poly/ChangeLog,
+	poly/Makefile.am, poly/Makefile.in, poly/TODO, poly/balance.c,
+	poly/companion.c, poly/dd.c, poly/eval.c, poly/gsl_poly.h, poly/qr.c,
+	poly/solve_cubic.c, poly/solve_quadratic.c, poly/test.c,
+	poly/zsolve.c, poly/zsolve_cubic.c, poly/zsolve_init.c,
+	poly/zsolve_quadratic.c, qrng/ChangeLog, qrng/Makefile.am,
+	qrng/Makefile.in, qrng/TODO, qrng/gsl_qrng.h, qrng/niederreiter-2.c,
+	qrng/qrng.c, qrng/sobol.c, qrng/test.c, randist/ChangeLog,
+	randist/Makefile.am, randist/Makefile.in, randist/TODO,
+	randist/bernoulli.c, randist/beta.c, randist/bigauss.c,
+	randist/binomial.c, randist/binomial_tpe.c, randist/cauchy.c,
+	randist/chisq.c, randist/dirichlet.c, randist/discrete.c,
+	randist/erlang.c, randist/exponential.c, randist/exppow.c,
+	randist/fdist.c, randist/flat.c, randist/gamma.c, randist/gauss.c,
+	randist/gausstail.c, randist/gausszig.c, randist/geometric.c,
+	randist/gsl_randist.h, randist/gumbel.c, randist/hyperg.c,
+	randist/landau.c, randist/laplace.c, randist/levy.c,
+	randist/logarithmic.c, randist/logistic.c, randist/lognormal.c,
+	randist/multinomial.c, randist/nbinomial.c, randist/pareto.c,
+	randist/pascal.c, randist/poisson.c, randist/rayleigh.c,
+	randist/shuffle.c, randist/sphere.c, randist/tdist.c, randist/test.c,
+	randist/weibull.c, rng/ChangeLog, rng/Makefile.am, rng/Makefile.in,
+	rng/TODO, rng/borosh13.c, rng/cmrg.c, rng/coveyou.c, rng/default.c,
+	rng/file.c, rng/fishman18.c, rng/fishman20.c, rng/fishman2x.c,
+	rng/gfsr4.c, rng/gsl_rng.h, rng/knuthran.c, rng/knuthran2.c,
+	rng/knuthran2002.c, rng/lecuyer21.c, rng/minstd.c, rng/mrg.c,
+	rng/mt.c, rng/r250.c, rng/ran0.c, rng/ran1.c, rng/ran2.c, rng/ran3.c,
+	rng/rand.c, rng/rand48.c, rng/random.c, rng/randu.c, rng/ranf.c,
+	rng/ranlux.c, rng/ranlxd.c, rng/ranlxs.c, rng/ranmar.c, rng/rng.c,
+	rng/schrage.c, rng/slatec.c, rng/taus.c, rng/taus113.c, rng/test.c,
+	rng/transputer.c, rng/tt.c, rng/types.c, rng/uni.c, rng/uni32.c,
+	rng/vax.c, rng/waterman14.c, rng/zuf.c, roots/ChangeLog,
+	roots/Makefile.am, roots/Makefile.in, roots/TODO, roots/bisection.c,
+	roots/brent.c, roots/convergence.c, roots/falsepos.c,
+	roots/fdfsolver.c, roots/fsolver.c, roots/gsl_roots.h,
+	roots/newton.c, roots/roots.h, roots/secant.c, roots/steffenson.c,
+	roots/test.c, roots/test.h, roots/test_funcs.c, siman/ChangeLog,
+	siman/Makefile.am, siman/Makefile.in, siman/TODO, siman/gsl_siman.h,
+	siman/siman.c, siman/siman_test_driver.sh, siman/siman_tsp.c,
+	siman/test.c, sort/ChangeLog, sort/Makefile.am, sort/Makefile.in,
+	sort/TODO, sort/gsl_heapsort.h, sort/gsl_sort.h,
+	sort/gsl_sort_char.h, sort/gsl_sort_double.h, sort/gsl_sort_float.h,
+	sort/gsl_sort_int.h, sort/gsl_sort_long.h,
+	sort/gsl_sort_long_double.h, sort/gsl_sort_short.h,
+	sort/gsl_sort_uchar.h, sort/gsl_sort_uint.h, sort/gsl_sort_ulong.h,
+	sort/gsl_sort_ushort.h, sort/gsl_sort_vector.h,
+	sort/gsl_sort_vector_char.h, sort/gsl_sort_vector_double.h,
+	sort/gsl_sort_vector_float.h, sort/gsl_sort_vector_int.h,
+	sort/gsl_sort_vector_long.h, sort/gsl_sort_vector_long_double.h,
+	sort/gsl_sort_vector_short.h, sort/gsl_sort_vector_uchar.h,
+	sort/gsl_sort_vector_uint.h, sort/gsl_sort_vector_ulong.h,
+	sort/gsl_sort_vector_ushort.h, sort/sort.c, sort/sortind.c,
+	sort/sortvec.c, sort/sortvec_source.c, sort/sortvecind.c,
+	sort/sortvecind_source.c, sort/subset.c, sort/subset_source.c,
+	sort/subsetind.c, sort/subsetind_source.c, sort/test.c,
+	sort/test_heapsort.c, sort/test_source.c, specfunc/ChangeLog,
+	specfunc/Makefile.am, specfunc/Makefile.in, specfunc/TODO,
+	specfunc/airy.c, specfunc/airy_der.c, specfunc/airy_zero.c,
+	specfunc/atanint.c, specfunc/bessel.c, specfunc/bessel.h,
+	specfunc/bessel_I0.c, specfunc/bessel_I1.c, specfunc/bessel_In.c,
+	specfunc/bessel_Inu.c, specfunc/bessel_J0.c, specfunc/bessel_J1.c,
+	specfunc/bessel_Jn.c, specfunc/bessel_Jnu.c, specfunc/bessel_K0.c,
+	specfunc/bessel_K1.c, specfunc/bessel_Kn.c, specfunc/bessel_Knu.c,
+	specfunc/bessel_Y0.c, specfunc/bessel_Y1.c, specfunc/bessel_Yn.c,
+	specfunc/bessel_Ynu.c, specfunc/bessel_amp_phase.c,
+	specfunc/bessel_amp_phase.h, specfunc/bessel_i.c,
+	specfunc/bessel_j.c, specfunc/bessel_k.c, specfunc/bessel_olver.c,
+	specfunc/bessel_olver.h, specfunc/bessel_sequence.c,
+	specfunc/bessel_temme.c, specfunc/bessel_temme.h,
+	specfunc/bessel_y.c, specfunc/bessel_zero.c, specfunc/beta.c,
+	specfunc/beta_inc.c, specfunc/cheb_eval.c, specfunc/cheb_eval_mode.c,
+	specfunc/chebyshev.h, specfunc/check.h, specfunc/clausen.c,
+	specfunc/coulomb.c, specfunc/coulomb_bound.c, specfunc/coupling.c,
+	specfunc/dawson.c, specfunc/debye.c, specfunc/dilog.c,
+	specfunc/elementary.c, specfunc/ellint.c, specfunc/elljac.c,
+	specfunc/erfc.c, specfunc/error.h, specfunc/eval.h, specfunc/exp.c,
+	specfunc/expint.c, specfunc/expint3.c, specfunc/fermi_dirac.c,
+	specfunc/gamma.c, specfunc/gamma_inc.c, specfunc/gegenbauer.c,
+	specfunc/gsl_sf.h, specfunc/gsl_sf_airy.h, specfunc/gsl_sf_bessel.h,
+	specfunc/gsl_sf_clausen.h, specfunc/gsl_sf_coulomb.h,
+	specfunc/gsl_sf_coupling.h, specfunc/gsl_sf_dawson.h,
+	specfunc/gsl_sf_debye.h, specfunc/gsl_sf_dilog.h,
+	specfunc/gsl_sf_elementary.h, specfunc/gsl_sf_ellint.h,
+	specfunc/gsl_sf_elljac.h, specfunc/gsl_sf_erf.h,
+	specfunc/gsl_sf_exp.h, specfunc/gsl_sf_expint.h,
+	specfunc/gsl_sf_fermi_dirac.h, specfunc/gsl_sf_gamma.h,
+	specfunc/gsl_sf_gegenbauer.h, specfunc/gsl_sf_hyperg.h,
+	specfunc/gsl_sf_laguerre.h, specfunc/gsl_sf_lambert.h,
+	specfunc/gsl_sf_legendre.h, specfunc/gsl_sf_log.h,
+	specfunc/gsl_sf_mathieu.h, specfunc/gsl_sf_pow_int.h,
+	specfunc/gsl_sf_psi.h, specfunc/gsl_sf_result.h,
+	specfunc/gsl_sf_synchrotron.h, specfunc/gsl_sf_transport.h,
+	specfunc/gsl_sf_trig.h, specfunc/gsl_sf_zeta.h,
+	specfunc/gsl_specfunc.h, specfunc/hyperg.c, specfunc/hyperg.h,
+	specfunc/hyperg_0F1.c, specfunc/hyperg_1F1.c, specfunc/hyperg_2F0.c,
+	specfunc/hyperg_2F1.c, specfunc/hyperg_U.c, specfunc/laguerre.c,
+	specfunc/lambert.c, specfunc/legendre.h, specfunc/legendre_H3d.c,
+	specfunc/legendre_Qn.c, specfunc/legendre_con.c,
+	specfunc/legendre_poly.c, specfunc/log.c, specfunc/mathieu_angfunc.c,
+	specfunc/mathieu_charv.c, specfunc/mathieu_coeff.c,
+	specfunc/mathieu_radfunc.c, specfunc/mathieu_workspace.c,
+	specfunc/poch.c, specfunc/pow_int.c, specfunc/psi.c,
+	specfunc/recurse.h, specfunc/result.c, specfunc/shint.c,
+	specfunc/sinint.c, specfunc/synchrotron.c, specfunc/test_airy.c,
+	specfunc/test_bessel.c, specfunc/test_coulomb.c,
+	specfunc/test_dilog.c, specfunc/test_gamma.c, specfunc/test_hyperg.c,
+	specfunc/test_legendre.c, specfunc/test_mathieu.c,
+	specfunc/test_sf.c, specfunc/test_sf.h, specfunc/transport.c,
+	specfunc/trig.c, specfunc/zeta.c, statistics/ChangeLog,
+	statistics/Makefile.am, statistics/Makefile.in, statistics/TODO,
+	statistics/absdev.c, statistics/absdev_source.c,
+	statistics/covariance.c, statistics/covariance_source.c,
+	statistics/gsl_statistics.h, statistics/gsl_statistics_char.h,
+	statistics/gsl_statistics_double.h,
+	statistics/gsl_statistics_float.h, statistics/gsl_statistics_int.h,
+	statistics/gsl_statistics_long.h,
+	statistics/gsl_statistics_long_double.h,
+	statistics/gsl_statistics_short.h, statistics/gsl_statistics_uchar.h,
+	statistics/gsl_statistics_uint.h, statistics/gsl_statistics_ulong.h,
+	statistics/gsl_statistics_ushort.h, statistics/kurtosis.c,
+	statistics/kurtosis_source.c, statistics/lag1.c,
+	statistics/lag1_source.c, statistics/mean.c,
+	statistics/mean_source.c, statistics/median.c,
+	statistics/median_source.c, statistics/minmax.c,
+	statistics/minmax_source.c, statistics/p_variance.c,
+	statistics/p_variance_source.c, statistics/quantiles.c,
+	statistics/quantiles_source.c, statistics/skew.c,
+	statistics/skew_source.c, statistics/test.c,
+	statistics/test_float_source.c, statistics/test_int_source.c,
+	statistics/test_nist.c, statistics/ttest.c,
+	statistics/ttest_source.c, statistics/variance.c,
+	statistics/variance_source.c, statistics/wabsdev.c,
+	statistics/wabsdev_source.c, statistics/wkurtosis.c,
+	statistics/wkurtosis_source.c, statistics/wmean.c,
+	statistics/wmean_source.c, statistics/wskew.c,
+	statistics/wskew_source.c, statistics/wvariance.c,
+	statistics/wvariance_source.c, sum/ChangeLog, sum/Makefile.am,
+	sum/Makefile.in, sum/gsl_sum.h, sum/levin_u.c, sum/levin_utrunc.c,
+	sum/test.c, sum/work_u.c, sum/work_utrunc.c, sys/ChangeLog,
+	sys/Makefile.am, sys/Makefile.in, sys/coerce.c, sys/expm1.c,
+	sys/fcmp.c, sys/fdiv.c, sys/gsl_sys.h, sys/hypot.c, sys/infnan.c,
+	sys/invhyp.c, sys/ldfrexp.c, sys/log1p.c, sys/minmax.c,
+	sys/pow_int.c, sys/prec.c, sys/test.c, test/ChangeLog,
+	test/Makefile.am, test/Makefile.in, test/gsl_test.h, test/results.c,
+	utils/Makefile.am, utils/Makefile.in, utils/README, utils/memcpy.c,
+	utils/memmove.c, utils/placeholder.c, utils/strdup.c, utils/strtol.c,
+	utils/strtoul.c, utils/system.h, vector/ChangeLog,
+	vector/Makefile.am, vector/Makefile.in, vector/TODO, vector/copy.c,
+	vector/copy_source.c, vector/file.c, vector/file_source.c,
+	vector/gsl_vector.h, vector/gsl_vector_char.h,
+	vector/gsl_vector_complex.h, vector/gsl_vector_complex_double.h,
+	vector/gsl_vector_complex_float.h,
+	vector/gsl_vector_complex_long_double.h, vector/gsl_vector_double.h,
+	vector/gsl_vector_float.h, vector/gsl_vector_int.h,
+	vector/gsl_vector_long.h, vector/gsl_vector_long_double.h,
+	vector/gsl_vector_short.h, vector/gsl_vector_uchar.h,
+	vector/gsl_vector_uint.h, vector/gsl_vector_ulong.h,
+	vector/gsl_vector_ushort.h, vector/init.c, vector/init_source.c,
+	vector/minmax.c, vector/minmax_source.c, vector/oper.c,
+	vector/oper_source.c, vector/prop.c, vector/prop_source.c,
+	vector/reim.c, vector/reim_source.c, vector/subvector.c,
+	vector/subvector_source.c, vector/swap.c, vector/swap_source.c,
+	vector/test.c, vector/test_complex_source.c, vector/test_source.c,
+	vector/test_static.c, vector/vector.c, vector/vector_source.c,
+	vector/view.c, vector/view.h, vector/view_source.c,
+	wavelet/ChangeLog, wavelet/Makefile.am, wavelet/Makefile.in,
+	wavelet/TODO, wavelet/bspline.c, wavelet/daubechies.c, wavelet/dwt.c,
+	wavelet/gsl_wavelet.h, wavelet/gsl_wavelet2d.h, wavelet/haar.c,
+	wavelet/test.c, wavelet/wavelet.c: New files.
+
+2007-01-09  Brian Gough  <bjg@network-theory.co.uk>
+
+	* gsl_math.h (M_PI_4): corrected typo in higher digits of M_PI_4
+	(at ~1e-20)
+
+2006-11-02  Brian Gough  <bjg@network-theory.co.uk>
+
+	* templates_on.h templates_off.h: added UNSIGNED definition for
+	detecting types without negative values
+
+2006-02-15  Brian Gough  <bjg@network-theory.co.uk>
+
+	* configure.ac: restrict darwin IEEE detection to powerpc, because
+	new x86 macs are different.
+
+	* removed automatic addition of compilation flags on alpha,
+	these should be specified on the command-line through CFLAGS.
+
+2006-01-07  Brian Gough  <bjg@network-theory.co.uk>
+
+	* templates_on.h: added an FP=1 definition for the floating point
+	types, FP is undefined for integer types.
+
+2005-08-05  Brian Gough  <bjg@network-theory.co.uk>
+
+	* gsl/Makefile.am: need to remove makefile with later versions of
+	automake
+
+2005-04-05  Brian Gough  <bjg@network-theory.co.uk>
+
+	* configure.ac: added ieeefp.h test for solaris
+
+2005-01-13  Brian Gough  <bjg@network-theory.co.uk>
+
+	* configure.ac: added case for 86_64 in IEEE arithmetic interface
+	detection
+
+2004-10-26  Brian Gough  <bjg@network-theory.co.uk>
+
+	* test_gsl_histogram.sh: trim \r from test output for
+	compatibility with Cygwin.
+
+2004-07-29  Brian Gough  <bjg@network-theory.co.uk>
+
+	* modified all makefiles to use TESTS=$(check_programs)
+	to get correct EXEEXT behavior
+
+2004-07-23  Brian Gough  <bjg@network-theory.co.uk>
+
+	* added wavelet/ directory
+
+2004-05-28  Brian Gough  <bjg@network-theory.co.uk>
+
+	* configure.ac: ran configure script through Autoconf's autoupdate
+	to use latest macro names
+
+2004-05-17  Brian Gough  <bjg@network-theory.co.uk>
+
+	* gsl.m4: fix m4 quoting of first argument to AC_DEFUN
+
+2004-03-17  Brian Gough  <bjg@network-theory.co.uk>
+
+	* gsl/Makefile.am (header-links): use test -r instead of test -e
+	(to avoid problem on Solaris as described in autoconf
+	documentation)
+
+2003-12-20  Brian Gough  <bjg@network-theory.co.uk>
+
+	* configure.ac: define _GNU_SOURCE when looking for fenv.h
+
+2003-06-17  Brian Gough  <bjg@network-theory.co.uk>
+
+	* configure.ac: converted configure.in to autoconf 2.5x, involved
+	extensive renaming macros of HAVE_... to HAVE_DECL_.. and changing
+	usage from #ifdef HAVE to #if HAVE
+
+2003-06-16  Brian Gough  <bjg@network-theory.co.uk>
+
+	* gsl/Makefile.am (header-links): added a test for the existing
+	file to avoid spurious error messages when making the symlinks
+
+2003-06-12  Brian Gough  <bjg@network-theory.co.uk>
+
+	* configure.in: Tidying up, removed old test for bug in gcc 2.95
+	on PPC, removed OS/2 warning, removed references to clock function
+	since benchmark programs are not shipped
+
+2003-03-06  Brian Gough  <bjg@network-theory.co.uk>
+
+	* gsl_types.h: changed from internal macro _DLL to GSL_DLL
+
+2003-02-09  Brian Gough  <bjg@network-theory.co.uk>
+
+	* configure.in: added [] quotes in AC_TRY_COMPILE to protect
+	nested macros
+
+2002-11-24  Brian Gough  <bjg@network-theory.co.uk>
+
+	* configure.in: check for presence of non-ansi functions in header
+	files before running AC_CHECK_FUNCS to look in libraries, to
+	support compilation with -ansi.
+
+Fri Sep  6 15:00:40 2002  Brian Gough  <bjg@network-theory.co.uk>
+
+	* acconfig.h (GSL_RANGE_CHECK_OFF): turned range checking off in
+ 	acconfig.h as it overwrites config.h.in
+
+Wed Aug  7 22:34:36 2002  Brian Gough  <bjg@network-theory.co.uk>
+
+	* config.h.in: fixed RANGE_CHECK_ON to GSL_RANGE_CHECK_ON
+
+Sun Jul 14 12:48:50 2002  Brian Gough  <bjg@network-theory.co.uk>
+
+	* INSTALL: merged the MACHINES file into the installation notes.
+
+Fri Jun 14 22:09:52 2002  Brian Gough  <bjg@network-theory.co.uk>
+
+	* gsl_types.h: define GSL_VAR macro as ANSI C 'export' or
+ 	'__declspec(dllexport/dllimport)' depending on platform
+
+	* changed 'export' to GSL_VAR macro throughout to make it easier
+ 	to build nonstandard shared libraries such as DLLs
+
+Sun May 19 22:24:00 2002  Brian Gough  <bjg@network-theory.co.uk>
+
+	* configure.in: changed AM_PROG_LIBTOOL to AC_PROG_LIBTOOL,
+	use AC_SEARCH_LIBS to find math library
+
+Sat May 11 22:27:52 2002  Brian Gough  <bjg@network-theory.co.uk>
+
+	* configure.in (ac_cv_func_printf_longdouble): fixed ieee
+ 	comparisons test so it actually works
+	(ac_cv_c_ieee_comparisons): added a test for denormalized values
+
+Fri Apr 26 19:53:31 2002  Brian Gough  <bjg@network-theory.co.uk>
+
+	* Makefile.am (EXTRA_DIST): removed KNOWN-PROBLEMS
+
+Sun Feb 10 21:28:29 2002  Brian Gough  <bjg@network-theory.co.uk>
+
+	* BUGS: added a list of known but unfixed bugs.
+
+2002-02-07  Mark Galassi  <rosalia@galassi.org>
+
+	* THANKS: added Karsten Howes <karsten@videotron.ca>.
+
+Wed Jan 16 16:55:25 2002  Brian Gough  <bjg@network-theory.co.uk>
+
+	* configure.in acconfig.h: check whether IEEE comparisons work for
+ 	Inf, NaN and define HAVE_IEEE_COMPARISONS
+
+Tue Jan  8 21:38:23 2002  Brian Gough  <bjg@network-theory.co.uk>
+
+	* config.h (GSL_RANGE_CHECK_OFF): turn off range checking when
+ 	building the library, still on by default when compiling user
+ 	applications
+
+Mon Nov 19 21:40:30 2001  Brian Gough  <bjg@network-theory.co.uk>
+
+	* standardised all files to #include <gsl/...> for exported header
+ 	files rather than having some as #include "...", to simplify build
+ 	procedure
+
+Fri Oct 19 15:19:45 2001  Brian Gough  <bjg@network-theory.co.uk>
+
+	* gsl-histogram.c (main): use gsl_histogram_alloc instead of
+ 	calloc
+
+Wed Oct  3 11:06:51 2001  Brian Gough  <bjg@network-theory.co.uk>
+
+	* removed auto-expanding RCS tokens from comments as they
+ 	interfere with making patches
+
+	* configure.in: check for isinf(), finite(), isnan() as
+ 	macros. Also check for isfinite() as an alternative to finite().
+
+Sat Sep 29 18:04:35 2001  Brian Gough  <bjg@network-theory.co.uk>
+
+	* gsl.m4: cleaned up arguments to GSL_CONFIG
+
+Wed Sep 19 17:41:13 2001  Brian Gough  <bjg@network-theory.co.uk>
+
+	* gsl-histogram.c (main): turn off the display of mean and
+ 	standard deviation it is too confusing because it is not the mean
+ 	of the data itself.
+
+Tue Sep 18 20:08:39 2001  Brian Gough  <bjg@network-theory.co.uk>
+
+	* test_gsl_histogram.sh: modified the expected test output to
+ 	account for the mean,sigma lines now produced
+ 
+Wed Sep 12 13:39:55 2001  Brian Gough  <bjg@network-theory.co.uk>
+
+	* gsl-histogram.c (main): print out the mean and standard
+ 	deviation as comments
+
+Sun Sep  9 22:57:11 2001  Brian Gough  <bjg@network-theory.co.uk>
+
+	* configure.in: print out a warning for OS/2 telling the user to
+ 	run an extra script
+
+Fri Sep  7 14:32:01 2001  Brian Gough  <bjg@network-theory.co.uk>
+
+	* gsl.pc.in: added pkg-config file
+
+	* configure.in: avoid clobbering any LIBS specified, by not
+ 	putting -lm in front of them.  This allows the user to specify an
+ 	alternate math library for the configure script.
+	(ac_cv_func_printf_longdouble): added generation of gsl.pc for
+ 	pkg-config
+
+Thu Sep  6 21:08:10 2001  Brian Gough  <bjg@network-theory.co.uk>
+
+	* configure.in: added an option to specify an alternative math
+ 	library
+
+Tue Sep  4 09:41:37 2001  Brian Gough  <bjg@network-theory.co.uk>
+
+	* gsl.spec.in: autogenerate gsl.spec from gsl.spec.in
+
+Sun Aug 26 17:19:24 2001  Brian Gough  <bjg@network-theory.co.uk>
+
+	* acconfig.h: fixed incorrect #ifdef for HAVE_FINITE (Henry
+ 	Sobotka)
+
+Sat Aug 25 10:25:41 2001  Brian Gough  <bjg@network-theory.co.uk>
+
+	* gsl_math.h: moved includes to beginning of file to avoid
+ 	redefinition errors on OS/2
+
+Tue Aug 21 23:54:45 2001  Brian Gough  <bjg@network-theory.co.uk>
+
+	* gsl_nan.h (GSL_POSINF): removed incorrect use of _FPCLASS.. for
+ 	MSVC, these are flags not numerical values.
+
+Thu Aug  9 22:51:00 2001  Brian Gough  <bjg@network-theory.co.uk>
+
+	* config.h.in: added a macro for discarding a pointer, used to
+ 	suppress warnings from gcc about unused parameters
+
+Sun Aug  5 20:35:09 2001  Brian Gough  <bjg@network-theory.co.uk>
+
+	* configure.in: move PPC bug test to beginning of configure
+ 	script, to save waiting for it to appear at the end
+
+Sat Jul 14 21:13:55 2001  Brian Gough  <bjg@network-theory.co.uk>
+
+	* gsl_nan.h: use C99X macro INFINITY where available
+
+Fri Jul 13 21:31:01 2001  Brian Gough  <bjg@network-theory.co.uk>
+
+	* templates_on.h: added macros for unqualified views, needed for
+ 	initialization of views
+
+Mon Jul  9 11:22:16 2001  Brian Gough  <bjg@network-theory.co.uk>
+
+	* configure.in: made check for extended precision registers
+ 	independent of test for os ieee interface type
+
+Sun Jul  1 22:44:00 2001  Brian Gough  <bjg@network-theory.co.uk>
+
+	* templates_on.h templates_off.h: modified to support views
+
+Wed Jun 27 12:15:19 2001  Brian Gough  <bjg@network-theory.co.uk>
+
+	* configure.in: work around case of broken log1p in OpenBSD
+
+Mon Jun 25 10:21:17 2001  Brian Gough  <bjg@network-theory.co.uk>
+
+	* configure.in: catch case of openbsd, which is not supported yet
+ 	in ieee directory
+
+Mon Jun 18 22:31:26 2001  Brian Gough  <bjg@network-theory.co.uk>
+
+	* configure.in (GSL_CFLAGS): now just uses includedir for
+ 	gsl-config.in
+
+Wed Jun  6 18:10:18 2001  Brian Gough  <bjg@network-theory.co.uk>
+
+	* removed explicit dependencies from Makefile.am's since automake
+ 	now handles these automatically
+
+Tue May 29 12:40:08 2001  Brian Gough  <bjg@network-theory.co.uk>
+
+	* configure.in: added missing wildcard to end of hpux11* to match
+ 	different versions of hpux11, e.g. hpux11.2.
+
+Tue May 22 10:38:59 2001  Brian Gough  <bjg@network-theory.co.uk>
+
+	* gsl.m4: try to make C-code compatible with C++, also changed
+ 	return() to exit() as mentioned in the autoconf documentation.
+
+2001-05-21  Mark Galassi  <rosalia@galassi.org>
+
+	* config.guess, config.sub: removed these auto-generated files
+	from CVS since they are built for developers by autogen.sh.
+
+Tue May 15 10:59:43 2001  Brian Gough  <bjg@network-theory.co.uk>
+
+	* autogen.sh: upgraded to latest libtool and automake
+
+Tue May  1 12:19:01 2001  Brian Gough  <bjg@network-theory.co.uk>
+
+	* gsl_nan.h (GSL_NAN): added definitions for Microsoft Visual C++
+
+Mon Apr 30 13:46:39 2001  Brian Gough  <bjg@network-theory.co.uk>
+
+	* gsl_math.h: split out gsl_pow_int.h and gsl_nan.h
+
+Wed Mar 21 14:16:29 2001  Brian Gough  <bjg@network-theory.co.uk>
+
+	* gsl-config.in (Usage): allow user to specify an external blas
+ 	library through an environment variable
+
+2000-12-14  Mark Galassi  <rosalia@galassi.org>
+
+	* gsl.spec, configure.in: upped the version to 0.7+ since the
+	release has been made.
+
+2000-10-26  Mark Galassi  <rosalia@galassi.org>
+
+	* ltconfig, ltmain.sh: removed these auto-generated files.
+
+2000-10-26  Mark Galassi  <rosalia@lanl.gov>
+
+	* stamp-h.in: removed this file because it is auto-generated.
+
+	* scripts/mkknownproblems.sh: fixed it so it's slightly better,
+	but it still assumes that you run it out of $(srcdir)/scripts.
+
+	* scripts/knownproblems.pl: put in a more standard path for perl.
+
+	* AUTHORS: some changes and additions.
+
+	* KNOWN-PROBLEMS: updated the list of known problems.
+
+2000-10-04  Mark Galassi  <rosalia@lanl.gov>
+
+	* NEWS, configure.in, gsl.spec: upped the version to 0.7 as we are
+	about to release.
+
+Thu Jul 20 20:20:04 2000  Brian Gough  <bjg@network-theory.co.uk>
+
+	* gsl.m4: changed \? to \{0,1\} in the sed commands to allow for
+ 	SGI sed (from Steve ROBBINS <stever@bic.mni.mcgill.ca>)
+
+Sun Jul  9 19:34:03 2000  Brian Gough  <bjg@network-theory.co.uk>
+
+	* gsl.m4: modified to accept x.y version numbers as the first
+ 	argument in addition to x.y.z version numbers
+
+Mon Jun 12 22:18:27 2000  Brian Gough  <bjg@network-theory.co.uk>
+
+	* Makefile.am (SUBLIBS): added missing complex lib to top-level
+ 	SUBLIBS
+
+Sun Jun 11 17:39:18 2000  Brian Gough  <bjg@network-theory.co.uk>
+
+	* gsl.spec (BuildRoot): fixed directory for install, it is now
+ 	/usr/lib/ instead of /usr/lib/gsl/
+
+Tue Jun  6 20:02:02 2000  Brian Gough  <bjg@network-theory.co.uk>
+
+	* acconfig.h, configure.in: use HAVE_X86LINUX_IEEE_INTEFACE for
+ 	x86 instead of generic HAVE_LINUX_IEEE_INTEFACE
+
+2000-06-02  Mark Galassi  <rosalia@galassi.org>
+
+	* gsl.spec: added gsl.m4 to the list of files.
+
+	* NEWS: added a mention of gsl.m4.
+
+	* gsl.spec: small changes to fix the installation of doc files.
+
+	* Makefile.am: added some files (like MACHINES, KNOWN-PROBLEMS,
+	...) to the distribution.
+
+	* gsl.spec, configure.in, KNOWN-PROBLEMS: upped the version number
+	to 0.6.  Also: gsl.spec now installes files like MACHINES,
+	KNOWN-PROBLEMS, NEWS,... into the package's %doc file list.
+
+Sun May 28 12:03:36 2000  Brian Gough  <bjg@network-theory.co.uk>
+
+	* gsl/Makefile.am (header-links): use configurable macro variable
+ 	$(LN_S) instead of explicit "ln -s"
+
+Mon May 15 19:16:31 2000  Brian Gough  <bjg@network-theory.co.uk>
+
+	* added ieee mode setting to all tests, so that they can be run in
+	double-precision even on extended precision architectures
+
+2000-05-14  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* acconfig.h: 
+	* configure.in: look in both <float.h> and /usr/include/float.h,
+	to find FP_RND_RN, as some versions of GCC don't copy these
+	symbols into the `fixed' header.
+
+Thu May 11 12:47:19 2000  Brian Gough  <bjg@network-theory.co.uk>
+
+	* gsl_math.h (GSL_POSZERO): added macros for IEEE signed zeros, +0
+ 	and -0. They don't do anything useful yet, but use the macro so
+ 	that will be possible to work around compilers that don't
+ 	understand the difference between the constants -0 and +0.
+
+Wed May 10 11:30:15 2000  Brian Gough  <bjg@network-theory.co.uk>
+
+	* gsl_math.h (GSL_POSINF): make use of HUGE_VAL which is actually
+ 	+Inf when IEEE is available, and can be detected by the NAN being
+ 	defined (it is only defined on IEEE machines)
+	(GSL_NEGINF): as for GSL_POSINF
+
+Fri May  5 11:20:50 2000  Brian Gough  <bjg@network-theory.co.uk>
+
+	* split out gsl_test code from err/ directory into test/ directory
+
+Thu May  4 12:14:42 2000  Brian Gough  <bjg@network-theory.co.uk>
+
+	* added GPL headers throughout
+
+Mon May  1 22:11:32 2000  Brian Gough  <bjg@network-theory.co.uk>
+
+	* modified all the makefiles to compile test programs as "test",
+ 	for simpler automated builds
+
+Tue Apr 11 14:51:59 2000  Brian Gough  <bjg@network-theory.co.uk>
+
+	* eigen/eigen_sort.c (gsl_eigen_sort_impl): updated occurrence of
+ 	gsl_matrix_swap_cols to gsl_matrix_swap_columns
+
+	* gsl.m4, Makefile.am: added gsl.m4 macros for autoconf
+ 	support
+
+2000-04-03  Mark Galassi  <rosalia@lanl.gov>
+
+	* gsl-config.in, configure.in (GSL_CFLAGS): replaced my gsl-config
+	script with Christopher Gabriel's, which is simpler.
+
+	* autogen.sh: changed this into a no-brainer which does not invoke
+	configure.
+
+Mon Apr  3 15:43:25 2000  Brian Gough  <bjg@network-theory.co.uk>
+
+	* applied patch from C M Murphy <C.M.Murphy@bath.ac.uk> to fix up
+ 	missing consts in header files.
+
+Sat Apr  1 20:12:34 2000  Brian Gough  <bjg@network-theory.co.uk>
+
+	* gsl_math.h: added some missing extra constants from BSD
+ 	(e.g. M_PI_2)
+
+Wed Mar 15 11:16:14 2000  Brian Gough  <bjg@network-theory.co.uk>
+
+	* added a directory for complex number support, complex/
+
+Tue Mar 14 10:28:43 2000  Brian Gough  <bjg@network-theory.co.uk>
+
+	* added support for including headers in C++ programs using
+ 	__BEGIN_DECLS and __END_DECLS macros
+
+Sat Mar 11 11:18:33 2000  Brian Gough  <bjg@network-theory.co.uk>
+
+	* templates_on.h: added a definition for ONE, to match ZERO
+
+	* Changed matrix struct element dim2 to tda throughout
+
+Mon Mar  6 19:48:27 2000  Brian Gough  <bjg@network-theory.co.uk>
+
+	* gsl_version.h: added simple release-number based support for
+ 	accessing the version number at compile-time and run-time. This is
+ 	not a complete solution but it will do for now, as libtool
+ 	interface numbers are too complicated to worry about at the
+ 	moment due to other problems with libtool.
+
+Thu Mar  2 20:52:50 2000  Brian Gough  <bjg@network-theory.co.uk>
+
+	* templates_on.h (ATOMIC_IO): added an internal type for IO, for
+ 	the cases where it isn't possible to read and write a type
+ 	directly as text (e.g. char)
+
+2000-02-23  Mark Galassi  <rosalia@lanl.gov>
+
+	* Makefile.am, gsl.spec: added a gsl.spec.  Seems to work.
+
+	* gsl-config.in: overhauled gsl-config.in; should work better now.
+
+Tue Feb 15 18:55:05 2000  Brian Gough  <bjg@network-theory.co.uk>
+
+	* added directory for permutation objects, permutation/
+
+Sun Dec  5 14:20:43 1999  Brian Gough  <bjg@network-theory.co.uk>
+
+	* added multidimensional minimisation directory, multimin/
+
+1999-12-03  Mark Galassi  <rosalia@lanl.gov>
+
+	* configure.in: upped the version to 0.5+, so that snaphots built
+	out of CVS will not be confused with the 0.5 release.
+
+	* AUTHORS, README, HACKING: changed my email address.
+
+	* README: updated with some of Brian's suggestions.
+
+	* configure.in, NEWS: fixed the new version to 0.5.
+
+Tue Oct 19 11:15:16 1999  Brian Gough  <bjg@network-theory.co.uk>
+
+	* added the eigen value directory, eigen/
+
+1999-08-30  Mark Galassi  <rosalia@lanl.gov>
+
+	* gsl-config.in: started adding this script, for now cannibalized
+	from gnome-config.
+
+Fri Aug 20 11:10:54 1999  Brian Gough  <bjg@network-theory.co.uk>
+
+	* support for IEEE on Tru64 from Tim Mooney
+
+Mon Aug 16 21:10:23 1999  Brian Gough  <bjg@network-theory.co.uk>
+
+	* added the minimization directory, min/
+
+Fri Aug  6 11:15:58 1999  Brian Gough  <bjg@network-theory.co.uk>
+
+	* configure.in: removed need to configure for rand() and RAND_MAX
+ 	by providing a simple random number generator in the directories
+ 	that used rand().
+
+1999-08-05  Mark Galassi  <rosalia@lanl.gov>
+
+	* Makefile.am: put the THANKS file into the distribution.
+
+	* autogen.sh: added the --add-missing option to automake.  I'm
+	surprised it was not already there.
+
+	* configure.in: added a + to the version, indicating that any
+	snapshots made from anonymous CVS in this state should be
+	interpreted as "after 0.4.1 and before the next version", and no
+	other promises.
+
+	* THANKS: added this THANKS file.  We appreciate all patches from
+	people on the net, even those which are too small to warrant
+	adding the author to the AUTHORS file.  The THANKS file should
+	include everyone who sent in patches.  They should also be
+	mentioned in the ChangeLog entry.
+
+Sat May  8 21:06:31 1999  Brian Gough  <bjg@network-theory.co.uk>
+
+	* configure.in: now check for "extern inline" using a modified
+ 	version of AC_C_INLINE, since we use "extern inline" but only
+ 	checked for "inline", and some compilers only support the latter.
+
+Sun Apr 11 20:40:35 1999  Brian Gough  <bjg@netsci.freeserve.co.uk>
+
+	* libraries and include files are now installed in pkglibdir and
+	pkgincludedir (e.g. /usr/local/lib/gsl/ and
+	/usr/local/include/gsl/ by default)
+
+	* libraries are now built and installed separately
+
+Mon Mar  1 15:41:25 1999  Brian Gough  <bjg@netsci.freeserve.co.uk>
+
+	* gsl_math.h: renamed gsl_fdf to gsl_function_fdf, so that it will
+ 	be more obvious what it is
+
+Sun Feb 28 20:37:31 1999  Brian Gough  <bjg@netsci.freeserve.co.uk>
+
+	* gsl_mode.h: added prototype for GSL_MODE_PREC(mt)
+
+Tue Feb 23 14:18:39 1999  Brian Gough  <bjg@netsci.freeserve.co.uk>
+
+	* gsl_math.h (GSL_FDF_EVAL_F): improved names of macros
+
+Sat Feb 20 12:14:07 1999  Brian Gough  <bjg@netsci.freeserve.co.uk>
+
+	* split out polynomial root finding algorithms into a new poly/
+ 	directory
+
+1999-02-25  Mark Galassi  <rosalia@cygnus.com>
+
+	* configure.in: upped the version to 0.4.1; this is ready for
+	tagging.
+
+1999-02-06  Mark Galassi  <rosalia@cygnus.com>
+
+	* NEWS: udpated in occasion of the imminent 0.4.1 release.
+
+Sun Feb 14 20:47:07 1999  Brian Gough  <bjg@netsci.freeserve.co.uk>
+
+	* Makefile.am: added gsl_mode.h to include_HEADERS
+
+Mon Feb  8 18:39:35 1999  Brian Gough  <bjg@netsci.freeserve.co.uk>
+
+	* added new type gsl_function for arbitrary functions with
+ 	parameters, and gsl_fdf for functions and their derivatives
+
+Mon Feb  8 18:39:35 1999  Brian Gough  <bjg@netsci.freeserve.co.uk>
+
+	* gsl_complex.h: added GSL_SET_REAL(&z,x) and GSL_SET_IMAG(&z,y),
+ 	changed GSL_COMPLEX_SET(z,x,y) to GSL_SET_COMPLEX(&z,x,y) to match.
+
+1999-01-03  Mark Galassi  <rosalia@cygnus.com>
+
+	* Makefile.am, autogen.sh: improved autogen.sh, based on the gtk+
+	autogen.sh.  Added it to Makefile.am's EXTRA_DIST list.
+
+1999-01-02  Mark Galassi  <rosalia@cygnus.com>
+
+	* configure.in: introduced a test for hypot(), in case a system
+	does not have it.
+
+1999-01-03  Mark Galassi  <rosalia@cygnus.com>
+
+	* autogen.sh: added this simple script which calls aclocal,
+	automake --add-missind and autoconf, followed by ./configure with
+	all the arguments.
+
+	* configure, Makefile.in, */Makefile.in: removed these
+	auto-generated files.
+
+Fri Dec 11 16:50:27 1998  Brian Gough  <bjg@vvv.lanl.gov>
+
+	* AUTHORS: corrected the spelling of Gerard Jungman's name (it's
+ 	either Gerard or Jerry, but not Gerry)
+
+1998-12-05  Mark Galassi  <rosalia@cygnus.com>
+
+	* configure.in: made the version be 0.4after so it's clear that
+	snapshots will be post-0.4.
+
+	* HACKING: updated a bit to work with the new CVS repository.
+
+Mon Nov 23 16:09:21 1998  Brian Gough  <bjg@vvv.lanl.gov>
+
+	* gsl_config.h: removed, it was an unnecessary hack just for
+ 	defining macros. Autoconf's config.h should be used by the
+ 	programmer instead.
+ 
+Sat Nov 21 20:39:14 1998  Brian Gough  <bjg@vvv.lanl.gov>
+
+	* texinfo.tex: removed, this is a duplicate and shouldn't be
+ 	needed in the top-level directory (it is in docs)
+
+	* move any included headers in _source.c files into the master
+ 	file that includes the _source.c, since this saves time when
+ 	compiling
+
+	* config.h.in: standardized on HAVE_PRINTF_LONGDOUBLE
+
+Fri Nov 20 15:14:53 1998  Brian Gough  <bjg@vvv.lanl.gov>
+
+	* replaced DBL_EPSILON, DBL_MAX, ... by GSL_DBL_EPSILON,
+ 	GSL_DBL_MAX, ...
+
+	* added sys directory for miscellaneous gsl system functions like
+ 	max and min
+
+Thu Nov 19 22:46:43 1998  Brian Gough  <bjg@vvv.lanl.gov>
+
+	* config.h.in: removed MAX and MIN
+
+Wed Nov 18 10:40:18 1998  Brian Gough  <bjg@vvv.lanl.gov>
+
+	* gsl_math.h: added prototypes for inline functions GSL_MAX_INT
+ 	etc
+
+Tue Nov 10 20:05:27 1998  Brian Gough  <bjg@vvv.lanl.gov>
+
+	* gsl_math.h: moved the MAX(a,b) and MIN(a,b) to gsl_math.h and
+ 	renamed them GSL_MAX(a,b) and GSL_MIN(a,b) to avoid inevitable
+ 	conflicts with system macros.
+
+Mon Nov  9 21:08:10 1998  Brian Gough  <bjg@vvv.lanl.gov>
+
+	* config.h: added MAX(a,b) and MIN(a,b) macros since we use these
+ 	everywhere. We assume that if they are defined by the system then
+ 	they do actually work.
+
+1998-11-06    <bjg@ancho.lanl.gov>
+
+	* configure.in: add -mieee on alpha platforms, also check for both
+	scanf and printf working with long double
+
+1998-08-31  James Theiler  <jt@lanl.gov>
+
+	* Makefile.am (SUBDIRS): added utils directory
+
+	* configure.in (AC_OUTPUT): added utils/Makefile 
+
+	* configure.in (AC_REPLACE_FUNCS): added strtol, strtoul; removed
+	strerror since it's already hardcoded into the err/ directory
+
+1998-08-30  Mark Galassi  <rosalia@cygnus.com>
+
+	* configure.in: upped release number to 0.4; about to tag and make
+	the release.
+
+1998-08-20  Mark Galassi  <rosalia@cygnus.com>
+
+	* configure.in: upped version to 0.4-interim as we prepare for a
+	0.4 snapshot.
+
+	* NEWS: now refers to 0.4 instead of 0.3g.  Also "commented out"
+	(smile) the note that says "we need to do a better job with the
+	news file", since it looks quite good now!
+
+1998-08-19  Mark Galassi  <rosalia@cygnus.com>
+
+	* doc/Makefile.am (EXTRA_DIST): added ran-exppow.tex,
+	rand-levy.tex, rand-gumbel.tex and rand-bernoulli.tex to
+	EXTRA_DIST.  Now they are included in the distribution and a "make
+	distcheck" goes further.
+
+Thu Jul 30 16:12:05 1998  Brian Gough  <bjg@vvv.lanl.gov>
+
+	* Makefile.am: now using a script to write the AR commands
+ 	explicitly, this should be more portable
+
+Tue Jul 28 23:07:04 1998  Brian Gough  <bjg@vvv.lanl.gov>
+
+	* Makefile.am: new style single build of libgsl.a
+
+Fri Jul 10 19:57:49 1998  Brian Gough  <bjg@vvv.lanl.gov>
+
+	* configure.in: removed AC_FUNC_ALLOCA since we don't use alloca
+ 	(it is not ansi)
+
+Sun Jun 28 14:31:31 1998  Brian Gough  <bjg@vvv.lanl.gov>
+
+	* replaced the random/ directory by the rng/ directory and made
+ 	minor changes in randist/, siman/ to accommodate it
+
+Tue Jun 23 19:49:22 1998  Brian Gough  <bjg@vvv.lanl.gov>
+
+	* added a top-level file gsl_config.h for detecting features when
+ 	users include the library headers. Currently it just turns on
+ 	HAVE_INLINE if you are using GCC or C++.
+
+1998-05-16  Mark Galassi  <rosalia@cygnus.com>
+
+	* configure.in: Brian fixed the error where libgslerr.a was not
+	being installed in the 0.3e release, so I just bumped it up to
+	0.3f to make a new release.
+
+1998-05-14  Mark Galassi  <rosalia@cygnus.com>
+
+	* configure.in: upped the version to 0.3e, and this time I might
+	actually make the public snapshot!
+
+Wed Apr  8 18:30:48 1998  Brian Gough  <bjg@vvv.lanl.gov>
+
+	* Now using the automake variable check_PROGRAMS everywhere for
+ 	the testing programs (no need to build them unless we do make
+ 	check)
+
+Mon Apr  6 15:09:08 1998  Brian Gough  <bjg@vvv.lanl.gov>
+
+	* added matrix and vector subdirectories
+
+Wed Mar 18 10:27:27 1998  Brian Gough  <bjg@vvv.lanl.gov>
+
+	* gsl_complex.h: the typedef for 'complex' has been renamed to
+ 	gsl_complex, to avoid conflicts with C++ bindings and libstdc++
+
+1998-02-09  Mark Galassi  <rosalia@cygnus.com>
+
+	* configure.in: 0.3b is now released, so I upped the version
+	number to 0.3c-interim.
+
+1998-02-09  Mark Galassi  <rosalia@cygnus.com>
+
+	* configure.in: upped version number to 0.3b
+
+1998-01-30  Mark Galassi  <rosalia@cygnus.com>
+
+	* AUTHORS: added Gerry Jungman to the authors list.
+
