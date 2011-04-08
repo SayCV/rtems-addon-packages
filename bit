@@ -9,7 +9,7 @@
 #
 set -ex
 
-PACKAGES="avl-1.4.0 ncurses-5.9 readline-4.3 libtecla-1.4.1"
+PACKAGES="avl-1.4.0 gsl-1.9 ncurses-5.9 readline-6.2 libtecla-1.6.1"
 
 # make sure it is clean before we start
 for p in $PACKAGES
