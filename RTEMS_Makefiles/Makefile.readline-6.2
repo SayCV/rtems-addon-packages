@@ -12,7 +12,5 @@ all:
 		--libdir=$(exec_prefix)/$(RTEMS_BSP)/lib \
 		--includedir=$(exec_prefix)/$(RTEMS_BSP)/lib/include \
 		--disable-shared --enable-static
-	cp ../readline-doc-4.3/doc/????* doc
 	make
-	cd doc ; make
 	make install

@@ -1,5 +1,10 @@
 2011-04-08	Joel Sherrill <joel.sherrill@oarcorp.com>
 
+	* RTEMS_Makefiles/Makefile.readline-6.2: Remove reference to old
+	documentation.
+
+2011-04-08	Joel Sherrill <joel.sherrill@oarcorp.com>
+
 	* bit: Update to libtecl-1.6.1
 	* libtecla-1.6.1/CHANGES, libtecla-1.6.1/INSTALL,
 	libtecla-1.6.1/LICENSE.TERMS, libtecla-1.6.1/Makefile,
