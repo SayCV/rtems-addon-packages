@@ -1,5 +1,29 @@
 2011-04-08	Joel Sherrill <joel.sherrill@oarcorp.com>
 
+	* bit: Update to ncurses-5.9.
+	* ncurses-5.9/ANNOUNCE, ncurses-5.9/AUTHORS, ncurses-5.9/INSTALL,
+	ncurses-5.9/MANIFEST, ncurses-5.9/Makefile.in,
+	ncurses-5.9/Makefile.os2, ncurses-5.9/NEWS, ncurses-5.9/README,
+	ncurses-5.9/README.MinGW, ncurses-5.9/README.emx, ncurses-5.9/TO-DO,
+	ncurses-5.9/aclocal.m4, ncurses-5.9/announce.html.in,
+	ncurses-5.9/config.guess, ncurses-5.9/config.sub,
+	ncurses-5.9/configure, ncurses-5.9/configure.in,
+	ncurses-5.9/convert_configure.pl, ncurses-5.9/dist.mk,
+	ncurses-5.9/install-sh, ncurses-5.9/mk-0th.awk,
+	ncurses-5.9/mk-1st.awk, ncurses-5.9/mk-2nd.awk,
+	ncurses-5.9/mk-dlls.sh.in, ncurses-5.9/mk-hdr.awk,
+	ncurses-5.9/Ada95/Makefile.in, ncurses-5.9/Ada95/README,
+	ncurses-5.9/Ada95/TODO, ncurses-5.9/Ada95/aclocal.m4,
+	ncurses-5.9/Ada95/configure, ncurses-5.9/Ada95/configure.in,
+	ncurses-5.9/Ada95/make-tar.sh, ncurses-5.9/Ada95/mk-1st.awk,
+	ncurses-5.9/Ada95/doc/Makefile.in, ncurses-5.9/Ada95/gen/Makefile.in,
+	ncurses-5.9/Ada95/gen/adacurses-config.in,
+	ncurses-5.9/Ada95/gen/gen.c, ncurses-5.9/Ada95/gen/html.m4,
+	ncurses-5.9/Ada95/gen/normal.m4, ncurses-5.9/Ada95/gen/table.m4,
+	ncurses-5.9/Ada95/gen/terminal_interface-curses-aux.ads.m4,
+
+2011-04-08	Joel Sherrill <joel.sherrill@oarcorp.com>
+
 	* bit: zlib is now integrated into RTEMS cpukit and is at a much newer
 	version.
 	* RTEMS_Makefiles/Makefile.zlib, zlib-1.1.4/ChangeLog, zlib-1.1.4/FAQ,
