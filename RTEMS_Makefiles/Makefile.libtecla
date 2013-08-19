@@ -4,28 +4,28 @@
 include ../RTEMS_Makefiles/Makefile.common
 
 all:
-    if ! test -f 'stamp_cfg'; then
-	./configure \
-        --host=$(RTEMS_CPU)-rtems \
-		--prefix=$(exec_prefix) \
-		--libdir=$(exec_prefix)/$(RTEMS_BSP)/lib \
-		--includedir=$(exec_prefix)/$(RTEMS_BSP)/lib/include \
-	&& touch 'stamp_cfg'
+    if ! test -f 'stamp_cfg'; then \
+    	./configure \
+            --host=$(RTEMS_CPU)-rtems \
+    		--prefix=$(exec_prefix) \
+    		--libdir=$(exec_prefix)/$(RTEMS_BSP)/lib \
+    		--includedir=$(exec_prefix)/$(RTEMS_BSP)/lib/include \
+    	&& touch 'stamp_cfg'; \
 	fi
 	
-	if ! test -f 'stamp_make'; then
-	make \
-	&& touch 'stamp_make'
+	if ! test -f 'stamp_make'; then \
+    	make \
+    	&& touch 'stamp_make'; \
 	fi
 	
-	if ! test -f 'stamp_make_reentrant'; then
-	make reentrant \
-	&& touch 'stamp_make_reentrant'
+	if ! test -f 'stamp_make_reentrant'; then \
+    	make reentrant \
+    	&& touch 'stamp_make_reentrant'; \
 	fi
 	
-	if ! test -f 'stamp_make_install'; then
-	make install \
-	&& touch 'stamp_make_install'
+	if ! test -f 'stamp_make_install'; then \
+    	make install \
+    	&& touch 'stamp_make_install'; \
 	fi
 	
 	if ! test -f 'stamp_make_distclean'; then

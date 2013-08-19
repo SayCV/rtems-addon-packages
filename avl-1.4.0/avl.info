@@ -1,7 +1,7 @@
-This is avl.info, produced by makeinfo version 3.12n from avl.texinfo.
+This is avl.info, produced by makeinfo version 4.13 from avl.texinfo.
 
-   This file documents libavl, a library for the manipulation of
-balanced binary trees.
+This file documents libavl, a library for the manipulation of balanced
+binary trees.
 
    Copyright 1998, 1999 Free Software Foundation, Inc.
 
@@ -44,11 +44,11 @@ balanced binary trees.
 
 File: avl.info,  Node: Introduction to balanced binary trees,  Next: Introduction to threaded trees,  Prev: Top,  Up: Top
 
-Introduction to balanced binary trees
-*************************************
+1 Introduction to balanced binary trees
+***************************************
 
-   Consider some techniques that can be used to find a particular item
-in a data set.  Typical methods include sequential searching, digital
+Consider some techniques that can be used to find a particular item in a
+data set.  Typical methods include sequential searching, digital
 searching, hash tables, and binary searching.
 
    Sequential searching is simple, but slow (O(n)).  Digital searching
@@ -120,10 +120,10 @@ literature.
 
 File: avl.info,  Node: Introduction to threaded trees,  Next: Types,  Prev: Introduction to balanced binary trees,  Up: Top
 
-Introduction to threaded trees
-******************************
+2 Introduction to threaded trees
+********************************
 
-   "Threading" is a clever method that simplifies binary tree traversal.
+"Threading" is a clever method that simplifies binary tree traversal.
 
    Nodes in a unthreaded binary tree that have zero or one subnodes have
 two or one null subnode pointers, respectively.  In a threaded binary
@@ -178,36 +178,36 @@ their sorted order from smallest to largest.
 
 File: avl.info,  Node: Types,  Next: Functions,  Prev: Introduction to threaded trees,  Up: Top
 
-Types
-*****
+3 Types
+*******
 
-   The following types are defined and used by libavl:
+The following types are defined and used by libavl:
 
- - Data Type: avl_tree
- - Data Type: avlt_tree
- - Data Type: avltr_tree
- - Data Type: rb_tree
+ -- Data Type: avl_tree
+ -- Data Type: avlt_tree
+ -- Data Type: avltr_tree
+ -- Data Type: rb_tree
      These are the data types used to represent a tree.  Although they
      are defined in the libavl header files, it should never be
      necessary to access them directly.  Instead, all accesses should
      take place through libavl functions.
 
- - Data Type: avl_node
- - Data Type: avlt_node
- - Data Type: avltr_node
- - Data Type: rb_node
+ -- Data Type: avl_node
+ -- Data Type: avlt_node
+ -- Data Type: avltr_node
+ -- Data Type: rb_node
      These are the data types used to represent individual nodes in a
      tree.  Similar cautions apply as with `avl_tree' structures.
 
- - Data Type: avl_traverser
- - Data Type: avlt_traverser
- - Data Type: avltr_traverser
- - Data Type: rb_traverser
+ -- Data Type: avl_traverser
+ -- Data Type: avlt_traverser
+ -- Data Type: avltr_traverser
+ -- Data Type: rb_traverser
      These are the data types used by the `avl_traverse' family of
      functions to iterate across the tree.  Again, these are opaque
      structures.
 
- - Data Type: avl_comparison_func
+ -- Data Type: avl_comparison_func
      Every tree must have an ordering defined by a function of this
      type.  It must have the following signature:
 
@@ -218,7 +218,7 @@ Types
      positive if A > B.  PARAM is an arbitrary value defined by the
      user when the tree was created.
 
- - Data Type: avl_node_func
+ -- Data Type: avl_node_func
      This is a class of function called to perform an operation on a
      data item.  Functions of this type have the following signature:
 
@@ -227,7 +227,7 @@ Types
      DATA is the data item and PARAM is an arbitrary user-defined value
      set when the tree was created.
 
- - Data Type: avl_copy_func
+ -- Data Type: avl_copy_func
      This is a class of function called to make a new copy of a node's
      data.  Functions of this type have the following signature:
 
@@ -236,7 +236,7 @@ Types
      The function should return a new copy of DATA.  PARAM is an
      arbitrary user-defined value set when the tree was created.
 
- - Macro: AVL_MAX_HEIGHT
+ -- Macro: AVL_MAX_HEIGHT
      This macro defines the maximum height of an AVL tree that can be
      handled by functions that maintain a stack of nodes descended.
      The default value is 32, which allows for AVL trees with a maximum
@@ -245,7 +245,7 @@ Types
      including any AVL tree header file, in which case libavl will
      honor that value.
 
- - Macro: RB_MAX_HEIGHT
+ -- Macro: RB_MAX_HEIGHT
      This macro defines the maximum height of an AVL tree that can be
      handled by functions that maintain a stack of nodes descended.
      The default value is 32, which allows for red-black trees with a
@@ -256,10 +256,10 @@ Types
 
 File: avl.info,  Node: Functions,  Next: Tree Creation,  Prev: Types,  Up: Top
 
-Functions
-*********
+4 Functions
+***********
 
-   libavl is four libraries in one:
+libavl is four libraries in one:
 
    * An unthreaded AVL tree library.
 
@@ -289,58 +289,59 @@ use, but occasionally it is useful to convert between tree types.
 
 File: avl.info,  Node: Tree Creation,  Next: Insertion,  Prev: Functions,  Up: Top
 
-Tree Creation
-*************
+5 Tree Creation
+***************
 
-   These functions deal with creation and destruction of AVL trees.
+These functions deal with creation and destruction of AVL trees.
 
- - Function: avl_tree * avl_create (avl_comparison_func COMPARE, void
+ -- Function: avl_tree * avl_create (avl_comparison_func COMPARE, void
           *PARAM)
- - Function: avlt_tree * avlt_create (avlt_comparison_func COMPARE,
+ -- Function: avlt_tree * avlt_create (avlt_comparison_func COMPARE,
           void *PARAM)
- - Function: avltr_tree * avltr_create (avltr_comparison_func COMPARE,
+ -- Function: avltr_tree * avltr_create (avltr_comparison_func COMPARE,
           void *PARAM)
- - Function: rb_tree * rb_create (avl_comparison_func COMPARE, void
+ -- Function: rb_tree * rb_create (avl_comparison_func COMPARE, void
           *PARAM)
      Create a new, empty tree with comparison function COMPARE.
      Arbitrary user data PARAM is saved so that it can be passed to
      user callback functions.
 
- - Function: void avl_destroy (avl_tree *TREE, avl_node_func FREE)
- - Function: void avlt_destroy (avlt_tree *TREE, avl_node_func FREE)
- - Function: void avltr_destroy (avltr_tree *TREE, avl_node_func FREE)
- - Function: void rb_destroy (rb_tree *TREE, avl_node_func FREE)
+ -- Function: void avl_destroy (avl_tree *TREE, avl_node_func FREE)
+ -- Function: void avlt_destroy (avlt_tree *TREE, avl_node_func FREE)
+ -- Function: void avltr_destroy (avltr_tree *TREE, avl_node_func FREE)
+ -- Function: void rb_destroy (rb_tree *TREE, avl_node_func FREE)
      Destroys TREE, releasing all of its storage.  If FREE is non-null,
      then it is called for every node in postorder before that node is
      freed.
 
- - Function: void avl_free (avl_tree *TREE)
- - Function: void avlt_free (avlt_tree *TREE)
- - Function: void avltr_free (avltr_tree *TREE)
- - Function: void rb_free (rb_tree *TREE)
+ -- Function: void avl_free (avl_tree *TREE)
+ -- Function: void avlt_free (avlt_tree *TREE)
+ -- Function: void avltr_free (avltr_tree *TREE)
+ -- Function: void rb_free (rb_tree *TREE)
      Destroys TREE, releasing all of its storage.  The data in each
      node is freed with a call to the standard C library function
      `free'.
 
- - Function: avl_tree * avl_copy (const avl_tree *TREE, avl_copy_func
+ -- Function: avl_tree * avl_copy (const avl_tree *TREE, avl_copy_func
           COPY)
- - Function: avlt_tree * avl_copy (const avlt_tree *TREE, avl_copy_func
-          COPY)
- - Function: avltr_tree * avl_copy (const avltr_tree *TREE,
+ -- Function: avlt_tree * avl_copy (const avlt_tree *TREE,
           avl_copy_func COPY)
- - Function: rb_tree * rb_copy (const rb_tree *TREE, avl_copy_func COPY)
+ -- Function: avltr_tree * avl_copy (const avltr_tree *TREE,
+          avl_copy_func COPY)
+ -- Function: rb_tree * rb_copy (const rb_tree *TREE, avl_copy_func
+          COPY)
      Copies the contents of TREE into a new tree, and returns the new
      tree.  If COPY is non-null, then it is called to make a new copy
      of each node's data; otherwise, the node data is copied verbatim
      into the new tree.
 
- - Function: int avl_count (const avl_tree *TREE)
- - Function: int avlt_count (const avlt_tree *TREE)
- - Function: int avltr_count (const avltr_tree *TREE)
- - Function: int rb_count (const rb_tree *TREE)
+ -- Function: int avl_count (const avl_tree *TREE)
+ -- Function: int avlt_count (const avlt_tree *TREE)
+ -- Function: int avltr_count (const avltr_tree *TREE)
+ -- Function: int rb_count (const rb_tree *TREE)
      Returns the number of nodes in TREE.
 
- - Function: void * xmalloc (size_t SIZE)
+ -- Function: void * xmalloc (size_t SIZE)
      This is not a function defined by libavl.  Instead, it is a
      function that the user program can define.  It must allocate SIZE
      bytes using `malloc' and return it.  It can handle out-of-memory
@@ -357,16 +358,16 @@ Tree Creation
 
 File: avl.info,  Node: Insertion,  Next: Searching,  Prev: Tree Creation,  Up: Top
 
-Insertion and Deletion
-**********************
+6 Insertion and Deletion
+************************
 
-   These function insert nodes, delete nodes, and search for nodes in
+These function insert nodes, delete nodes, and search for nodes in
 trees.
 
- - Function: void ** avl_probe (avl_tree *TREE, void *DATA)
- - Function: void ** avlt_probe (avlt_tree *TREE, void *DATA)
- - Function: void ** avltr_probe (avltr_tree *TREE, void *DATA)
- - Function: void ** rb_probe (rb_tree *TREE, void *DATA)
+ -- Function: void ** avl_probe (avl_tree *TREE, void *DATA)
+ -- Function: void ** avlt_probe (avlt_tree *TREE, void *DATA)
+ -- Function: void ** avltr_probe (avltr_tree *TREE, void *DATA)
+ -- Function: void ** rb_probe (rb_tree *TREE, void *DATA)
      These are the workhorse functions for tree insertion.  They search
      TREE for a node with data matching DATA.  If found, a pointer to
      the matching data is returned.  Otherwise, a new node is created
@@ -386,18 +387,18 @@ trees.
      insertion--on typical architectures, 0's become null pointers when
      this is done.
 
- - Function: void * avl_insert (avl_tree *TREE, void *DATA)
- - Function: void * avlt_insert (avlt_tree *TREE, void *DATA)
- - Function: void * avltr_insert (avltr_tree *TREE, void *DATA)
- - Function: void * rb_insert (rb_tree *TREE, void *DATA)
+ -- Function: void * avl_insert (avl_tree *TREE, void *DATA)
+ -- Function: void * avlt_insert (avlt_tree *TREE, void *DATA)
+ -- Function: void * avltr_insert (avltr_tree *TREE, void *DATA)
+ -- Function: void * rb_insert (rb_tree *TREE, void *DATA)
      If a node with data matching DATA exists in TREE, returns the
      matching data item.  Otherwise, inserts DATA into TREE and returns
      a null pointer.
 
- - Function: void avl_force_insert (avl_tree *TREE, void *DATA)
- - Function: void avlt_force_insert (avlt_tree *TREE, void *DATA)
- - Function: void avltr_force_insert (avltr_tree *TREE, void *DATA)
- - Function: void rb_force_insert (rb_tree *TREE, void *DATA)
+ -- Function: void avl_force_insert (avl_tree *TREE, void *DATA)
+ -- Function: void avlt_force_insert (avlt_tree *TREE, void *DATA)
+ -- Function: void avltr_force_insert (avltr_tree *TREE, void *DATA)
+ -- Function: void rb_force_insert (rb_tree *TREE, void *DATA)
      Inserts DATA into TREE.  If a node with data matching DATA exists
      in TREE, aborts the program with an assertion violation.  This
      function is implemented as a macro; if it is used, the standard C
@@ -406,29 +407,29 @@ trees.
      short-circuited to a direct call to `avl_insert', and no check is
      performed.
 
- - Function: void * avl_replace (avl_tree *TREE, void *DATA)
- - Function: void * avlt_replace (avlt_tree *TREE, void *DATA)
- - Function: void * avltr_replace (avltr_tree *TREE, void *DATA)
- - Function: void * rb_replace (rb_tree *TREE, void *DATA)
+ -- Function: void * avl_replace (avl_tree *TREE, void *DATA)
+ -- Function: void * avlt_replace (avlt_tree *TREE, void *DATA)
+ -- Function: void * avltr_replace (avltr_tree *TREE, void *DATA)
+ -- Function: void * rb_replace (rb_tree *TREE, void *DATA)
      If a node with data matching DATA, such that the comparison
      function returns 0, exists in TREE, replaces the node's data with
      DATA and returns the node's former contents.  Otherwise, inserts
      DATA into TREE and returns a null pointer.
 
- - Function: void * avl_delete (avl_tree *TREE, const void *DATA)
- - Function: void * avlt_delete (avlt_tree *TREE, const void *DATA)
- - Function: void * avltr_delete (avltr_tree *TREE, const void *DATA)
- - Function: void * rb_delete (rb_tree *TREE, const void *DATA)
+ -- Function: void * avl_delete (avl_tree *TREE, const void *DATA)
+ -- Function: void * avlt_delete (avlt_tree *TREE, const void *DATA)
+ -- Function: void * avltr_delete (avltr_tree *TREE, const void *DATA)
+ -- Function: void * rb_delete (rb_tree *TREE, const void *DATA)
      Searches TREE for a node with data matching DATA.  If found, the
      node is deleted and its data is returned.  Otherwise, returns a
      null pointer.
 
- - Function: void * avl_force_delete (avl_tree *TREE, const void *DATA)
- - Function: void * avlt_force_delete (avlt_tree *TREE, const void
+ -- Function: void * avl_force_delete (avl_tree *TREE, const void *DATA)
+ -- Function: void * avlt_force_delete (avlt_tree *TREE, const void
           *DATA)
- - Function: void * avltr_force_delete (avltr_tree *TREE, const void
+ -- Function: void * avltr_force_delete (avltr_tree *TREE, const void
           *DATA)
- - Function: void * rb_force_delete (rb_tree *TREE, const void *DATA)
+ -- Function: void * rb_force_delete (rb_tree *TREE, const void *DATA)
      Deletes a node with data matching DATA from TREE.  If no matching
      node is found, aborts the program with an assertion violation.  If
      macro `NDEBUG' is declared when a libavl header is included, these
@@ -445,25 +446,26 @@ equal to the next node's data.
 
 File: avl.info,  Node: Searching,  Next: Iteration,  Prev: Insertion,  Up: Top
 
-Searching
-*********
+7 Searching
+***********
 
-   These function search a tree for an item without making an insertion
-or a deletion.
+These function search a tree for an item without making an insertion or
+a deletion.
 
- - Function: void * avl_find (avl_tree *TREE, const void *DATA)
- - Function: void ** avlt_find (avlt_tree *TREE, const void *DATA)
- - Function: void ** avltr_find (avltr_tree *TREE, const void *DATA)
- - Function: void * rb_find (rb_tree *TREE, const void *DATA)
+ -- Function: void * avl_find (avl_tree *TREE, const void *DATA)
+ -- Function: void ** avlt_find (avlt_tree *TREE, const void *DATA)
+ -- Function: void ** avltr_find (avltr_tree *TREE, const void *DATA)
+ -- Function: void * rb_find (rb_tree *TREE, const void *DATA)
      Searches TREE for a node with data matching DATA, If found,
      returns the node's data (for threaded and right-threaded trees, a
      pointer to the node's data).  Otherwise, returns a null pointer.
 
- - Function: void * avl_find_close (avl_tree *TREE, const void *DATA)
- - Function: void ** avlt_find_close (avlt_tree *TREE, const void *DATA)
- - Function: void ** avltr_find_close (avltr_tree *TREE, const void
+ -- Function: void * avl_find_close (avl_tree *TREE, const void *DATA)
+ -- Function: void ** avlt_find_close (avlt_tree *TREE, const void
           *DATA)
- - Function: void * rb_find_close (rb_tree *TREE, const void *DATA)
+ -- Function: void ** avltr_find_close (avltr_tree *TREE, const void
+          *DATA)
+ -- Function: void * rb_find_close (rb_tree *TREE, const void *DATA)
      Searches TREE for a node with data matching DATA.  If found,
      returns the node's data (for threaded and right-threaded trees, a
      pointer to the node's data).  If no matching item is found, then it
@@ -475,19 +477,18 @@ or a deletion.
 
 File: avl.info,  Node: Iteration,  Next: Conversion,  Prev: Searching,  Up: Top
 
-Iteration
-*********
+8 Iteration
+***********
 
-   These functions allow the caller to iterate across the items in a
-tree.
+These functions allow the caller to iterate across the items in a tree.
 
- - Function: void avl_walk (const avl_tree *TREE, avl_node_func
+ -- Function: void avl_walk (const avl_tree *TREE, avl_node_func
           OPERATE, void *PARAM)
- - Function: void avlt_walk (const avlt_tree *TREE, avl_node_func
+ -- Function: void avlt_walk (const avlt_tree *TREE, avl_node_func
           OPERATE, void *PARAM)
- - Function: void avltr_walk (const avltr_tree *TREE, avl_node_func
+ -- Function: void avltr_walk (const avltr_tree *TREE, avl_node_func
           OPERATE, void *PARAM)
- - Function: void rb_walk (const rb_tree *TREE, avl_node_func OPERATE,
+ -- Function: void rb_walk (const rb_tree *TREE, avl_node_func OPERATE,
           void *PARAM)
      Walks through all the nodes in TREE, and calls function OPERATE
      for each node in inorder.  PARAM overrides the value passed to
@@ -495,13 +496,13 @@ tree.
      not change the key data in the nodes in a way that would reorder
      the data values or cause two values to become equal.
 
- - Function: void * avl_traverse (const avl_tree *TREE, avl_traverser
+ -- Function: void * avl_traverse (const avl_tree *TREE, avl_traverser
           *TRAV)
- - Function: void * avlt_traverse (const avlt_tree *TREE,
+ -- Function: void * avlt_traverse (const avlt_tree *TREE,
           avlt_traverser *TRAV)
- - Function: void * avltr_traverse (const avltr_tree *TREE,
+ -- Function: void * avltr_traverse (const avltr_tree *TREE,
           avltr_traverser *TRAV)
- - Function: void * rb_traverse (const rb_tree *TREE, rb_traverser
+ -- Function: void * rb_traverse (const rb_tree *TREE, rb_traverser
           *TRAV)
      Returns each of TREE's nodes' data values in sequence, then a null
      pointer to indicate the last item.  TRAV must be initialized
@@ -517,23 +518,23 @@ tree.
      `avltr_next', respectively, are faster and more memory-efficient
      than `avlt_traverse' or `avltr_traverse'.
 
- - Function: void * avl_init_traverser (avl_traverser *TRAV)
- - Function: void * avlt_init_traverser (avlt_traverser *TRAV)
- - Function: void * avltr_init_traverser (avltr_traverser *TRAV)
- - Function: void * rb_init_traverser (rb_traverser *TRAV)
+ -- Function: void * avl_init_traverser (avl_traverser *TRAV)
+ -- Function: void * avlt_init_traverser (avlt_traverser *TRAV)
+ -- Function: void * avltr_init_traverser (avltr_traverser *TRAV)
+ -- Function: void * rb_init_traverser (rb_traverser *TRAV)
      Initializes the specified tree traverser structure.  After this
      function is called, the next call to the corresponding
      `*_traverse' function will return the smallest value in the
      appropriate tree.
 
- - Function: void ** avlt_next (const avlt_tree *TREE, void **DATA)
- - Function: void ** avltr_next (const avltr_tree *TREE, void **DATA)
+ -- Function: void ** avlt_next (const avlt_tree *TREE, void **DATA)
+ -- Function: void ** avltr_next (const avltr_tree *TREE, void **DATA)
      DATA must be a null pointer or a pointer to a data item in AVL
      tree TREE.  Returns a pointer to the next data item after DATA in
      TREE in inorder (this is the first item if DATA is a null
      pointer), or a null pointer if DATA was the last item in TREE.
 
- - Function: void ** avltr_prev (const avltr_tree *TREE, void **DATA)
+ -- Function: void ** avltr_prev (const avltr_tree *TREE, void **DATA)
      DATA must be a null pointer or a pointer to a data item in AVL
      tree TREE.  Returns a pointer to the previous data item before
      DATA in TREE in inorder (this is the last, or greatest valued,
@@ -543,19 +544,19 @@ tree.
 
 File: avl.info,  Node: Conversion,  Next: Author,  Prev: Iteration,  Up: Top
 
-Conversion
-**********
+9 Conversion
+************
 
- - Function: avlt_tree * avlt_thread (avl_tree *TREE)
- - Function: avltr_tree * avltr_thread (avl_tree *TREE)
+ -- Function: avlt_tree * avlt_thread (avl_tree *TREE)
+ -- Function: avltr_tree * avltr_thread (avl_tree *TREE)
      Adds symmetric threads or right threads, respectively, to
      unthreaded AVL tree TREE and returns a pointer to TREE cast to the
      appropriate type.  After one of these functions is called,
      threaded or right-threaded functions, as appropriate, must be used
      with TREE; unthreaded functions may not be used.
 
- - Function: avl_tree * avlt_unthread (avlt_tree *TREE)
- - Function: avl_tree * avltr_unthread (avltr_tree *TREE)
+ -- Function: avl_tree * avlt_unthread (avlt_tree *TREE)
+ -- Function: avl_tree * avltr_unthread (avltr_tree *TREE)
      Cuts all threads in threaded or right-threaded, respectively, AVL
      tree TREE and returns a pointer to TREE cast to `avl_tree *'.
      After one of these functions is called, unthreaded functions must
@@ -565,10 +566,10 @@ Conversion
 
 File: avl.info,  Node: Author,  Next: Index,  Prev: Conversion,  Up: Top
 
-Author
-******
+10 Author
+*********
 
-   libavl was written by Ben Pfaff <blp@gnu.org>.
+libavl was written by Ben Pfaff <blp@gnu.org>.
 
    libavl's generic tree algorithms and AVL algorithms are based on
 those found in Donald Knuth's venerable `Art of Computer Programming'
@@ -582,127 +583,135 @@ File: avl.info,  Node: Index,  Prev: Author,  Up: Top
 Index
 *****
 
+ [index ]
 * Menu:
 
-* `Art of Computer Programming':         Author.
+* `Art of Computer Programming':         Author.               (line  6)
 * Adel'son-Velskii, G. M.:               Introduction to balanced binary trees.
-* author:                                Author.
+                                                               (line 38)
+* author:                                Author.               (line  6)
 * AVL tree:                              Introduction to balanced binary trees.
-* avl_comparison_func:                   Types.
-* avl_copy:                              Tree Creation.
-* avl_copy_func:                         Types.
-* avl_count:                             Tree Creation.
-* avl_create:                            Tree Creation.
-* avl_delete:                            Insertion.
-* avl_destroy:                           Tree Creation.
-* avl_find:                              Searching.
-* avl_find_close:                        Searching.
-* avl_force_delete:                      Insertion.
-* avl_force_insert:                      Insertion.
-* avl_free:                              Tree Creation.
-* avl_init_traverser:                    Iteration.
-* avl_insert:                            Insertion.
-* AVL_MAX_HEIGHT:                        Types.
-* avl_node:                              Types.
-* avl_node_func:                         Types.
-* avl_probe:                             Insertion.
-* avl_replace:                           Insertion.
-* avl_traverse:                          Iteration.
-* avl_traverser:                         Types.
-* avl_tree:                              Types.
-* avl_walk:                              Iteration.
-* avlt_count:                            Tree Creation.
-* avlt_create:                           Tree Creation.
-* avlt_delete:                           Insertion.
-* avlt_destroy:                          Tree Creation.
-* avlt_find:                             Searching.
-* avlt_find_close:                       Searching.
-* avlt_force_delete:                     Insertion.
-* avlt_force_insert:                     Insertion.
-* avlt_free:                             Tree Creation.
-* avlt_init_traverser:                   Iteration.
-* avlt_insert:                           Insertion.
-* avlt_next:                             Iteration.
-* avlt_node:                             Types.
-* avlt_probe:                            Insertion.
-* avlt_replace:                          Insertion.
-* avlt_thread:                           Conversion.
-* avlt_traverse:                         Iteration.
-* avlt_traverser:                        Types.
-* avlt_tree:                             Types.
-* avlt_unthread:                         Conversion.
-* avlt_walk:                             Iteration.
-* avltr_count:                           Tree Creation.
-* avltr_create:                          Tree Creation.
-* avltr_delete:                          Insertion.
-* avltr_destroy:                         Tree Creation.
-* avltr_find:                            Searching.
-* avltr_find_close:                      Searching.
-* avltr_force_delete:                    Insertion.
-* avltr_force_insert:                    Insertion.
-* avltr_free:                            Tree Creation.
-* avltr_init_traverser:                  Iteration.
-* avltr_insert:                          Insertion.
-* avltr_next:                            Iteration.
-* avltr_node:                            Types.
-* avltr_prev:                            Iteration.
-* avltr_probe:                           Insertion.
-* avltr_replace:                         Insertion.
-* avltr_thread:                          Conversion.
-* avltr_traverse:                        Iteration.
-* avltr_traverser:                       Types.
-* avltr_tree:                            Types.
-* avltr_unthread:                        Conversion.
-* avltr_walk:                            Iteration.
+                                                               (line 29)
+* avl_comparison_func:                   Types.                (line 33)
+* avl_copy:                              Tree Creation.        (line 38)
+* avl_copy_func:                         Types.                (line 53)
+* avl_count:                             Tree Creation.        (line 50)
+* avl_create:                            Tree Creation.        (line 10)
+* avl_delete:                            Insertion.            (line 62)
+* avl_destroy:                           Tree Creation.        (line 21)
+* avl_find:                              Searching.            (line 10)
+* avl_find_close:                        Searching.            (line 18)
+* avl_force_delete:                      Insertion.            (line 70)
+* avl_force_insert:                      Insertion.            (line 41)
+* avl_free:                              Tree Creation.        (line 29)
+* avl_init_traverser:                    Iteration.            (line 45)
+* avl_insert:                            Insertion.            (line 33)
+* AVL_MAX_HEIGHT:                        Types.                (line 62)
+* avl_node:                              Types.                (line 18)
+* avl_node_func:                         Types.                (line 44)
+* avl_probe:                             Insertion.            (line 10)
+* avl_replace:                           Insertion.            (line 53)
+* avl_traverse:                          Iteration.            (line 24)
+* avl_traverser:                         Types.                (line 25)
+* avl_tree:                              Types.                (line  9)
+* avl_walk:                              Iteration.            (line 10)
+* avlt_count:                            Tree Creation.        (line 51)
+* avlt_create:                           Tree Creation.        (line 12)
+* avlt_delete:                           Insertion.            (line 63)
+* avlt_destroy:                          Tree Creation.        (line 22)
+* avlt_find:                             Searching.            (line 11)
+* avlt_find_close:                       Searching.            (line 20)
+* avlt_force_delete:                     Insertion.            (line 72)
+* avlt_force_insert:                     Insertion.            (line 42)
+* avlt_free:                             Tree Creation.        (line 30)
+* avlt_init_traverser:                   Iteration.            (line 46)
+* avlt_insert:                           Insertion.            (line 34)
+* avlt_next:                             Iteration.            (line 54)
+* avlt_node:                             Types.                (line 19)
+* avlt_probe:                            Insertion.            (line 11)
+* avlt_replace:                          Insertion.            (line 54)
+* avlt_thread:                           Conversion.           (line  7)
+* avlt_traverse:                         Iteration.            (line 26)
+* avlt_traverser:                        Types.                (line 26)
+* avlt_tree:                             Types.                (line 10)
+* avlt_unthread:                         Conversion.           (line 15)
+* avlt_walk:                             Iteration.            (line 12)
+* avltr_count:                           Tree Creation.        (line 52)
+* avltr_create:                          Tree Creation.        (line 14)
+* avltr_delete:                          Insertion.            (line 64)
+* avltr_destroy:                         Tree Creation.        (line 23)
+* avltr_find:                            Searching.            (line 12)
+* avltr_find_close:                      Searching.            (line 22)
+* avltr_force_delete:                    Insertion.            (line 74)
+* avltr_force_insert:                    Insertion.            (line 43)
+* avltr_free:                            Tree Creation.        (line 31)
+* avltr_init_traverser:                  Iteration.            (line 47)
+* avltr_insert:                          Insertion.            (line 35)
+* avltr_next:                            Iteration.            (line 55)
+* avltr_node:                            Types.                (line 20)
+* avltr_prev:                            Iteration.            (line 61)
+* avltr_probe:                           Insertion.            (line 12)
+* avltr_replace:                         Insertion.            (line 55)
+* avltr_thread:                          Conversion.           (line  8)
+* avltr_traverse:                        Iteration.            (line 28)
+* avltr_traverser:                       Types.                (line 27)
+* avltr_tree:                            Types.                (line 11)
+* avltr_unthread:                        Conversion.           (line 16)
+* avltr_walk:                            Iteration.            (line 14)
 * binary tree:                           Introduction to balanced binary trees.
+                                                               (line 19)
 * hash table:                            Introduction to balanced binary trees.
-* Knuth, Donald Ervin:                   Author.
+                                                               (line  6)
+* Knuth, Donald Ervin:                   Author.               (line  6)
 * Landis, E. M.:                         Introduction to balanced binary trees.
-* Pfaff, Benjamin Levy:                  Author.
-* rb_copy:                               Tree Creation.
-* rb_count:                              Tree Creation.
-* rb_create:                             Tree Creation.
-* rb_delete:                             Insertion.
-* rb_destroy:                            Tree Creation.
-* rb_find:                               Searching.
-* rb_find_close:                         Searching.
-* rb_force_delete:                       Insertion.
-* rb_force_insert:                       Insertion.
-* rb_free:                               Tree Creation.
-* rb_init_traverser:                     Iteration.
-* rb_insert:                             Insertion.
-* RB_MAX_HEIGHT:                         Types.
-* rb_node:                               Types.
-* rb_probe:                              Insertion.
-* rb_replace:                            Insertion.
-* rb_traverse:                           Iteration.
-* rb_traverser:                          Types.
-* rb_tree:                               Types.
-* rb_walk:                               Iteration.
+                                                               (line 38)
+* Pfaff, Benjamin Levy:                  Author.               (line  6)
+* rb_copy:                               Tree Creation.        (line 44)
+* rb_count:                              Tree Creation.        (line 53)
+* rb_create:                             Tree Creation.        (line 16)
+* rb_delete:                             Insertion.            (line 65)
+* rb_destroy:                            Tree Creation.        (line 24)
+* rb_find:                               Searching.            (line 13)
+* rb_find_close:                         Searching.            (line 23)
+* rb_force_delete:                       Insertion.            (line 75)
+* rb_force_insert:                       Insertion.            (line 44)
+* rb_free:                               Tree Creation.        (line 32)
+* rb_init_traverser:                     Iteration.            (line 48)
+* rb_insert:                             Insertion.            (line 36)
+* RB_MAX_HEIGHT:                         Types.                (line 71)
+* rb_node:                               Types.                (line 21)
+* rb_probe:                              Insertion.            (line 13)
+* rb_replace:                            Insertion.            (line 56)
+* rb_traverse:                           Iteration.            (line 30)
+* rb_traverser:                          Types.                (line 28)
+* rb_tree:                               Types.                (line 12)
+* rb_walk:                               Iteration.            (line 16)
 * rebalancing:                           Introduction to balanced binary trees.
+                                                               (line 29)
 * red-black tree:                        Introduction to balanced binary trees.
-* right threads:                         Functions.
-* threads:                               Functions.
-* unthreaded:                            Functions.
-* xmalloc:                               Tree Creation.
+                                                               (line 29)
+* right threads:                         Functions.            (line  6)
+* threads:                               Functions.            (line  6)
+* unthreaded:                            Functions.            (line  6)
+* xmalloc:                               Tree Creation.        (line 56)
 
 
 
 Tag Table:
-Node: Top891
-Node: Introduction to balanced binary trees1340
-Node: Introduction to threaded trees5260
-Ref: Introduction to threaded trees-Footnote-17757
-Node: Types7871
-Node: Functions10904
-Ref: Functions-Footnote-111877
-Node: Tree Creation12014
-Node: Insertion15035
-Ref: Insertion-Footnote-119214
-Node: Searching19458
-Node: Iteration20863
-Node: Conversion23929
-Node: Author24875
-Node: Index25345
+Node: Top887
+Node: Introduction to balanced binary trees1336
+Node: Introduction to threaded trees5257
+Ref: Introduction to threaded trees-Footnote-17755
+Node: Types7869
+Node: Functions10920
+Ref: Functions-Footnote-111894
+Node: Tree Creation12031
+Node: Insertion15084
+Ref: Insertion-Footnote-119288
+Node: Searching19532
+Node: Iteration20956
+Node: Conversion24038
+Node: Author24992
+Node: Index25465
 
 End Tag Table
