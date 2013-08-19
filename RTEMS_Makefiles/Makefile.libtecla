@@ -28,7 +28,7 @@ all:
     	&& touch 'stamp_make_install'; \
 	fi
 	
-	if ! test -f 'stamp_make_distclean'; then
-	make distclean \
-	&& touch 'stamp_make_distclean'
+	if test -f 'stamp_make_distclean'; then \
+    	make distclean \
+    	&& touch 'stamp_make_distclean'; \
 	fi

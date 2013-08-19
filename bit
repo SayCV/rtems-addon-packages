@@ -35,7 +35,7 @@ do
     cd ..
 done
 
-for p in $PACKAGES
-do
-	(cd $p ; make clean distclean || true)
-done
+#for p in $PACKAGES
+#do
+#	(cd $p ; make clean distclean || true)
+#done
