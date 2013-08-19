@@ -1,4 +1,4 @@
-This is gsl-ref.info, produced by makeinfo version 4.8 from
+This is gsl-ref.info, produced by makeinfo version 4.13 from
 gsl-ref.texi.
 
 INFO-DIR-SECTION Scientific software
@@ -125,9 +125,9 @@ of 0 to 1, instead of percentiles (which use a scale of 0 to 100).
      Thus the minimum value of the array (`data[0*stride]') is given by
      F equal to zero, the maximum value (`data[(n-1)*stride]') is given
      by F equal to one and the median value is given by F equal to 0.5.
-     Since the algorithm for computing quantiles involves
-     interpolation this function always returns a floating-point
-     number, even for integer data types.
+     Since the algorithm for computing quantiles involves interpolation
+     this function always returns a floating-point number, even for
+     integer data types.
 
 
 File: gsl-ref.info,  Node: Example statistical programs,  Next: Statistics References and Further Reading,  Prev: Median and Percentiles,  Up: Statistics
@@ -963,13 +963,13 @@ identify the bin which covers the appropriate range.
      These functions find the upper and lower range limits of the I-th
      and J-th bins in the x and y directions of the histogram H.  The
      range limits are stored in XLOWER and XUPPER or YLOWER and YUPPER.
-     The lower limits are inclusive (i.e. events with these
-     coordinates are included in the bin) and the upper limits are
-     exclusive (i.e. events with the value of the upper limit are not
-     included and fall in the neighboring higher bin, if it exists).
-     The functions return 0 to indicate success.  If I or J lies
-     outside the valid range of indices for the histogram then the
-     error handler is called with an error code of `GSL_EDOM'.
+     The lower limits are inclusive (i.e. events with these coordinates
+     are included in the bin) and the upper limits are exclusive (i.e.
+     events with the value of the upper limit are not included and fall
+     in the neighboring higher bin, if it exists).  The functions
+     return 0 to indicate success.  If I or J lies outside the valid
+     range of indices for the histogram then the error handler is
+     called with an error code of `GSL_EDOM'.
 
  -- Function: double gsl_histogram2d_xmax (const gsl_histogram2d * H)
  -- Function: double gsl_histogram2d_xmin (const gsl_histogram2d * H)

@@ -1,4 +1,4 @@
-This is gsl-ref.info, produced by makeinfo version 4.8 from
+This is gsl-ref.info, produced by makeinfo version 4.13 from
 gsl-ref.texi.
 
 INFO-DIR-SECTION Scientific software
@@ -2015,7 +2015,7 @@ shift Francis method.
      the matrix prior to computing eigenvalues. This transformation is
      designed to make the rows and columns of the matrix have comparable
      norms, and can result in more accurate eigenvalues for matrices
-     whose entries vary widely in magnitude. See *Note Balancing:: for
+     whose entries vary widely in magnitude. See *note Balancing:: for
      more information. Note that the balancing transformation does not
      preserve the orthogonality of the Schur vectors, so if you wish to
      compute the Schur vectors with `gsl_eigen_nonsymm_Z' you will

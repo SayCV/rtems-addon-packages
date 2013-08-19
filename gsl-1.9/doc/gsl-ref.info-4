@@ -1,4 +1,4 @@
-This is gsl-ref.info, produced by makeinfo version 4.8 from
+This is gsl-ref.info, produced by makeinfo version 4.13 from
 gsl-ref.texi.
 
 INFO-DIR-SECTION Scientific software
@@ -841,7 +841,7 @@ File: gsl-ref.info,  Node: Computing the covariance matrix of best fit parameter
      \sigma^2 C.  This estimates the statistical error on the best-fit
      parameters from the scatter of the underlying data.
 
-     For more information about covariance matrices see *Note Fitting
+     For more information about covariance matrices see *note Fitting
      Overview::.
 
 

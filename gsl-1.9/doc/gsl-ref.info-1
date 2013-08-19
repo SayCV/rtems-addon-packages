@@ -1,4 +1,4 @@
-This is gsl-ref.info, produced by makeinfo version 4.8 from
+This is gsl-ref.info, produced by makeinfo version 4.13 from
 gsl-ref.texi.
 
 INFO-DIR-SECTION Scientific software
@@ -473,7 +473,7 @@ CBLAS interface,
 
      $ gcc example.o -lgsl -lcblas -latlas -lm
 
-For more information see *Note BLAS Support::.
+For more information see *note BLAS Support::.
 
 
 File: gsl-ref.info,  Node: Shared Libraries,  Next: ANSI C Compliance,  Prev: Compiling and Linking,  Up: Using the library
@@ -564,7 +564,7 @@ versions of the functions will be used instead.
    Note that the actual usage of the inline keyword is `extern inline',
 which eliminates unnecessary function definitions in GCC.  If the form
 `extern inline' causes problems with other compilers a stricter
-autoconf test can be used, see *Note Autoconf Macros::.
+autoconf test can be used, see *note Autoconf Macros::.
 
 
 File: gsl-ref.info,  Node: Long double,  Next: Portability functions,  Prev: Inline functions,  Up: Using the library
@@ -622,7 +622,7 @@ available you can include the following macro definitions in a file
 The application source files can then use the include command `#include
 <config.h>' to replace each occurrence of `hypot' by `gsl_hypot' when
 `hypot' is not available.  This substitution can be made automatically
-if you use `autoconf', see *Note Autoconf Macros::.
+if you use `autoconf', see *note Autoconf Macros::.
 
    In most circumstances the best strategy is to use the native
 versions of these functions when available, and fall back to GSL
