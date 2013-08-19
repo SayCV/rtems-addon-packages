@@ -4,7 +4,7 @@
 include ../RTEMS_Makefiles/Makefile.common
 
 all:
-    if ! test -f 'stamp_cfg'; then \
+	if ! test -f 'stamp_cfg'; then \
     	./configure \
             --host=$(RTEMS_CPU)-rtems \
     		--prefix=$(exec_prefix) \
