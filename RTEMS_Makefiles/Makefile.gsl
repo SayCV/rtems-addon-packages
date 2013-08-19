@@ -11,9 +11,20 @@ include ../RTEMS_Makefiles/Makefile.common
 # for a cross-target.
 #
 all:
+	if ! test -f 'stamp_cfg'; then
 	./configure --host=$(RTEMS_CPU)-rtems$(RTEMS_API) \
 		--prefix=$(exec_prefix) \
 		--includedir=$(exec_prefix)/lib/include \
-		--disable-shared
-	make
-	make install
+		--disable-shared \
+	&& touch 'stamp_cfg'
+	fi
+	
+	if ! test -f 'stamp_make'; then
+	make \
+	&& touch 'stamp_make'
+	fi
+	
+	if ! test -f 'stamp_make_install'; then
+	make install \
+	&& touch 'stamp_make_install'
+	fi

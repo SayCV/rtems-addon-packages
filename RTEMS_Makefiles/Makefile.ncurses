@@ -13,6 +13,7 @@ include ../RTEMS_Makefiles/Makefile.common
 # for a cross-target.
 #
 all:
+	if ! test -f 'stamp_cfg'; then
 	cf_cv_type_of_bool=char CXX="$(CC)" TERM=xterm ./configure \
 		--host=$(RTEMS_CPU)-rtems \
 		--prefix=$(exec_prefix) \
@@ -23,6 +24,16 @@ all:
 		--without-cxx-binding \
 		--disable-sigwinch \
 		--disable-database \
-		--with-fallbacks="$(TERMINALS)"
-	make "TERM=xterm" "HOSTCC=gcc" "HOSTCCFLAGS=-I. -I../include" HOSTLDFLAGS=""
-	make install
+		--with-fallbacks="$(TERMINALS)" \
+	&& touch 'stamp_cfg'
+	fi
+	
+	if ! test -f 'stamp_make'; then
+	make "TERM=xterm" "HOSTCC=gcc" "HOSTCCFLAGS=-I. -I../include" HOSTLDFLAGS="" \
+	&& touch 'stamp_make'
+	fi
+	
+	if ! test -f 'stamp_make_install'; then
+	make install \
+	&& touch 'stamp_make_install'
+	fi
