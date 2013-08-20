@@ -1,1046 +1,1179 @@
-<HTML>
-<HEAD>
-<!-- This HTML file has been created by texi2html 1.54
-     from ./avl.texinfo on 6 October 1999 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on August 20, 2013 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>libavl manual</title>
 
-<TITLE>libavl manual</TITLE>
+<meta name="description" content="libavl manual">
+<meta name="keywords" content="libavl manual">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
 
-</HEAD>
-<BODY>
-<H1>libavl</H1>
-<H2>A library for manipulation of balanced binary trees</H2>
-<ADDRESS>Ben Pfaff</ADDRESS>
-<P>
-<P><HR><P>
-<H1>Table of Contents</H1>
-<UL>
-<LI><A NAME="TOC1" HREF="avl.html#SEC1">Introduction to balanced binary trees</A>
-<LI><A NAME="TOC2" HREF="avl.html#SEC2">Introduction to threaded trees</A>
-<LI><A NAME="TOC3" HREF="avl.html#SEC3">Types</A>
-<LI><A NAME="TOC4" HREF="avl.html#SEC4">Functions</A>
-<LI><A NAME="TOC5" HREF="avl.html#SEC5">Tree Creation</A>
-<LI><A NAME="TOC6" HREF="avl.html#SEC6">Insertion and Deletion</A>
-<LI><A NAME="TOC7" HREF="avl.html#SEC7">Searching</A>
-<LI><A NAME="TOC8" HREF="avl.html#SEC8">Iteration</A>
-<LI><A NAME="TOC9" HREF="avl.html#SEC9">Conversion</A>
-<LI><A NAME="TOC10" HREF="avl.html#SEC10">Author</A>
-<LI><A NAME="TOC11" HREF="avl.html#SEC11">Index</A>
-</UL>
-<P><HR><P>
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Top"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1 class="settitle">libavl manual</h1>
 
 
-<H1><A NAME="SEC1" HREF="avl.html#TOC1">Introduction to balanced binary trees</A></H1>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Introduction-to-balanced-binary-trees">1. Introduction to balanced binary trees</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">  
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Introduction-to-threaded-trees">2. Introduction to threaded trees</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">  
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Types">3. Types</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                       
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Functions">4. Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                   
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Tree-Creation">5. Tree Creation</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">               
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Insertion">6. Insertion and Deletion</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                   
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Searching">7. Searching</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                   
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Iteration">8. Iteration</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                   
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Conversion">9. Conversion</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                  
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Author">10. Author</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                      
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Index">Index</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                       
+</td></tr>
+</table>
 
-<P>
-<A NAME="IDX1"></A>
-Consider some techniques that can be used to find a particular item in a
+<hr size="1">
+<a name="Introduction-to-balanced-binary-trees"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Top" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Introduction-to-threaded-trees" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[ &lt;&lt; ]</td>
+<td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Introduction-to-threaded-trees" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Introduction-to-balanced-binary-trees-1"></a>
+<h1 class="chapter">1. Introduction to balanced binary trees</h1>
+
+<a name="index-hash-table"></a>
+<p>Consider some techniques that can be used to find a particular item in a
 data set.  Typical methods include sequential searching, digital
 searching, hash tables, and binary searching.
-
-</P>
-<P>
-Sequential searching is simple, but slow (O(n)).  Digital searching
+</p>
+<p>Sequential searching is simple, but slow (O(n)).  Digital searching
 requires that the entire data set be known in advance, and memory
 efficient implementations are slow.
-
-</P>
-<P>
-Hash tables are fast (O(1)) for static data sets, but they can be
+</p>
+<p>Hash tables are fast (O(1)) for static data sets, but they can be
 wasteful of memory.  It can be difficult to choose an effective hash
 function.  Some hash tables variants also make deletion an expensive
 operation.
-
-</P>
-<P>
-<A NAME="IDX2"></A>
-Binary search techniques work almost as quickly (O(log(n)) on an ordered
+</p>
+<a name="index-binary-tree"></a>
+<p>Binary search techniques work almost as quickly (O(log(n)) on an ordered
 table, or on a binary tree.  Binary trees also allow easy iteration over
 the data in the tree in sorted order.  With hash tables it is necessary
 to sort the data before iterating, and after sorting the data is no
 longer in hash form.
-
-</P>
-<P>
-Binary trees are efficient for insertion, deletion, and searching, if
+</p>
+<p>Binary trees are efficient for insertion, deletion, and searching, if
 data are inserted in random order.  But, if data are inserted in order
 using a naive algorithm, binary search degenerates to sequential search.
-
-</P>
-<P>
-<A NAME="IDX3"></A>
-<A NAME="IDX4"></A>
-<A NAME="IDX5"></A>
-In turn, this problem can be solved by <STRONG>rebalancing</STRONG> the tree after
+</p>
+<a name="index-red_002dblack-tree"></a>
+<a name="index-AVL-tree"></a>
+<a name="index-rebalancing"></a>
+<p>In turn, this problem can be solved by <em>rebalancing</em> the tree after
 each insertion or deletion.  In rebalancing, nodes are rearranged via
-transformations called <STRONG>rotations</STRONG> using an algorithm that tends to
-minimize the tree's height.
-
-</P>
-<P>
-There are several schemes for rebalancing binary trees.  The two most
-common types of balanced tree are <STRONG>AVL trees</STRONG> and <STRONG>red-black
-trees</STRONG>.  libavl implements both types:
-
-</P>
-
-<UL>
-<LI>
-
-<A NAME="IDX6"></A>
-<A NAME="IDX7"></A>
-AVL trees, invented by Russian mathematicians G. M. Adel'son-Velskii and
+transformations called <em>rotations</em> using an algorithm that tends to
+minimize the tree&rsquo;s height.
+</p>
+<p>There are several schemes for rebalancing binary trees.  The two most
+common types of balanced tree are <em>AVL trees</em> and <em>red-black
+trees</em>.  libavl implements both types:
+</p>
+<ul>
+<li>
+<a name="index-Landis_002c-E_002e-M_002e"></a>
+<a name="index-Adel_0027son_002dVelskii_002c-G_002e-M_002e"></a>
+AVL trees, invented by Russian mathematicians G. M. Adel&rsquo;son-Velskii and
 E. M. Landis, ensure that, for each node, the difference in height
-between its subtrees (the <STRONG>balance factor</STRONG>) is not greater than 1.
+between its subtrees (the <em>balance factor</em>) is not greater than 1.
 
-<LI>
-
+</li><li>
 Red-black trees, invented by R. Bayer and studied at length by
 L. J. Guibas and R. Sedgewick, assign each node of a tree a color (red
 or black), and specify a set of rules governing how red and black nodes
 may be arranged.
-</UL>
+</li></ul>
 
-<P>
-The table below presents a comparison among unbalanced binary trees, AVL
-trees, and red-black trees.  In the table, <VAR>n</VAR> is the number of
-nodes in the tree and <VAR>h</VAR> is the tree's height before the
-operation.  <STRONG>lg</STRONG> is the base-2 logarithm function.
+<p>The table below presents a comparison among unbalanced binary trees, AVL
+trees, and red-black trees.  In the table, <var>n</var> is the number of
+nodes in the tree and <var>h</var> is the tree&rsquo;s height before the
+operation.  <em>lg</em> is the base-2 logarithm function.
+</p>
+<table>
+<tr><td width="5%">Operation</td></tr>
+<tr><td width="5%"></td><td width="30%">Binary Tree</td><td width="35%">AVL Tree</td><td width="30%">Red-Black Tree</td></tr>
+<tr><td width="5%">Time per insertion or deletion</td></tr>
+<tr><td width="5%"></td><td width="30%">O(<var>h</var>)</td><td width="35%">O(lg <var>n</var>)</td><td width="30%">O(lg <var>n</var>)</td></tr>
+<tr><td width="5%">Time for insertion of <var>k</var> nodes having sequential values</td></tr>
+<tr><td width="5%"></td><td width="30%">O(<em><var>k</var>^2</em>)</td><td width="35%">O(<var>n</var> lg <var>n</var>)</td><td width="30%">O(<var>n</var> lg <var>n</var>)</td></tr>
+<tr><td width="5%">Time for insertion of <var>k</var> nodes having random values</td></tr>
+<tr><td width="5%"></td><td width="30%">O(<var>n</var> lg <var>n</var>)</td><td width="35%">O(<var>n</var> lg <var>n</var>)</td><td width="30%">O(<var>n</var> lg <var>n</var>)</td></tr>
+<tr><td width="5%">Maximum number of rotations per insertion</td></tr>
+<tr><td width="5%"></td><td width="30%">0</td><td width="35%">1</td><td width="30%">lg <var>n</var></td></tr>
+<tr><td width="5%">Maximum number of rotations per deletion</td></tr>
+<tr><td width="5%"></td><td width="30%">0</td><td width="35%">lg <var>n</var></td><td width="30%">lg <var>n</var></td></tr>
+<tr><td width="5%">Maximum <var>h</var> as a function of <var>n</var></td></tr>
+<tr><td width="5%"></td><td width="30%"><var>n</var></td><td width="35%">1.44 lg (<var>n</var> + 2) - .328</td><td width="30%">2 lg (<var>n</var> + 1)</td></tr>
+<tr><td width="5%">Minimum <var>n</var> as a function of <var>h</var></td></tr>
+<tr><td width="5%"></td><td width="30%"><var>h</var></td><td width="35%">2^((<var>h</var> + .328) / 1.44) - 2</td><td width="30%">2^(<var>h</var> / 2) - 1</td></tr>
+</table>
 
-</P>
-<TABLE>
-
-<TR>Operation
-<BR>
-<TR>
-<TD> Binary Tree
-<TD> AVL Tree
-<TD> Red-Black Tree
-
-<BR>
-<TR>Time per insertion or deletion
-<BR>
-<TR>
-<TD> O(<VAR>h</VAR>)
-<TD> O(lg <VAR>n</VAR>)
-<TD> O(lg <VAR>n</VAR>)
-
-<BR>
-<TR>Time for insertion of <VAR>k</VAR> nodes having sequential values
-<BR>
-<TR>
-<TD> O(<VAR>k</VAR>^2)
-<TD> O(<VAR>n</VAR> lg <VAR>n</VAR>)
-<TD> O(<VAR>n</VAR> lg <VAR>n</VAR>)
-
-<BR>
-<TR>Time for insertion of <VAR>k</VAR> nodes having random values
-<BR>
-<TR>
-<TD> O(<VAR>n</VAR> lg <VAR>n</VAR>)
-<TD> O(<VAR>n</VAR> lg <VAR>n</VAR>)
-<TD> O(<VAR>n</VAR> lg <VAR>n</VAR>)
-
-<BR>
-<TR>Maximum number of rotations per insertion
-<BR>
-<TR>
-<TD> 0
-<TD> 1
-<TD> lg <VAR>n</VAR>
-
-<BR>
-<TR>Maximum number of rotations per deletion
-<BR>
-<TR>
-<TD> 0
-<TD> lg <VAR>n</VAR>
-<TD> lg <VAR>n</VAR>
-
-<BR>
-<TR>Maximum <VAR>h</VAR> as a function of <VAR>n</VAR>
-<BR>
-<TR>
-<TD> <VAR>n</VAR>
-<TD> 1.44 lg (<VAR>n</VAR> + 2) - .328
-<TD> 2 lg (<VAR>n</VAR> + 1)
-
-<BR>
-<TR>Minimum <VAR>n</VAR> as a function of <VAR>h</VAR>
-<BR>
-<TR>
-<TD> <VAR>h</VAR>
-<TD> 2^((<VAR>h</VAR> + .328) / 1.44) - 2
-<TD> 2^(<VAR>h</VAR> / 2) - 1
-</TABLE>
-
-There are alternatives to AVL trees that share some of their properties.
+<p>There are alternatives to AVL trees that share some of their properties.
 For instance, skip lists, 2-3 trees, and splay trees all allow O(log(n))
 insertion and deletion.  The main disadvantage of these methods is that
 their operations are not as well documented in the literature.
+</p>
+<hr size="6">
+<a name="Introduction-to-threaded-trees"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Introduction-to-balanced-binary-trees" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Types" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction-to-balanced-binary-trees" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Types" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Introduction-to-threaded-trees-1"></a>
+<h1 class="chapter">2. Introduction to threaded trees</h1>
 
-
-
-<H1><A NAME="SEC2" HREF="avl.html#TOC2">Introduction to threaded trees</A></H1>
-
-<P>
-<STRONG>Threading</STRONG> is a clever method that simplifies binary tree
+<p><em>Threading</em> is a clever method that simplifies binary tree
 traversal.  
-
-</P>
-<P>
-Nodes in a unthreaded binary tree that have zero or one subnodes have
+</p>
+<p>Nodes in a unthreaded binary tree that have zero or one subnodes have
 two or one null subnode pointers, respectively.  In a threaded binary
 tree, a left child pointer that would otherwise be null is used to point
-to the node's inorder<A NAME="DOCF1" HREF="avl.html#FOOT1">(1)</A>
+to the node&rsquo;s inorder<a name="DOCF1" href="#FOOT1">(1)</a>
 predecessor, and in a null right child pointer points to its inorder
 successor.
-
-</P>
-<P>
-In a threaded tree, it is always possible to find the next node and the
+</p>
+<p>In a threaded tree, it is always possible to find the next node and the
 previous node of a node, given only a pointer to the node in question.
-In an unthreaded tree, it's also necessary to have a list of the nodes
+In an unthreaded tree, it&rsquo;s also necessary to have a list of the nodes
 between the node in question and root of the tree.
-
-</P>
-<P>
-Advantages of a threaded tree compared to an unthreaded one include:
-
-</P>
-
-<UL>
-<LI>
-
+</p>
+<p>Advantages of a threaded tree compared to an unthreaded one include:
+</p>
+<ul>
+<li>
 Faster traversal and less memory usage during traversal, since no stack
 need be maintained.
 
-<LI>
-
+</li><li>
 Greater generality, since one can go from a node to its successor or
 predecessor given only the node, simplifying algorithms that require
 moving forward and backward in a tree.
-</UL>
+</li></ul>
 
-<P>
-Some disadvantages of threaded trees are:
-
-</P>
-
-<UL>
-<LI>
-
+<p>Some disadvantages of threaded trees are:
+</p>
+<ul>
+<li>
 Slower insertion and deletion, since threads need to be maintained.  In
 somes cases, this can be alleviated by constructing the tree as an
 unthreaded tree, then threading it with a special libavl function.
 
-<LI>
-
+</li><li>
 In theory, threaded trees need two extra bits per node to indicate
-whether each child pointer points to an ordinary node or the node's
+whether each child pointer points to an ordinary node or the node&rsquo;s
 successor/predecessor node.  In libavl, however, these bits are stored
 in a byte that is used for structure alignment padding in unthreaded
 binary trees, so no extra storage is used.
-</UL>
+</li></ul>
 
-<P>
-A <STRONG>right-threaded binary tree</STRONG> is similar to a threaded binary tree,
+<p>A <em>right-threaded binary tree</em> is similar to a threaded binary tree,
 but threads are only maintained on the right side of each node.  This
 allows for traversal to the right (toward larger values) but not to the
 left (toward smaller values).  Right-threaded trees are convenient when
 the properties of a threaded tree are desirable, but traversal in
 reverse sort order is not necessary.  Not threading the left links saves
 time in insertions and deletions.
-
-</P>
-<P>
-Left-threaded binary trees also exist, but they are not implemented by
+</p>
+<p>Left-threaded binary trees also exist, but they are not implemented by
 libavl.  The same effect can be obtained by sorting the tree in the
 opposite order.
+</p>
+<hr size="6">
+<a name="Types"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Introduction-to-threaded-trees" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Functions" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction-to-threaded-trees" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Functions" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Types-1"></a>
+<h1 class="chapter">3. Types</h1>
 
-</P>
-
-
-<H1><A NAME="SEC3" HREF="avl.html#TOC3">Types</A></H1>
-
-<P>
-The following types are defined and used by libavl:
-
-</P>
-<P>
-<DL>
-<DT><U>Data Type:</U> <B>avl_tree</B>
-<DD><A NAME="IDX8"></A>
-<DT><U>Data Type:</U> <B>avlt_tree</B>
-<DD><A NAME="IDX9"></A>
-<DT><U>Data Type:</U> <B>avltr_tree</B>
-<DD><A NAME="IDX10"></A>
-<DT><U>Data Type:</U> <B>rb_tree</B>
-<DD><A NAME="IDX11"></A>
-These are the data types used to represent a tree.  Although they are
+<p>The following types are defined and used by libavl:
+</p>
+<dl>
+<dt><a name="index-avl_005ftree"></a><u>Data Type:</u> <b>avl_tree</b></dt>
+<dt><a name="index-avlt_005ftree"></a><u>Data Type:</u> <b>avlt_tree</b></dt>
+<dt><a name="index-avltr_005ftree"></a><u>Data Type:</u> <b>avltr_tree</b></dt>
+<dt><a name="index-rb_005ftree"></a><u>Data Type:</u> <b>rb_tree</b></dt>
+<dd><p>These are the data types used to represent a tree.  Although they are
 defined in the libavl header files, it should never be necessary to
 access them directly.  Instead, all accesses should take place through
 libavl functions.
-</DL>
+</p></dd></dl>
 
-</P>
-<P>
-<DL>
-<DT><U>Data Type:</U> <B>avl_node</B>
-<DD><A NAME="IDX12"></A>
-<DT><U>Data Type:</U> <B>avlt_node</B>
-<DD><A NAME="IDX13"></A>
-<DT><U>Data Type:</U> <B>avltr_node</B>
-<DD><A NAME="IDX14"></A>
-<DT><U>Data Type:</U> <B>rb_node</B>
-<DD><A NAME="IDX15"></A>
-These are the data types used to represent individual nodes in a tree.
-Similar cautions apply as with <CODE>avl_tree</CODE> structures.
-</DL>
+<dl>
+<dt><a name="index-avl_005fnode"></a><u>Data Type:</u> <b>avl_node</b></dt>
+<dt><a name="index-avlt_005fnode"></a><u>Data Type:</u> <b>avlt_node</b></dt>
+<dt><a name="index-avltr_005fnode"></a><u>Data Type:</u> <b>avltr_node</b></dt>
+<dt><a name="index-rb_005fnode"></a><u>Data Type:</u> <b>rb_node</b></dt>
+<dd><p>These are the data types used to represent individual nodes in a tree.
+Similar cautions apply as with <code>avl_tree</code> structures.
+</p></dd></dl>
 
-</P>
-<P>
-<DL>
-<DT><U>Data Type:</U> <B>avl_traverser</B>
-<DD><A NAME="IDX16"></A>
-<DT><U>Data Type:</U> <B>avlt_traverser</B>
-<DD><A NAME="IDX17"></A>
-<DT><U>Data Type:</U> <B>avltr_traverser</B>
-<DD><A NAME="IDX18"></A>
-<DT><U>Data Type:</U> <B>rb_traverser</B>
-<DD><A NAME="IDX19"></A>
-These are the data types used by the <CODE>avl_traverse</CODE> family of
+<dl>
+<dt><a name="index-avl_005ftraverser"></a><u>Data Type:</u> <b>avl_traverser</b></dt>
+<dt><a name="index-avlt_005ftraverser"></a><u>Data Type:</u> <b>avlt_traverser</b></dt>
+<dt><a name="index-avltr_005ftraverser"></a><u>Data Type:</u> <b>avltr_traverser</b></dt>
+<dt><a name="index-rb_005ftraverser"></a><u>Data Type:</u> <b>rb_traverser</b></dt>
+<dd><p>These are the data types used by the <code>avl_traverse</code> family of
 functions to iterate across the tree.  Again, these are opaque
 structures.
-</DL>
+</p></dd></dl>
 
-</P>
-<P>
-<DL>
-<DT><U>Data Type:</U> <B>avl_comparison_func</B>
-<DD><A NAME="IDX20"></A>
-Every tree must have an ordering defined by a function of this type.  It
+<dl>
+<dt><a name="index-avl_005fcomparison_005ffunc"></a><u>Data Type:</u> <b>avl_comparison_func</b></dt>
+<dd><p>Every tree must have an ordering defined by a function of this type.  It
 must have the following signature:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">int <var>compare</var> (const void *<var>a</var>, const void *<var>b</var>, void *<var>param</var>)
+</pre></td></tr></table>
 
-</P>
-
-<PRE>
-int <VAR>compare</VAR> (const void *<VAR>a</VAR>, const void *<VAR>b</VAR>, void *<VAR>param</VAR>)
-</PRE>
-
-<P>
-The return value is expected to be like that returned by <CODE>strcmp</CODE>
-in the standard C library: negative if <VAR>a</VAR> &#60; <VAR>b</VAR>, zero if
-<VAR>a</VAR> = <VAR>b</VAR>, positive if <VAR>a</VAR> &#62; <VAR>b</VAR>.  <VAR>param</VAR> is an
+<p>The return value is expected to be like that returned by <code>strcmp</code>
+in the standard C library: negative if <var>a</var> &lt; <var>b</var>, zero if
+<var>a</var> = <var>b</var>, positive if <var>a</var> &gt; <var>b</var>.  <var>param</var> is an
 arbitrary value defined by the user when the tree was created.
-</DL>
+</p></dd></dl>
 
-</P>
-<P>
-<DL>
-<DT><U>Data Type:</U> <B>avl_node_func</B>
-<DD><A NAME="IDX21"></A>
-This is a class of function called to perform an operation on a data
+<dl>
+<dt><a name="index-avl_005fnode_005ffunc"></a><u>Data Type:</u> <b>avl_node_func</b></dt>
+<dd><p>This is a class of function called to perform an operation on a data
 item.  Functions of this type have the following signature:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">void <var>operate</var> (void *<var>data</var>, void *<var>param</var>)
+</pre></td></tr></table>
 
-</P>
-
-<PRE>
-void <VAR>operate</VAR> (void *<VAR>data</VAR>, void *<VAR>param</VAR>)
-</PRE>
-
-<P>
-<VAR>data</VAR> is the data item and <VAR>param</VAR> is an arbitrary user-defined
+<p><var>data</var> is the data item and <var>param</var> is an arbitrary user-defined
 value set when the tree was created.
-</DL>
+</p></dd></dl>
 
-</P>
-<P>
-<DL>
-<DT><U>Data Type:</U> <B>avl_copy_func</B>
-<DD><A NAME="IDX22"></A>
-
-</P>
-<P>
-This is a class of function called to make a new copy of a node's data.
+<dl>
+<dt><a name="index-avl_005fcopy_005ffunc"></a><u>Data Type:</u> <b>avl_copy_func</b></dt>
+<dd>
+<p>This is a class of function called to make a new copy of a node&rsquo;s data.
 Functions of this type have the following signature:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">void *<var>copy</var> (void *<var>data</var>, void *<var>param</var>)
+</pre></td></tr></table>
 
-</P>
-
-<PRE>
-void *<VAR>copy</VAR> (void *<VAR>data</VAR>, void *<VAR>param</VAR>)
-</PRE>
-
-<P>
-The function should return a new copy of <VAR>data</VAR>.  <VAR>param</VAR> is an
+<p>The function should return a new copy of <var>data</var>.  <var>param</var> is an
 arbitrary user-defined value set when the tree was created.
-</DL>
+</p></dd></dl>
 
-</P>
-<P>
-<DL>
-<DT><U>Macro:</U> <B>AVL_MAX_HEIGHT</B>
-<DD><A NAME="IDX23"></A>
-This macro defines the maximum height of an AVL tree that can be handled
+<dl>
+<dt><a name="index-AVL_005fMAX_005fHEIGHT"></a><u>Macro:</u> <b>AVL_MAX_HEIGHT</b></dt>
+<dd><p>This macro defines the maximum height of an AVL tree that can be handled
 by functions that maintain a stack of nodes descended.  The default
 value is 32, which allows for AVL trees with a maximum number of nodes
 between 5,704,880 and 4,294,967,295, depending on order of insertion.
 This macro may be defined by the user before including any AVL tree
 header file, in which case libavl will honor that value.
-</DL>
+</p></dd></dl>
 
-</P>
-<P>
-<DL>
-<DT><U>Macro:</U> <B>RB_MAX_HEIGHT</B>
-<DD><A NAME="IDX24"></A>
-This macro defines the maximum height of an AVL tree that can be handled
+<dl>
+<dt><a name="index-RB_005fMAX_005fHEIGHT"></a><u>Macro:</u> <b>RB_MAX_HEIGHT</b></dt>
+<dd><p>This macro defines the maximum height of an AVL tree that can be handled
 by functions that maintain a stack of nodes descended.  The default
 value is 32, which allows for red-black trees with a maximum number of
 nodes of at least 65535.  This macro may be defined by the user before
 including the red-black tree header file, in which case libavl will
 honor that value.
-</DL>
+</p></dd></dl>
 
-</P>
+<hr size="6">
+<a name="Functions"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Types" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tree-Creation" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Types" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Tree-Creation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Functions-1"></a>
+<h1 class="chapter">4. Functions</h1>
 
-
-<H1><A NAME="SEC4" HREF="avl.html#TOC4">Functions</A></H1>
-
-<P>
-<A NAME="IDX25"></A>
-<A NAME="IDX26"></A>
-<A NAME="IDX27"></A>
-libavl is four libraries in one:
-
-</P>
-
-<UL>
-<LI>
-
+<a name="index-unthreaded"></a>
+<a name="index-threads"></a>
+<a name="index-right-threads"></a>
+<p>libavl is four libraries in one:
+</p>
+<ul>
+<li>
 An unthreaded AVL tree library.
 
-<LI>
-
+</li><li>
 A threaded AVL tree library.
 
-<LI>
-
+</li><li>
 A right-threaded AVL tree library.
 
-<LI>
-
+</li><li>
 A red-black tree library.
-</UL>
+</li></ul>
 
-<P>
-Identifiers in these libraries are prefixed by <CODE>avl_</CODE>,
-<CODE>avlt_</CODE>, <CODE>avltr_</CODE>, and <CODE>rb_</CODE>, with corresponding header
-files <TT>`avl.h'</TT>, <TT>`avlt.h'</TT>, <TT>`avltr.h'</TT>, and <TT>`rb.h'</TT>,
+<p>Identifiers in these libraries are prefixed by <code>avl_</code>,
+<code>avlt_</code>, <code>avltr_</code>, and <code>rb_</code>, with corresponding header
+files &lsquo;<tt>avl.h</tt>&rsquo;, &lsquo;<tt>avlt.h</tt>&rsquo;, &lsquo;<tt>avltr.h</tt>&rsquo;, and &lsquo;<tt>rb.h</tt>&rsquo;,
 respectively.  The functions that they declare are defined in the
-<TT>`.c'</TT> files with the same names.
-
-</P>
-<P>
-Most tree functions are implemented in all three libraries, but
+&lsquo;<tt>.c</tt>&rsquo; files with the same names.
+</p>
+<p>Most tree functions are implemented in all three libraries, but
 threading allows more generality of operation.  So, the threaded and
 right-threaded libraries offer a few additional functions for finding
 the next or previous node from a given node.  In addition, they offer
 functions for converting trees from threaded or right-threaded
-representations to unthreaded, and vice versa.<A NAME="DOCF2" HREF="avl.html#FOOT2">(2)</A>
+representations to unthreaded, and vice versa.<a name="DOCF2" href="#FOOT2">(2)</a>
+</p>
+<hr size="6">
+<a name="Tree-Creation"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Functions" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Insertion" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Functions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Insertion" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Tree-Creation-1"></a>
+<h1 class="chapter">5. Tree Creation</h1>
 
-</P>
-
-
-<H1><A NAME="SEC5" HREF="avl.html#TOC5">Tree Creation</A></H1>
-
-<P>
-These functions deal with creation and destruction of AVL trees.
-
-</P>
-<P>
-<DL>
-<DT><U>Function:</U> avl_tree * <B>avl_create</B> <I>(avl_comparison_func <VAR>compare</VAR>, void *<VAR>param</VAR>)</I>
-<DD><A NAME="IDX28"></A>
-<DT><U>Function:</U> avlt_tree * <B>avlt_create</B> <I>(avlt_comparison_func <VAR>compare</VAR>, void *<VAR>param</VAR>)</I>
-<DD><A NAME="IDX29"></A>
-<DT><U>Function:</U> avltr_tree * <B>avltr_create</B> <I>(avltr_comparison_func <VAR>compare</VAR>, void *<VAR>param</VAR>)</I>
-<DD><A NAME="IDX30"></A>
-<DT><U>Function:</U> rb_tree * <B>rb_create</B> <I>(avl_comparison_func <VAR>compare</VAR>, void *<VAR>param</VAR>)</I>
-<DD><A NAME="IDX31"></A>
-Create a new, empty tree with comparison function <VAR>compare</VAR>.
-Arbitrary user data <VAR>param</VAR> is saved so that it can be passed to
+<p>These functions deal with creation and destruction of AVL trees.
+</p>
+<dl>
+<dt><a name="index-avl_005fcreate"></a><u>Function:</u> avl_tree * <b>avl_create</b><i> (avl_comparison_func <var>compare</var>, void *<var>param</var>)</i></dt>
+<dt><a name="index-avlt_005fcreate"></a><u>Function:</u> avlt_tree * <b>avlt_create</b><i> (avlt_comparison_func <var>compare</var>, void *<var>param</var>)</i></dt>
+<dt><a name="index-avltr_005fcreate"></a><u>Function:</u> avltr_tree * <b>avltr_create</b><i> (avltr_comparison_func <var>compare</var>, void *<var>param</var>)</i></dt>
+<dt><a name="index-rb_005fcreate"></a><u>Function:</u> rb_tree * <b>rb_create</b><i> (avl_comparison_func <var>compare</var>, void *<var>param</var>)</i></dt>
+<dd><p>Create a new, empty tree with comparison function <var>compare</var>.
+Arbitrary user data <var>param</var> is saved so that it can be passed to
 user callback functions.
-</DL>
+</p></dd></dl>
 
-</P>
-<P>
-<DL>
-<DT><U>Function:</U> void <B>avl_destroy</B> <I>(avl_tree *<VAR>tree</VAR>, avl_node_func <VAR>free</VAR>)</I>
-<DD><A NAME="IDX32"></A>
-<DT><U>Function:</U> void <B>avlt_destroy</B> <I>(avlt_tree *<VAR>tree</VAR>, avl_node_func <VAR>free</VAR>)</I>
-<DD><A NAME="IDX33"></A>
-<DT><U>Function:</U> void <B>avltr_destroy</B> <I>(avltr_tree *<VAR>tree</VAR>, avl_node_func <VAR>free</VAR>)</I>
-<DD><A NAME="IDX34"></A>
-<DT><U>Function:</U> void <B>rb_destroy</B> <I>(rb_tree *<VAR>tree</VAR>, avl_node_func <VAR>free</VAR>)</I>
-<DD><A NAME="IDX35"></A>
-Destroys <VAR>tree</VAR>, releasing all of its storage.  If <VAR>free</VAR> is
+<dl>
+<dt><a name="index-avl_005fdestroy"></a><u>Function:</u> void <b>avl_destroy</b><i> (avl_tree *<var>tree</var>, avl_node_func <var>free</var>)</i></dt>
+<dt><a name="index-avlt_005fdestroy"></a><u>Function:</u> void <b>avlt_destroy</b><i> (avlt_tree *<var>tree</var>, avl_node_func <var>free</var>)</i></dt>
+<dt><a name="index-avltr_005fdestroy"></a><u>Function:</u> void <b>avltr_destroy</b><i> (avltr_tree *<var>tree</var>, avl_node_func <var>free</var>)</i></dt>
+<dt><a name="index-rb_005fdestroy"></a><u>Function:</u> void <b>rb_destroy</b><i> (rb_tree *<var>tree</var>, avl_node_func <var>free</var>)</i></dt>
+<dd><p>Destroys <var>tree</var>, releasing all of its storage.  If <var>free</var> is
 non-null, then it is called for every node in postorder before that node
 is freed.
-</DL>
+</p></dd></dl>
 
-</P>
-<P>
-<DL>
-<DT><U>Function:</U> void <B>avl_free</B> <I>(avl_tree *<VAR>tree</VAR>)</I>
-<DD><A NAME="IDX36"></A>
-<DT><U>Function:</U> void <B>avlt_free</B> <I>(avlt_tree *<VAR>tree</VAR>)</I>
-<DD><A NAME="IDX37"></A>
-<DT><U>Function:</U> void <B>avltr_free</B> <I>(avltr_tree *<VAR>tree</VAR>)</I>
-<DD><A NAME="IDX38"></A>
-<DT><U>Function:</U> void <B>rb_free</B> <I>(rb_tree *<VAR>tree</VAR>)</I>
-<DD><A NAME="IDX39"></A>
-Destroys <VAR>tree</VAR>, releasing all of its storage.  The data in each
+<dl>
+<dt><a name="index-avl_005ffree"></a><u>Function:</u> void <b>avl_free</b><i> (avl_tree *<var>tree</var>)</i></dt>
+<dt><a name="index-avlt_005ffree"></a><u>Function:</u> void <b>avlt_free</b><i> (avlt_tree *<var>tree</var>)</i></dt>
+<dt><a name="index-avltr_005ffree"></a><u>Function:</u> void <b>avltr_free</b><i> (avltr_tree *<var>tree</var>)</i></dt>
+<dt><a name="index-rb_005ffree"></a><u>Function:</u> void <b>rb_free</b><i> (rb_tree *<var>tree</var>)</i></dt>
+<dd><p>Destroys <var>tree</var>, releasing all of its storage.  The data in each
 node is freed with a call to the standard C library function
-<CODE>free</CODE>.
-</DL>
+<code>free</code>.
+</p></dd></dl>
 
-</P>
-<P>
-<DL>
-<DT><U>Function:</U> avl_tree * <B>avl_copy</B> <I>(const avl_tree *<VAR>tree</VAR>, avl_copy_func <VAR>copy</VAR>)</I>
-<DD><A NAME="IDX40"></A>
-<DT><U>Function:</U> avlt_tree * <B>avl_copy</B> <I>(const avlt_tree *<VAR>tree</VAR>, avl_copy_func <VAR>copy</VAR>)</I>
-<DD><A NAME="IDX41"></A>
-<DT><U>Function:</U> avltr_tree * <B>avl_copy</B> <I>(const avltr_tree *<VAR>tree</VAR>, avl_copy_func <VAR>copy</VAR>)</I>
-<DD><A NAME="IDX42"></A>
-<DT><U>Function:</U> rb_tree * <B>rb_copy</B> <I>(const rb_tree *<VAR>tree</VAR>, avl_copy_func <VAR>copy</VAR>)</I>
-<DD><A NAME="IDX43"></A>
-Copies the contents of <VAR>tree</VAR> into a new tree, and returns the new
-tree.  If <VAR>copy</VAR> is non-null, then it is called to make a new copy
-of each node's data; otherwise, the node data is copied verbatim into
+<dl>
+<dt><a name="index-avl_005fcopy"></a><u>Function:</u> avl_tree * <b>avl_copy</b><i> (const avl_tree *<var>tree</var>, avl_copy_func <var>copy</var>)</i></dt>
+<dt><a name="index-avl_005fcopy-1"></a><u>Function:</u> avlt_tree * <b>avl_copy</b><i> (const avlt_tree *<var>tree</var>, avl_copy_func <var>copy</var>)</i></dt>
+<dt><a name="index-avl_005fcopy-2"></a><u>Function:</u> avltr_tree * <b>avl_copy</b><i> (const avltr_tree *<var>tree</var>, avl_copy_func <var>copy</var>)</i></dt>
+<dt><a name="index-rb_005fcopy"></a><u>Function:</u> rb_tree * <b>rb_copy</b><i> (const rb_tree *<var>tree</var>, avl_copy_func <var>copy</var>)</i></dt>
+<dd><p>Copies the contents of <var>tree</var> into a new tree, and returns the new
+tree.  If <var>copy</var> is non-null, then it is called to make a new copy
+of each node&rsquo;s data; otherwise, the node data is copied verbatim into
 the new tree.
-</DL>
+</p></dd></dl>
 
-</P>
-<P>
-<DL>
-<DT><U>Function:</U> int <B>avl_count</B> <I>(const avl_tree *<VAR>tree</VAR>)</I>
-<DD><A NAME="IDX44"></A>
-<DT><U>Function:</U> int <B>avlt_count</B> <I>(const avlt_tree *<VAR>tree</VAR>)</I>
-<DD><A NAME="IDX45"></A>
-<DT><U>Function:</U> int <B>avltr_count</B> <I>(const avltr_tree *<VAR>tree</VAR>)</I>
-<DD><A NAME="IDX46"></A>
-<DT><U>Function:</U> int <B>rb_count</B> <I>(const rb_tree *<VAR>tree</VAR>)</I>
-<DD><A NAME="IDX47"></A>
-Returns the number of nodes in <VAR>tree</VAR>.
-</DL>
+<dl>
+<dt><a name="index-avl_005fcount"></a><u>Function:</u> int <b>avl_count</b><i> (const avl_tree *<var>tree</var>)</i></dt>
+<dt><a name="index-avlt_005fcount"></a><u>Function:</u> int <b>avlt_count</b><i> (const avlt_tree *<var>tree</var>)</i></dt>
+<dt><a name="index-avltr_005fcount"></a><u>Function:</u> int <b>avltr_count</b><i> (const avltr_tree *<var>tree</var>)</i></dt>
+<dt><a name="index-rb_005fcount"></a><u>Function:</u> int <b>rb_count</b><i> (const rb_tree *<var>tree</var>)</i></dt>
+<dd><p>Returns the number of nodes in <var>tree</var>.
+</p></dd></dl>
 
-</P>
-<P>
-<DL>
-<DT><U>Function:</U> void * <B>xmalloc</B> <I>(size_t <VAR>size</VAR>)</I>
-<DD><A NAME="IDX48"></A>
-This is not a function defined by libavl.  Instead, it is a function
-that the user program can define.  It must allocate <VAR>size</VAR> bytes
-using <CODE>malloc</CODE> and return it.  It can handle out-of-memory errors
+<dl>
+<dt><a name="index-xmalloc"></a><u>Function:</u> void * <b>xmalloc</b><i> (size_t <var>size</var>)</i></dt>
+<dd><p>This is not a function defined by libavl.  Instead, it is a function
+that the user program can define.  It must allocate <var>size</var> bytes
+using <code>malloc</code> and return it.  It can handle out-of-memory errors
 however it chooses, but it may not ever return a null pointer.
+</p>
+<p>If there is an <code>xmalloc</code> function defined for use by libavl, the
+source files (&lsquo;<tt>avl.c</tt>&rsquo;, &lsquo;<tt>avlt.c</tt>&rsquo;, &lsquo;<tt>avltr.c</tt>&rsquo;, &lsquo;<tt>rb.c</tt>&rsquo;)
+must be compiled with <code>HAVE_XMALLOC</code> defined.  Otherwise, the
+library will use its internal static <code>xmalloc</code>, which handles
+out-of-memory errors by printing a message &lsquo;<samp>virtual memory
+exhausted</samp>&rsquo; to stderr and terminating the program with exit code
+<code>EXIT_FAILURE</code>.
+</p></dd></dl>
 
-</P>
-<P>
-If there is an <CODE>xmalloc</CODE> function defined for use by libavl, the
-source files (<TT>`avl.c'</TT>, <TT>`avlt.c'</TT>, <TT>`avltr.c'</TT>, <TT>`rb.c'</TT>)
-must be compiled with <CODE>HAVE_XMALLOC</CODE> defined.  Otherwise, the
-library will use its internal static <CODE>xmalloc</CODE>, which handles
-out-of-memory errors by printing a message <SAMP>`virtual memory
-exhausted'</SAMP> to stderr and terminating the program with exit code
-<CODE>EXIT_FAILURE</CODE>.
-</DL>
+<hr size="6">
+<a name="Insertion"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Tree-Creation" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Searching" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Tree-Creation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Searching" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Insertion-and-Deletion"></a>
+<h1 class="chapter">6. Insertion and Deletion</h1>
 
-</P>
-
-
-<H1><A NAME="SEC6" HREF="avl.html#TOC6">Insertion and Deletion</A></H1>
-
-<P>
-These function insert nodes, delete nodes, and search for nodes in
+<p>These function insert nodes, delete nodes, and search for nodes in
 trees.
-
-</P>
-<P>
-<DL>
-<DT><U>Function:</U> void ** <B>avl_probe</B> <I>(avl_tree *<VAR>tree</VAR>, void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX49"></A>
-<DT><U>Function:</U> void ** <B>avlt_probe</B> <I>(avlt_tree *<VAR>tree</VAR>, void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX50"></A>
-<DT><U>Function:</U> void ** <B>avltr_probe</B> <I>(avltr_tree *<VAR>tree</VAR>, void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX51"></A>
-<DT><U>Function:</U> void ** <B>rb_probe</B> <I>(rb_tree *<VAR>tree</VAR>, void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX52"></A>
-These are the workhorse functions for tree insertion.  They search
-<VAR>tree</VAR> for a node with data matching <VAR>data</VAR>.  If found, a
+</p>
+<dl>
+<dt><a name="index-avl_005fprobe"></a><u>Function:</u> void ** <b>avl_probe</b><i> (avl_tree *<var>tree</var>, void *<var>data</var>)</i></dt>
+<dt><a name="index-avlt_005fprobe"></a><u>Function:</u> void ** <b>avlt_probe</b><i> (avlt_tree *<var>tree</var>, void *<var>data</var>)</i></dt>
+<dt><a name="index-avltr_005fprobe"></a><u>Function:</u> void ** <b>avltr_probe</b><i> (avltr_tree *<var>tree</var>, void *<var>data</var>)</i></dt>
+<dt><a name="index-rb_005fprobe"></a><u>Function:</u> void ** <b>rb_probe</b><i> (rb_tree *<var>tree</var>, void *<var>data</var>)</i></dt>
+<dd><p>These are the workhorse functions for tree insertion.  They search
+<var>tree</var> for a node with data matching <var>data</var>.  If found, a
 pointer to the matching data is returned.  Otherwise, a new node is
-created for <VAR>data</VAR>, and a pointer to that data is returned.  In
+created for <var>data</var>, and a pointer to that data is returned.  In
 either case, the pointer returned can be changed by the user, but the
-key data used by the tree's comparison must not be changed<A NAME="DOCF3" HREF="avl.html#FOOT3">(3)</A>.
-
-</P>
-<P>
-It is usually easier to use one of the <CODE>avl_insert</CODE> or
-<CODE>avl_replace</CODE> functions instead of <CODE>avl_probe</CODE> directly.
-
-</P>
-<P>
-<STRONG>Please note:</STRONG> It's not a particularly good idea to insert a null
+key data used by the tree&rsquo;s comparison must not be changed<a name="DOCF3" href="#FOOT3">(3)</a>.
+</p>
+<p>It is usually easier to use one of the <code>avl_insert</code> or
+<code>avl_replace</code> functions instead of <code>avl_probe</code> directly.
+</p>
+<p><strong>Please note:</strong> It&rsquo;s not a particularly good idea to insert a null
 pointer as a data item into a tree, because several libavl functions
 return a null pointer to indicate failure.  You can sometimes avoid a
 problem by using functions that return a pointer to a pointer instead of
 a plain pointer.  Also be wary of this when casting an arithmetic type
-to a void pointer for insertion--on typical architectures, 0's become
+to a void pointer for insertion&mdash;on typical architectures, 0&rsquo;s become
 null pointers when this is done.
-</DL>
+</p></dd></dl>
 
-</P>
-<P>
-<DL>
-<DT><U>Function:</U> void * <B>avl_insert</B> <I>(avl_tree *<VAR>tree</VAR>, void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX53"></A>
-<DT><U>Function:</U> void * <B>avlt_insert</B> <I>(avlt_tree *<VAR>tree</VAR>, void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX54"></A>
-<DT><U>Function:</U> void * <B>avltr_insert</B> <I>(avltr_tree *<VAR>tree</VAR>, void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX55"></A>
-<DT><U>Function:</U> void * <B>rb_insert</B> <I>(rb_tree *<VAR>tree</VAR>, void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX56"></A>
-If a node with data matching <VAR>data</VAR> exists in <VAR>tree</VAR>, returns
-the matching data item.  Otherwise, inserts <VAR>data</VAR> into <VAR>tree</VAR>
+<dl>
+<dt><a name="index-avl_005finsert"></a><u>Function:</u> void * <b>avl_insert</b><i> (avl_tree *<var>tree</var>, void *<var>data</var>)</i></dt>
+<dt><a name="index-avlt_005finsert"></a><u>Function:</u> void * <b>avlt_insert</b><i> (avlt_tree *<var>tree</var>, void *<var>data</var>)</i></dt>
+<dt><a name="index-avltr_005finsert"></a><u>Function:</u> void * <b>avltr_insert</b><i> (avltr_tree *<var>tree</var>, void *<var>data</var>)</i></dt>
+<dt><a name="index-rb_005finsert"></a><u>Function:</u> void * <b>rb_insert</b><i> (rb_tree *<var>tree</var>, void *<var>data</var>)</i></dt>
+<dd><p>If a node with data matching <var>data</var> exists in <var>tree</var>, returns
+the matching data item.  Otherwise, inserts <var>data</var> into <var>tree</var>
 and returns a null pointer.
-</DL>
+</p></dd></dl>
 
-</P>
-<P>
-<DL>
-<DT><U>Function:</U> void <B>avl_force_insert</B> <I>(avl_tree *<VAR>tree</VAR>, void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX57"></A>
-<DT><U>Function:</U> void <B>avlt_force_insert</B> <I>(avlt_tree *<VAR>tree</VAR>, void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX58"></A>
-<DT><U>Function:</U> void <B>avltr_force_insert</B> <I>(avltr_tree *<VAR>tree</VAR>, void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX59"></A>
-<DT><U>Function:</U> void <B>rb_force_insert</B> <I>(rb_tree *<VAR>tree</VAR>, void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX60"></A>
-Inserts <VAR>data</VAR> into <VAR>tree</VAR>.  If a node with data matching
-<VAR>data</VAR> exists in <VAR>tree</VAR>, aborts the program with an assertion
+<dl>
+<dt><a name="index-avl_005fforce_005finsert"></a><u>Function:</u> void <b>avl_force_insert</b><i> (avl_tree *<var>tree</var>, void *<var>data</var>)</i></dt>
+<dt><a name="index-avlt_005fforce_005finsert"></a><u>Function:</u> void <b>avlt_force_insert</b><i> (avlt_tree *<var>tree</var>, void *<var>data</var>)</i></dt>
+<dt><a name="index-avltr_005fforce_005finsert"></a><u>Function:</u> void <b>avltr_force_insert</b><i> (avltr_tree *<var>tree</var>, void *<var>data</var>)</i></dt>
+<dt><a name="index-rb_005fforce_005finsert"></a><u>Function:</u> void <b>rb_force_insert</b><i> (rb_tree *<var>tree</var>, void *<var>data</var>)</i></dt>
+<dd><p>Inserts <var>data</var> into <var>tree</var>.  If a node with data matching
+<var>data</var> exists in <var>tree</var>, aborts the program with an assertion
 violation.  This function is implemented as a macro; if it is used, the
-standard C header <CODE>assert.h</CODE> must also be included.  If macro
-<CODE>NDEBUG</CODE> is defined when a libavl header is included, these
-functions are short-circuited to a direct call to <CODE>avl_insert</CODE>,
+standard C header <code>assert.h</code> must also be included.  If macro
+<code>NDEBUG</code> is defined when a libavl header is included, these
+functions are short-circuited to a direct call to <code>avl_insert</code>,
 and no check is performed.
-</DL>
+</p></dd></dl>
 
-</P>
-<P>
-<DL>
-<DT><U>Function:</U> void * <B>avl_replace</B> <I>(avl_tree *<VAR>tree</VAR>, void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX61"></A>
-<DT><U>Function:</U> void * <B>avlt_replace</B> <I>(avlt_tree *<VAR>tree</VAR>, void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX62"></A>
-<DT><U>Function:</U> void * <B>avltr_replace</B> <I>(avltr_tree *<VAR>tree</VAR>, void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX63"></A>
-<DT><U>Function:</U> void * <B>rb_replace</B> <I>(rb_tree *<VAR>tree</VAR>, void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX64"></A>
-If a node with data matching <VAR>data</VAR>, such that the comparison
-function returns 0, exists in <VAR>tree</VAR>, replaces the node's data with
-<VAR>data</VAR> and returns the node's former contents.  Otherwise, inserts
-<VAR>data</VAR> into <VAR>tree</VAR> and returns a null pointer.
-</DL>
+<dl>
+<dt><a name="index-avl_005freplace"></a><u>Function:</u> void * <b>avl_replace</b><i> (avl_tree *<var>tree</var>, void *<var>data</var>)</i></dt>
+<dt><a name="index-avlt_005freplace"></a><u>Function:</u> void * <b>avlt_replace</b><i> (avlt_tree *<var>tree</var>, void *<var>data</var>)</i></dt>
+<dt><a name="index-avltr_005freplace"></a><u>Function:</u> void * <b>avltr_replace</b><i> (avltr_tree *<var>tree</var>, void *<var>data</var>)</i></dt>
+<dt><a name="index-rb_005freplace"></a><u>Function:</u> void * <b>rb_replace</b><i> (rb_tree *<var>tree</var>, void *<var>data</var>)</i></dt>
+<dd><p>If a node with data matching <var>data</var>, such that the comparison
+function returns 0, exists in <var>tree</var>, replaces the node&rsquo;s data with
+<var>data</var> and returns the node&rsquo;s former contents.  Otherwise, inserts
+<var>data</var> into <var>tree</var> and returns a null pointer.
+</p></dd></dl>
 
-</P>
-<P>
-<DL>
-<DT><U>Function:</U> void * <B>avl_delete</B> <I>(avl_tree *<VAR>tree</VAR>, const void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX65"></A>
-<DT><U>Function:</U> void * <B>avlt_delete</B> <I>(avlt_tree *<VAR>tree</VAR>, const void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX66"></A>
-<DT><U>Function:</U> void * <B>avltr_delete</B> <I>(avltr_tree *<VAR>tree</VAR>, const void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX67"></A>
-<DT><U>Function:</U> void * <B>rb_delete</B> <I>(rb_tree *<VAR>tree</VAR>, const void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX68"></A>
-Searches <VAR>tree</VAR> for a node with data matching <VAR>data</VAR>.  If found,
+<dl>
+<dt><a name="index-avl_005fdelete"></a><u>Function:</u> void * <b>avl_delete</b><i> (avl_tree *<var>tree</var>, const void *<var>data</var>)</i></dt>
+<dt><a name="index-avlt_005fdelete"></a><u>Function:</u> void * <b>avlt_delete</b><i> (avlt_tree *<var>tree</var>, const void *<var>data</var>)</i></dt>
+<dt><a name="index-avltr_005fdelete"></a><u>Function:</u> void * <b>avltr_delete</b><i> (avltr_tree *<var>tree</var>, const void *<var>data</var>)</i></dt>
+<dt><a name="index-rb_005fdelete"></a><u>Function:</u> void * <b>rb_delete</b><i> (rb_tree *<var>tree</var>, const void *<var>data</var>)</i></dt>
+<dd><p>Searches <var>tree</var> for a node with data matching <var>data</var>.  If found,
 the node is deleted and its data is returned.  Otherwise, returns a null
 pointer.
-</DL>
+</p></dd></dl>
 
-</P>
-<P>
-<DL>
-<DT><U>Function:</U> void * <B>avl_force_delete</B> <I>(avl_tree *<VAR>tree</VAR>, const void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX69"></A>
-<DT><U>Function:</U> void * <B>avlt_force_delete</B> <I>(avlt_tree *<VAR>tree</VAR>, const void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX70"></A>
-<DT><U>Function:</U> void * <B>avltr_force_delete</B> <I>(avltr_tree *<VAR>tree</VAR>, const void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX71"></A>
-<DT><U>Function:</U> void * <B>rb_force_delete</B> <I>(rb_tree *<VAR>tree</VAR>, const void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX72"></A>
-Deletes a node with data matching <VAR>data</VAR> from <VAR>tree</VAR>.  If no
+<dl>
+<dt><a name="index-avl_005fforce_005fdelete"></a><u>Function:</u> void * <b>avl_force_delete</b><i> (avl_tree *<var>tree</var>, const void *<var>data</var>)</i></dt>
+<dt><a name="index-avlt_005fforce_005fdelete"></a><u>Function:</u> void * <b>avlt_force_delete</b><i> (avlt_tree *<var>tree</var>, const void *<var>data</var>)</i></dt>
+<dt><a name="index-avltr_005fforce_005fdelete"></a><u>Function:</u> void * <b>avltr_force_delete</b><i> (avltr_tree *<var>tree</var>, const void *<var>data</var>)</i></dt>
+<dt><a name="index-rb_005fforce_005fdelete"></a><u>Function:</u> void * <b>rb_force_delete</b><i> (rb_tree *<var>tree</var>, const void *<var>data</var>)</i></dt>
+<dd><p>Deletes a node with data matching <var>data</var> from <var>tree</var>.  If no
 matching node is found, aborts the program with an assertion violation.
-If macro <CODE>NDEBUG</CODE> is declared when a libavl header is included,
+If macro <code>NDEBUG</code> is declared when a libavl header is included,
 these functions are short-circuited to a direct call to
-<CODE>avl_delete</CODE>, and no check is performed.
-</DL>
+<code>avl_delete</code>, and no check is performed.
+</p></dd></dl>
 
-</P>
+<hr size="6">
+<a name="Searching"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Insertion" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Iteration" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Insertion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Iteration" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Searching-1"></a>
+<h1 class="chapter">7. Searching</h1>
 
-
-<H1><A NAME="SEC7" HREF="avl.html#TOC7">Searching</A></H1>
-
-<P>
-These function search a tree for an item without making an insertion or
+<p>These function search a tree for an item without making an insertion or
 a deletion.
+</p>
+<dl>
+<dt><a name="index-avl_005ffind"></a><u>Function:</u> void * <b>avl_find</b><i> (avl_tree *<var>tree</var>, const void *<var>data</var>)</i></dt>
+<dt><a name="index-avlt_005ffind"></a><u>Function:</u> void ** <b>avlt_find</b><i> (avlt_tree *<var>tree</var>, const void *<var>data</var>)</i></dt>
+<dt><a name="index-avltr_005ffind"></a><u>Function:</u> void ** <b>avltr_find</b><i> (avltr_tree *<var>tree</var>, const void *<var>data</var>)</i></dt>
+<dt><a name="index-rb_005ffind"></a><u>Function:</u> void * <b>rb_find</b><i> (rb_tree *<var>tree</var>, const void *<var>data</var>)</i></dt>
+<dd><p>Searches <var>tree</var> for a node with data matching <var>data</var>, If found,
+returns the node&rsquo;s data (for threaded and right-threaded trees, a
+pointer to the node&rsquo;s data).  Otherwise, returns a null pointer.
+</p></dd></dl>
 
-</P>
-<P>
-<DL>
-<DT><U>Function:</U> void * <B>avl_find</B> <I>(avl_tree *<VAR>tree</VAR>, const void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX73"></A>
-<DT><U>Function:</U> void ** <B>avlt_find</B> <I>(avlt_tree *<VAR>tree</VAR>, const void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX74"></A>
-<DT><U>Function:</U> void ** <B>avltr_find</B> <I>(avltr_tree *<VAR>tree</VAR>, const void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX75"></A>
-<DT><U>Function:</U> void * <B>rb_find</B> <I>(rb_tree *<VAR>tree</VAR>, const void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX76"></A>
-Searches <VAR>tree</VAR> for a node with data matching <VAR>data</VAR>, If found,
-returns the node's data (for threaded and right-threaded trees, a
-pointer to the node's data).  Otherwise, returns a null pointer.
-</DL>
-
-</P>
-<P>
-<DL>
-<DT><U>Function:</U> void * <B>avl_find_close</B> <I>(avl_tree *<VAR>tree</VAR>, const void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX77"></A>
-<DT><U>Function:</U> void ** <B>avlt_find_close</B> <I>(avlt_tree *<VAR>tree</VAR>, const void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX78"></A>
-<DT><U>Function:</U> void ** <B>avltr_find_close</B> <I>(avltr_tree *<VAR>tree</VAR>, const void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX79"></A>
-<DT><U>Function:</U> void * <B>rb_find_close</B> <I>(rb_tree *<VAR>tree</VAR>, const void *<VAR>data</VAR>)</I>
-<DD><A NAME="IDX80"></A>
-Searches <VAR>tree</VAR> for a node with data matching <VAR>data</VAR>.  If found,
-returns the node's data (for threaded and right-threaded trees, a
-pointer to the node's data).  If no matching item is found, then it
-finds a node whose data is "close" to <VAR>data</VAR>; either the node
-closest in value to <VAR>data</VAR>, or the node either before or after the
+<dl>
+<dt><a name="index-avl_005ffind_005fclose"></a><u>Function:</u> void * <b>avl_find_close</b><i> (avl_tree *<var>tree</var>, const void *<var>data</var>)</i></dt>
+<dt><a name="index-avlt_005ffind_005fclose"></a><u>Function:</u> void ** <b>avlt_find_close</b><i> (avlt_tree *<var>tree</var>, const void *<var>data</var>)</i></dt>
+<dt><a name="index-avltr_005ffind_005fclose"></a><u>Function:</u> void ** <b>avltr_find_close</b><i> (avltr_tree *<var>tree</var>, const void *<var>data</var>)</i></dt>
+<dt><a name="index-rb_005ffind_005fclose"></a><u>Function:</u> void * <b>rb_find_close</b><i> (rb_tree *<var>tree</var>, const void *<var>data</var>)</i></dt>
+<dd><p>Searches <var>tree</var> for a node with data matching <var>data</var>.  If found,
+returns the node&rsquo;s data (for threaded and right-threaded trees, a
+pointer to the node&rsquo;s data).  If no matching item is found, then it
+finds a node whose data is &ldquo;close&rdquo; to <var>data</var>; either the node
+closest in value to <var>data</var>, or the node either before or after the
 node with the closest value.  Returns a null pointer if the tree does
 not contain any nodes.
-</DL>
+</p></dd></dl>
 
-</P>
+<hr size="6">
+<a name="Iteration"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Searching" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Conversion" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Searching" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Conversion" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Iteration-1"></a>
+<h1 class="chapter">8. Iteration</h1>
 
-
-<H1><A NAME="SEC8" HREF="avl.html#TOC8">Iteration</A></H1>
-
-<P>
-These functions allow the caller to iterate across the items in a tree.
-
-</P>
-<P>
-<DL>
-<DT><U>Function:</U> void <B>avl_walk</B> <I>(const avl_tree *<VAR>tree</VAR>, avl_node_func <VAR>operate</VAR>, void *<VAR>param</VAR>)</I>
-<DD><A NAME="IDX81"></A>
-<DT><U>Function:</U> void <B>avlt_walk</B> <I>(const avlt_tree *<VAR>tree</VAR>, avl_node_func <VAR>operate</VAR>, void *<VAR>param</VAR>)</I>
-<DD><A NAME="IDX82"></A>
-<DT><U>Function:</U> void <B>avltr_walk</B> <I>(const avltr_tree *<VAR>tree</VAR>, avl_node_func <VAR>operate</VAR>, void *<VAR>param</VAR>)</I>
-<DD><A NAME="IDX83"></A>
-<DT><U>Function:</U> void <B>rb_walk</B> <I>(const rb_tree *<VAR>tree</VAR>, avl_node_func <VAR>operate</VAR>, void *<VAR>param</VAR>)</I>
-<DD><A NAME="IDX84"></A>
-Walks through all the nodes in <VAR>tree</VAR>, and calls function
-<VAR>operate</VAR> for each node in inorder.  <VAR>param</VAR> overrides the value
-passed to <CODE>avl_create</CODE> (and family) for this operation only.
-<VAR>operate</VAR> must not change the key data in the nodes in a way that
+<p>These functions allow the caller to iterate across the items in a tree.
+</p>
+<dl>
+<dt><a name="index-avl_005fwalk"></a><u>Function:</u> void <b>avl_walk</b><i> (const avl_tree *<var>tree</var>, avl_node_func <var>operate</var>, void *<var>param</var>)</i></dt>
+<dt><a name="index-avlt_005fwalk"></a><u>Function:</u> void <b>avlt_walk</b><i> (const avlt_tree *<var>tree</var>, avl_node_func <var>operate</var>, void *<var>param</var>)</i></dt>
+<dt><a name="index-avltr_005fwalk"></a><u>Function:</u> void <b>avltr_walk</b><i> (const avltr_tree *<var>tree</var>, avl_node_func <var>operate</var>, void *<var>param</var>)</i></dt>
+<dt><a name="index-rb_005fwalk"></a><u>Function:</u> void <b>rb_walk</b><i> (const rb_tree *<var>tree</var>, avl_node_func <var>operate</var>, void *<var>param</var>)</i></dt>
+<dd><p>Walks through all the nodes in <var>tree</var>, and calls function
+<var>operate</var> for each node in inorder.  <var>param</var> overrides the value
+passed to <code>avl_create</code> (and family) for this operation only.
+<var>operate</var> must not change the key data in the nodes in a way that
 would reorder the data values or cause two values to become equal.
-</DL>
+</p></dd></dl>
 
-</P>
-<P>
-<DL>
-<DT><U>Function:</U> void * <B>avl_traverse</B> <I>(const avl_tree *<VAR>tree</VAR>, avl_traverser *<VAR>trav</VAR>)</I>
-<DD><A NAME="IDX85"></A>
-<DT><U>Function:</U> void * <B>avlt_traverse</B> <I>(const avlt_tree *<VAR>tree</VAR>, avlt_traverser *<VAR>trav</VAR>)</I>
-<DD><A NAME="IDX86"></A>
-<DT><U>Function:</U> void * <B>avltr_traverse</B> <I>(const avltr_tree *<VAR>tree</VAR>, avltr_traverser *<VAR>trav</VAR>)</I>
-<DD><A NAME="IDX87"></A>
-<DT><U>Function:</U> void * <B>rb_traverse</B> <I>(const rb_tree *<VAR>tree</VAR>, rb_traverser *<VAR>trav</VAR>)</I>
-<DD><A NAME="IDX88"></A>
-Returns each of <VAR>tree</VAR>'s nodes' data values in sequence, then a null
-pointer to indicate the last item.  <VAR>trav</VAR> must be initialized
+<dl>
+<dt><a name="index-avl_005ftraverse"></a><u>Function:</u> void * <b>avl_traverse</b><i> (const avl_tree *<var>tree</var>, avl_traverser *<var>trav</var>)</i></dt>
+<dt><a name="index-avlt_005ftraverse"></a><u>Function:</u> void * <b>avlt_traverse</b><i> (const avlt_tree *<var>tree</var>, avlt_traverser *<var>trav</var>)</i></dt>
+<dt><a name="index-avltr_005ftraverse"></a><u>Function:</u> void * <b>avltr_traverse</b><i> (const avltr_tree *<var>tree</var>, avltr_traverser *<var>trav</var>)</i></dt>
+<dt><a name="index-rb_005ftraverse"></a><u>Function:</u> void * <b>rb_traverse</b><i> (const rb_tree *<var>tree</var>, rb_traverser *<var>trav</var>)</i></dt>
+<dd><p>Returns each of <var>tree</var>&rsquo;s nodes&rsquo; data values in sequence, then a null
+pointer to indicate the last item.  <var>trav</var> must be initialized
 before the first call, either in a declaration like that below, or using
 one of the functions below.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">avl_traverser trav = AVL_TRAVERSER_INIT;
+</pre></td></tr></table>
 
-</P>
-
-<PRE>
-avl_traverser trav = AVL_TRAVERSER_INIT;
-</PRE>
-
-<P>
-Each <CODE>avl_traverser</CODE> (and family) is a separate, independent
+<p>Each <code>avl_traverser</code> (and family) is a separate, independent
 iterator.
+</p>
+<p>For threaded and right-threaded trees, <code>avlt_next</code> or
+<code>avltr_next</code>, respectively, are faster and more memory-efficient
+than <code>avlt_traverse</code> or <code>avltr_traverse</code>.
+</p></dd></dl>
 
-</P>
-<P>
-For threaded and right-threaded trees, <CODE>avlt_next</CODE> or
-<CODE>avltr_next</CODE>, respectively, are faster and more memory-efficient
-than <CODE>avlt_traverse</CODE> or <CODE>avltr_traverse</CODE>.
-</DL>
-
-</P>
-<P>
-<DL>
-<DT><U>Function:</U> void * <B>avl_init_traverser</B> <I>(avl_traverser *<VAR>trav</VAR>)</I>
-<DD><A NAME="IDX89"></A>
-<DT><U>Function:</U> void * <B>avlt_init_traverser</B> <I>(avlt_traverser *<VAR>trav</VAR>)</I>
-<DD><A NAME="IDX90"></A>
-<DT><U>Function:</U> void * <B>avltr_init_traverser</B> <I>(avltr_traverser *<VAR>trav</VAR>)</I>
-<DD><A NAME="IDX91"></A>
-<DT><U>Function:</U> void * <B>rb_init_traverser</B> <I>(rb_traverser *<VAR>trav</VAR>)</I>
-<DD><A NAME="IDX92"></A>
-Initializes the specified tree traverser structure.  After this function
-is called, the next call to the corresponding <CODE>*_traverse</CODE> function
+<dl>
+<dt><a name="index-avl_005finit_005ftraverser"></a><u>Function:</u> void * <b>avl_init_traverser</b><i> (avl_traverser *<var>trav</var>)</i></dt>
+<dt><a name="index-avlt_005finit_005ftraverser"></a><u>Function:</u> void * <b>avlt_init_traverser</b><i> (avlt_traverser *<var>trav</var>)</i></dt>
+<dt><a name="index-avltr_005finit_005ftraverser"></a><u>Function:</u> void * <b>avltr_init_traverser</b><i> (avltr_traverser *<var>trav</var>)</i></dt>
+<dt><a name="index-rb_005finit_005ftraverser"></a><u>Function:</u> void * <b>rb_init_traverser</b><i> (rb_traverser *<var>trav</var>)</i></dt>
+<dd><p>Initializes the specified tree traverser structure.  After this function
+is called, the next call to the corresponding <code>*_traverse</code> function
 will return the smallest value in the appropriate tree.
-</DL>
+</p></dd></dl>
 
-</P>
-<P>
-<DL>
-<DT><U>Function:</U> void ** <B>avlt_next</B> <I>(const avlt_tree *<VAR>tree</VAR>, void **<VAR>data</VAR>)</I>
-<DD><A NAME="IDX93"></A>
-<DT><U>Function:</U> void ** <B>avltr_next</B> <I>(const avltr_tree *<VAR>tree</VAR>, void **<VAR>data</VAR>)</I>
-<DD><A NAME="IDX94"></A>
-<VAR>data</VAR> must be a null pointer or a pointer to a data item in AVL
-tree <VAR>tree</VAR>.  Returns a pointer to the next data item after
-<VAR>data</VAR> in <VAR>tree</VAR> in inorder (this is the first item if
-<VAR>data</VAR> is a null pointer), or a null pointer if <VAR>data</VAR> was the
-last item in <VAR>tree</VAR>.
-</DL>
+<dl>
+<dt><a name="index-avlt_005fnext"></a><u>Function:</u> void ** <b>avlt_next</b><i> (const avlt_tree *<var>tree</var>, void **<var>data</var>)</i></dt>
+<dt><a name="index-avltr_005fnext"></a><u>Function:</u> void ** <b>avltr_next</b><i> (const avltr_tree *<var>tree</var>, void **<var>data</var>)</i></dt>
+<dd><p><var>data</var> must be a null pointer or a pointer to a data item in AVL
+tree <var>tree</var>.  Returns a pointer to the next data item after
+<var>data</var> in <var>tree</var> in inorder (this is the first item if
+<var>data</var> is a null pointer), or a null pointer if <var>data</var> was the
+last item in <var>tree</var>.
+</p></dd></dl>
 
-</P>
-<P>
-<DL>
-<DT><U>Function:</U> void ** <B>avltr_prev</B> <I>(const avltr_tree *<VAR>tree</VAR>, void **<VAR>data</VAR>)</I>
-<DD><A NAME="IDX95"></A>
-<VAR>data</VAR> must be a null pointer or a pointer to a data item in AVL
-tree <VAR>tree</VAR>.  Returns a pointer to the previous data item before
-<VAR>data</VAR> in <VAR>tree</VAR> in inorder (this is the last, or greatest
-valued, item if <VAR>data</VAR> is a null pointer), or a null pointer if
-<VAR>data</VAR> was the first item in <VAR>tree</VAR>.
-</DL>
+<dl>
+<dt><a name="index-avltr_005fprev"></a><u>Function:</u> void ** <b>avltr_prev</b><i> (const avltr_tree *<var>tree</var>, void **<var>data</var>)</i></dt>
+<dd><p><var>data</var> must be a null pointer or a pointer to a data item in AVL
+tree <var>tree</var>.  Returns a pointer to the previous data item before
+<var>data</var> in <var>tree</var> in inorder (this is the last, or greatest
+valued, item if <var>data</var> is a null pointer), or a null pointer if
+<var>data</var> was the first item in <var>tree</var>.
+</p></dd></dl>
 
-</P>
+<hr size="6">
+<a name="Conversion"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Iteration" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Author" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Iteration" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Author" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Conversion-1"></a>
+<h1 class="chapter">9. Conversion</h1>
 
-
-<H1><A NAME="SEC9" HREF="avl.html#TOC9">Conversion</A></H1>
-
-<P>
-<DL>
-<DT><U>Function:</U> avlt_tree * <B>avlt_thread</B> <I>(avl_tree *<VAR>tree</VAR>)</I>
-<DD><A NAME="IDX96"></A>
-<DT><U>Function:</U> avltr_tree * <B>avltr_thread</B> <I>(avl_tree *<VAR>tree</VAR>)</I>
-<DD><A NAME="IDX97"></A>
-Adds symmetric threads or right threads, respectively, to unthreaded AVL
-tree <VAR>tree</VAR> and returns a pointer to <VAR>tree</VAR> cast to the
+<dl>
+<dt><a name="index-avlt_005fthread"></a><u>Function:</u> avlt_tree * <b>avlt_thread</b><i> (avl_tree *<var>tree</var>)</i></dt>
+<dt><a name="index-avltr_005fthread"></a><u>Function:</u> avltr_tree * <b>avltr_thread</b><i> (avl_tree *<var>tree</var>)</i></dt>
+<dd><p>Adds symmetric threads or right threads, respectively, to unthreaded AVL
+tree <var>tree</var> and returns a pointer to <var>tree</var> cast to the
 appropriate type.  After one of these functions is called, threaded or
-right-threaded functions, as appropriate, must be used with <VAR>tree</VAR>;
+right-threaded functions, as appropriate, must be used with <var>tree</var>;
 unthreaded functions may not be used.
-</DL>
+</p></dd></dl>
 
-</P>
-<P>
-<DL>
-<DT><U>Function:</U> avl_tree * <B>avlt_unthread</B> <I>(avlt_tree *<VAR>tree</VAR>)</I>
-<DD><A NAME="IDX98"></A>
-<DT><U>Function:</U> avl_tree * <B>avltr_unthread</B> <I>(avltr_tree *<VAR>tree</VAR>)</I>
-<DD><A NAME="IDX99"></A>
-Cuts all threads in threaded or right-threaded, respectively, AVL tree
-<VAR>tree</VAR> and returns a pointer to <VAR>tree</VAR> cast to <CODE>avl_tree
-*</CODE>.  After one of these functions is called, unthreaded functions must
-be used with <VAR>tree</VAR>; threaded or right-threaded functions may not be
+<dl>
+<dt><a name="index-avlt_005funthread"></a><u>Function:</u> avl_tree * <b>avlt_unthread</b><i> (avlt_tree *<var>tree</var>)</i></dt>
+<dt><a name="index-avltr_005funthread"></a><u>Function:</u> avl_tree * <b>avltr_unthread</b><i> (avltr_tree *<var>tree</var>)</i></dt>
+<dd><p>Cuts all threads in threaded or right-threaded, respectively, AVL tree
+<var>tree</var> and returns a pointer to <var>tree</var> cast to <code>avl_tree
+*</code>.  After one of these functions is called, unthreaded functions must
+be used with <var>tree</var>; threaded or right-threaded functions may not be
 used.
-</DL>
+</p></dd></dl>
 
-</P>
+<hr size="6">
+<a name="Author"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Conversion" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Conversion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Author-1"></a>
+<h1 class="chapter">10. Author</h1>
 
-
-<H1><A NAME="SEC10" HREF="avl.html#TOC10">Author</A></H1>
-
-<P>
-<A NAME="IDX100"></A>
-<A NAME="IDX101"></A>
-<A NAME="IDX102"></A>
-<A NAME="IDX103"></A>
-libavl was written by Ben Pfaff <A HREF="mailto:blp@gnu.org"><TT>blp@gnu.org</TT></A>.
-
-</P>
-<P>
-libavl's generic tree algorithms and AVL algorithms are based on those
-found in Donald Knuth's venerable <CITE>Art of Computer Programming</CITE>
-series from Addison-Wesley, primarily Volumes 1 and 3.  libavl's
+<a name="index-Pfaff_002c-Benjamin-Levy"></a>
+<a name="index-author"></a>
+<a name="index-Knuth_002c-Donald-Ervin"></a>
+<a name="index-Art-of-Computer-Programming"></a>
+<p>libavl was written by Ben Pfaff <a href="mailto:blp@gnu.org">blp@gnu.org</a>.
+</p>
+<p>libavl&rsquo;s generic tree algorithms and AVL algorithms are based on those
+found in Donald Knuth&rsquo;s venerable <cite>Art of Computer Programming</cite>
+series from Addison-Wesley, primarily Volumes 1 and 3.  libavl&rsquo;s
 red-black tree algorithms are based on those found in Cormen et al.,
-<CITE>Introduction to Algorithms</CITE>, 2nd ed., from MIT Press.
+<cite>Introduction to Algorithms</cite>, 2nd ed., from MIT Press.
+</p>
+<hr size="6">
+<a name="Index"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Author" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[ &gt; ]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Author" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[ &gt;&gt; ]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Index-1"></a>
+<h1 class="unnumbered">Index</h1>
 
-</P>
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a href="#Index-1_cp_letter-A" class="summary-letter"><b>A</b></a>
+ &nbsp; 
+<a href="#Index-1_cp_letter-B" class="summary-letter"><b>B</b></a>
+ &nbsp; 
+<a href="#Index-1_cp_letter-H" class="summary-letter"><b>H</b></a>
+ &nbsp; 
+<a href="#Index-1_cp_letter-K" class="summary-letter"><b>K</b></a>
+ &nbsp; 
+<a href="#Index-1_cp_letter-L" class="summary-letter"><b>L</b></a>
+ &nbsp; 
+<a href="#Index-1_cp_letter-P" class="summary-letter"><b>P</b></a>
+ &nbsp; 
+<a href="#Index-1_cp_letter-R" class="summary-letter"><b>R</b></a>
+ &nbsp; 
+<a href="#Index-1_cp_letter-T" class="summary-letter"><b>T</b></a>
+ &nbsp; 
+<a href="#Index-1_cp_letter-U" class="summary-letter"><b>U</b></a>
+ &nbsp; 
+<a href="#Index-1_cp_letter-X" class="summary-letter"><b>X</b></a>
+ &nbsp; 
+</td></tr></table>
+<table border="0" class="index-cp">
+<tr><td></td><th align="left">Index Entry</th><th align="left"> Section</th></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-1_cp_letter-A">A</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Adel_0027son_002dVelskii_002c-G_002e-M_002e">Adel&rsquo;son-Velskii, G. M.</a></td><td valign="top"><a href="#Introduction-to-balanced-binary-trees">1. Introduction to balanced binary trees</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Art-of-Computer-Programming"><cite>Art of Computer Programming</cite></a></td><td valign="top"><a href="#Author">10. Author</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-author">author</a></td><td valign="top"><a href="#Author">10. Author</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-AVL-tree">AVL tree</a></td><td valign="top"><a href="#Introduction-to-balanced-binary-trees">1. Introduction to balanced binary trees</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avltr_005fcount"><code>avltr_count</code></a></td><td valign="top"><a href="#Tree-Creation">5. Tree Creation</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avltr_005fcreate"><code>avltr_create</code></a></td><td valign="top"><a href="#Tree-Creation">5. Tree Creation</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avltr_005fdelete"><code>avltr_delete</code></a></td><td valign="top"><a href="#Insertion">6. Insertion and Deletion</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avltr_005fdestroy"><code>avltr_destroy</code></a></td><td valign="top"><a href="#Tree-Creation">5. Tree Creation</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avltr_005ffind"><code>avltr_find</code></a></td><td valign="top"><a href="#Searching">7. Searching</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avltr_005ffind_005fclose"><code>avltr_find_close</code></a></td><td valign="top"><a href="#Searching">7. Searching</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avltr_005fforce_005fdelete"><code>avltr_force_delete</code></a></td><td valign="top"><a href="#Insertion">6. Insertion and Deletion</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avltr_005fforce_005finsert"><code>avltr_force_insert</code></a></td><td valign="top"><a href="#Insertion">6. Insertion and Deletion</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avltr_005ffree"><code>avltr_free</code></a></td><td valign="top"><a href="#Tree-Creation">5. Tree Creation</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avltr_005finit_005ftraverser"><code>avltr_init_traverser</code></a></td><td valign="top"><a href="#Iteration">8. Iteration</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avltr_005finsert"><code>avltr_insert</code></a></td><td valign="top"><a href="#Insertion">6. Insertion and Deletion</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avltr_005fnext"><code>avltr_next</code></a></td><td valign="top"><a href="#Iteration">8. Iteration</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avltr_005fnode"><code>avltr_node</code></a></td><td valign="top"><a href="#Types">3. Types</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avltr_005fprev"><code>avltr_prev</code></a></td><td valign="top"><a href="#Iteration">8. Iteration</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avltr_005fprobe"><code>avltr_probe</code></a></td><td valign="top"><a href="#Insertion">6. Insertion and Deletion</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avltr_005freplace"><code>avltr_replace</code></a></td><td valign="top"><a href="#Insertion">6. Insertion and Deletion</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avltr_005fthread"><code>avltr_thread</code></a></td><td valign="top"><a href="#Conversion">9. Conversion</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avltr_005ftraverse"><code>avltr_traverse</code></a></td><td valign="top"><a href="#Iteration">8. Iteration</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avltr_005ftraverser"><code>avltr_traverser</code></a></td><td valign="top"><a href="#Types">3. Types</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avltr_005ftree"><code>avltr_tree</code></a></td><td valign="top"><a href="#Types">3. Types</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avltr_005funthread"><code>avltr_unthread</code></a></td><td valign="top"><a href="#Conversion">9. Conversion</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avltr_005fwalk"><code>avltr_walk</code></a></td><td valign="top"><a href="#Iteration">8. Iteration</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avlt_005fcount"><code>avlt_count</code></a></td><td valign="top"><a href="#Tree-Creation">5. Tree Creation</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avlt_005fcreate"><code>avlt_create</code></a></td><td valign="top"><a href="#Tree-Creation">5. Tree Creation</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avlt_005fdelete"><code>avlt_delete</code></a></td><td valign="top"><a href="#Insertion">6. Insertion and Deletion</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avlt_005fdestroy"><code>avlt_destroy</code></a></td><td valign="top"><a href="#Tree-Creation">5. Tree Creation</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avlt_005ffind"><code>avlt_find</code></a></td><td valign="top"><a href="#Searching">7. Searching</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avlt_005ffind_005fclose"><code>avlt_find_close</code></a></td><td valign="top"><a href="#Searching">7. Searching</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avlt_005fforce_005fdelete"><code>avlt_force_delete</code></a></td><td valign="top"><a href="#Insertion">6. Insertion and Deletion</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avlt_005fforce_005finsert"><code>avlt_force_insert</code></a></td><td valign="top"><a href="#Insertion">6. Insertion and Deletion</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avlt_005ffree"><code>avlt_free</code></a></td><td valign="top"><a href="#Tree-Creation">5. Tree Creation</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avlt_005finit_005ftraverser"><code>avlt_init_traverser</code></a></td><td valign="top"><a href="#Iteration">8. Iteration</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avlt_005finsert"><code>avlt_insert</code></a></td><td valign="top"><a href="#Insertion">6. Insertion and Deletion</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avlt_005fnext"><code>avlt_next</code></a></td><td valign="top"><a href="#Iteration">8. Iteration</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avlt_005fnode"><code>avlt_node</code></a></td><td valign="top"><a href="#Types">3. Types</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avlt_005fprobe"><code>avlt_probe</code></a></td><td valign="top"><a href="#Insertion">6. Insertion and Deletion</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avlt_005freplace"><code>avlt_replace</code></a></td><td valign="top"><a href="#Insertion">6. Insertion and Deletion</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avlt_005fthread"><code>avlt_thread</code></a></td><td valign="top"><a href="#Conversion">9. Conversion</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avlt_005ftraverse"><code>avlt_traverse</code></a></td><td valign="top"><a href="#Iteration">8. Iteration</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avlt_005ftraverser"><code>avlt_traverser</code></a></td><td valign="top"><a href="#Types">3. Types</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avlt_005ftree"><code>avlt_tree</code></a></td><td valign="top"><a href="#Types">3. Types</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avlt_005funthread"><code>avlt_unthread</code></a></td><td valign="top"><a href="#Conversion">9. Conversion</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avlt_005fwalk"><code>avlt_walk</code></a></td><td valign="top"><a href="#Iteration">8. Iteration</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avl_005fcomparison_005ffunc"><code>avl_comparison_func</code></a></td><td valign="top"><a href="#Types">3. Types</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avl_005fcopy"><code>avl_copy</code></a></td><td valign="top"><a href="#Tree-Creation">5. Tree Creation</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avl_005fcopy-1"><code>avl_copy</code></a></td><td valign="top"><a href="#Tree-Creation">5. Tree Creation</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avl_005fcopy-2"><code>avl_copy</code></a></td><td valign="top"><a href="#Tree-Creation">5. Tree Creation</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avl_005fcopy_005ffunc"><code>avl_copy_func</code></a></td><td valign="top"><a href="#Types">3. Types</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avl_005fcount"><code>avl_count</code></a></td><td valign="top"><a href="#Tree-Creation">5. Tree Creation</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avl_005fcreate"><code>avl_create</code></a></td><td valign="top"><a href="#Tree-Creation">5. Tree Creation</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avl_005fdelete"><code>avl_delete</code></a></td><td valign="top"><a href="#Insertion">6. Insertion and Deletion</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avl_005fdestroy"><code>avl_destroy</code></a></td><td valign="top"><a href="#Tree-Creation">5. Tree Creation</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avl_005ffind"><code>avl_find</code></a></td><td valign="top"><a href="#Searching">7. Searching</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avl_005ffind_005fclose"><code>avl_find_close</code></a></td><td valign="top"><a href="#Searching">7. Searching</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avl_005fforce_005fdelete"><code>avl_force_delete</code></a></td><td valign="top"><a href="#Insertion">6. Insertion and Deletion</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avl_005fforce_005finsert"><code>avl_force_insert</code></a></td><td valign="top"><a href="#Insertion">6. Insertion and Deletion</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avl_005ffree"><code>avl_free</code></a></td><td valign="top"><a href="#Tree-Creation">5. Tree Creation</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avl_005finit_005ftraverser"><code>avl_init_traverser</code></a></td><td valign="top"><a href="#Iteration">8. Iteration</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avl_005finsert"><code>avl_insert</code></a></td><td valign="top"><a href="#Insertion">6. Insertion and Deletion</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-AVL_005fMAX_005fHEIGHT"><code>AVL_MAX_HEIGHT</code></a></td><td valign="top"><a href="#Types">3. Types</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avl_005fnode"><code>avl_node</code></a></td><td valign="top"><a href="#Types">3. Types</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avl_005fnode_005ffunc"><code>avl_node_func</code></a></td><td valign="top"><a href="#Types">3. Types</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avl_005fprobe"><code>avl_probe</code></a></td><td valign="top"><a href="#Insertion">6. Insertion and Deletion</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avl_005freplace"><code>avl_replace</code></a></td><td valign="top"><a href="#Insertion">6. Insertion and Deletion</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avl_005ftraverse"><code>avl_traverse</code></a></td><td valign="top"><a href="#Iteration">8. Iteration</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avl_005ftraverser"><code>avl_traverser</code></a></td><td valign="top"><a href="#Types">3. Types</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avl_005ftree"><code>avl_tree</code></a></td><td valign="top"><a href="#Types">3. Types</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-avl_005fwalk"><code>avl_walk</code></a></td><td valign="top"><a href="#Iteration">8. Iteration</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-1_cp_letter-B">B</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-binary-tree">binary tree</a></td><td valign="top"><a href="#Introduction-to-balanced-binary-trees">1. Introduction to balanced binary trees</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-1_cp_letter-H">H</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-hash-table">hash table</a></td><td valign="top"><a href="#Introduction-to-balanced-binary-trees">1. Introduction to balanced binary trees</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-1_cp_letter-K">K</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Knuth_002c-Donald-Ervin">Knuth, Donald Ervin</a></td><td valign="top"><a href="#Author">10. Author</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-1_cp_letter-L">L</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Landis_002c-E_002e-M_002e">Landis, E. M.</a></td><td valign="top"><a href="#Introduction-to-balanced-binary-trees">1. Introduction to balanced binary trees</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-1_cp_letter-P">P</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Pfaff_002c-Benjamin-Levy">Pfaff, Benjamin Levy</a></td><td valign="top"><a href="#Author">10. Author</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-1_cp_letter-R">R</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-rb_005fcopy"><code>rb_copy</code></a></td><td valign="top"><a href="#Tree-Creation">5. Tree Creation</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-rb_005fcount"><code>rb_count</code></a></td><td valign="top"><a href="#Tree-Creation">5. Tree Creation</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-rb_005fcreate"><code>rb_create</code></a></td><td valign="top"><a href="#Tree-Creation">5. Tree Creation</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-rb_005fdelete"><code>rb_delete</code></a></td><td valign="top"><a href="#Insertion">6. Insertion and Deletion</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-rb_005fdestroy"><code>rb_destroy</code></a></td><td valign="top"><a href="#Tree-Creation">5. Tree Creation</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-rb_005ffind"><code>rb_find</code></a></td><td valign="top"><a href="#Searching">7. Searching</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-rb_005ffind_005fclose"><code>rb_find_close</code></a></td><td valign="top"><a href="#Searching">7. Searching</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-rb_005fforce_005fdelete"><code>rb_force_delete</code></a></td><td valign="top"><a href="#Insertion">6. Insertion and Deletion</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-rb_005fforce_005finsert"><code>rb_force_insert</code></a></td><td valign="top"><a href="#Insertion">6. Insertion and Deletion</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-rb_005ffree"><code>rb_free</code></a></td><td valign="top"><a href="#Tree-Creation">5. Tree Creation</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-rb_005finit_005ftraverser"><code>rb_init_traverser</code></a></td><td valign="top"><a href="#Iteration">8. Iteration</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-rb_005finsert"><code>rb_insert</code></a></td><td valign="top"><a href="#Insertion">6. Insertion and Deletion</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-RB_005fMAX_005fHEIGHT"><code>RB_MAX_HEIGHT</code></a></td><td valign="top"><a href="#Types">3. Types</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-rb_005fnode"><code>rb_node</code></a></td><td valign="top"><a href="#Types">3. Types</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-rb_005fprobe"><code>rb_probe</code></a></td><td valign="top"><a href="#Insertion">6. Insertion and Deletion</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-rb_005freplace"><code>rb_replace</code></a></td><td valign="top"><a href="#Insertion">6. Insertion and Deletion</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-rb_005ftraverse"><code>rb_traverse</code></a></td><td valign="top"><a href="#Iteration">8. Iteration</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-rb_005ftraverser"><code>rb_traverser</code></a></td><td valign="top"><a href="#Types">3. Types</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-rb_005ftree"><code>rb_tree</code></a></td><td valign="top"><a href="#Types">3. Types</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-rb_005fwalk"><code>rb_walk</code></a></td><td valign="top"><a href="#Iteration">8. Iteration</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-rebalancing">rebalancing</a></td><td valign="top"><a href="#Introduction-to-balanced-binary-trees">1. Introduction to balanced binary trees</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-red_002dblack-tree">red-black tree</a></td><td valign="top"><a href="#Introduction-to-balanced-binary-trees">1. Introduction to balanced binary trees</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-right-threads">right threads</a></td><td valign="top"><a href="#Functions">4. Functions</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-1_cp_letter-T">T</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-threads">threads</a></td><td valign="top"><a href="#Functions">4. Functions</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-1_cp_letter-U">U</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-unthreaded">unthreaded</a></td><td valign="top"><a href="#Functions">4. Functions</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-1_cp_letter-X">X</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-xmalloc"><code>xmalloc</code></a></td><td valign="top"><a href="#Tree-Creation">5. Tree Creation</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+</table>
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a href="#Index-1_cp_letter-A" class="summary-letter"><b>A</b></a>
+ &nbsp; 
+<a href="#Index-1_cp_letter-B" class="summary-letter"><b>B</b></a>
+ &nbsp; 
+<a href="#Index-1_cp_letter-H" class="summary-letter"><b>H</b></a>
+ &nbsp; 
+<a href="#Index-1_cp_letter-K" class="summary-letter"><b>K</b></a>
+ &nbsp; 
+<a href="#Index-1_cp_letter-L" class="summary-letter"><b>L</b></a>
+ &nbsp; 
+<a href="#Index-1_cp_letter-P" class="summary-letter"><b>P</b></a>
+ &nbsp; 
+<a href="#Index-1_cp_letter-R" class="summary-letter"><b>R</b></a>
+ &nbsp; 
+<a href="#Index-1_cp_letter-T" class="summary-letter"><b>T</b></a>
+ &nbsp; 
+<a href="#Index-1_cp_letter-U" class="summary-letter"><b>U</b></a>
+ &nbsp; 
+<a href="#Index-1_cp_letter-X" class="summary-letter"><b>X</b></a>
+ &nbsp; 
+</td></tr></table>
 
-
-<H1><A NAME="SEC11" HREF="avl.html#TOC11">Index</A></H1>
-
-<P>
-<H2>a</H2>
-<DIR>
-<LI><A HREF="avl.html#IDX7">Adel'son-Velskii, G. M.</A>
-<LI><A HREF="avl.html#IDX103"><CITE>Art of Computer Programming</CITE></A>
-<LI><A HREF="avl.html#IDX101">author</A>
-<LI><A HREF="avl.html#IDX4">AVL tree</A>
-<LI><A HREF="avl.html#IDX20">avl_comparison_func</A>
-<LI><A HREF="avl.html#IDX40">avl_copy</A>, <A HREF="avl.html#IDX41">avl_copy</A>, <A HREF="avl.html#IDX42">avl_copy</A>
-<LI><A HREF="avl.html#IDX22">avl_copy_func</A>
-<LI><A HREF="avl.html#IDX44">avl_count</A>
-<LI><A HREF="avl.html#IDX28">avl_create</A>
-<LI><A HREF="avl.html#IDX65">avl_delete</A>
-<LI><A HREF="avl.html#IDX32">avl_destroy</A>
-<LI><A HREF="avl.html#IDX73">avl_find</A>
-<LI><A HREF="avl.html#IDX77">avl_find_close</A>
-<LI><A HREF="avl.html#IDX69">avl_force_delete</A>
-<LI><A HREF="avl.html#IDX57">avl_force_insert</A>
-<LI><A HREF="avl.html#IDX36">avl_free</A>
-<LI><A HREF="avl.html#IDX89">avl_init_traverser</A>
-<LI><A HREF="avl.html#IDX53">avl_insert</A>
-<LI><A HREF="avl.html#IDX23">AVL_MAX_HEIGHT</A>
-<LI><A HREF="avl.html#IDX12">avl_node</A>
-<LI><A HREF="avl.html#IDX21">avl_node_func</A>
-<LI><A HREF="avl.html#IDX49">avl_probe</A>
-<LI><A HREF="avl.html#IDX61">avl_replace</A>
-<LI><A HREF="avl.html#IDX85">avl_traverse</A>
-<LI><A HREF="avl.html#IDX16">avl_traverser</A>
-<LI><A HREF="avl.html#IDX8">avl_tree</A>
-<LI><A HREF="avl.html#IDX81">avl_walk</A>
-<LI><A HREF="avl.html#IDX45">avlt_count</A>
-<LI><A HREF="avl.html#IDX29">avlt_create</A>
-<LI><A HREF="avl.html#IDX66">avlt_delete</A>
-<LI><A HREF="avl.html#IDX33">avlt_destroy</A>
-<LI><A HREF="avl.html#IDX74">avlt_find</A>
-<LI><A HREF="avl.html#IDX78">avlt_find_close</A>
-<LI><A HREF="avl.html#IDX70">avlt_force_delete</A>
-<LI><A HREF="avl.html#IDX58">avlt_force_insert</A>
-<LI><A HREF="avl.html#IDX37">avlt_free</A>
-<LI><A HREF="avl.html#IDX90">avlt_init_traverser</A>
-<LI><A HREF="avl.html#IDX54">avlt_insert</A>
-<LI><A HREF="avl.html#IDX93">avlt_next</A>
-<LI><A HREF="avl.html#IDX13">avlt_node</A>
-<LI><A HREF="avl.html#IDX50">avlt_probe</A>
-<LI><A HREF="avl.html#IDX62">avlt_replace</A>
-<LI><A HREF="avl.html#IDX96">avlt_thread</A>
-<LI><A HREF="avl.html#IDX86">avlt_traverse</A>
-<LI><A HREF="avl.html#IDX17">avlt_traverser</A>
-<LI><A HREF="avl.html#IDX9">avlt_tree</A>
-<LI><A HREF="avl.html#IDX98">avlt_unthread</A>
-<LI><A HREF="avl.html#IDX82">avlt_walk</A>
-<LI><A HREF="avl.html#IDX46">avltr_count</A>
-<LI><A HREF="avl.html#IDX30">avltr_create</A>
-<LI><A HREF="avl.html#IDX67">avltr_delete</A>
-<LI><A HREF="avl.html#IDX34">avltr_destroy</A>
-<LI><A HREF="avl.html#IDX75">avltr_find</A>
-<LI><A HREF="avl.html#IDX79">avltr_find_close</A>
-<LI><A HREF="avl.html#IDX71">avltr_force_delete</A>
-<LI><A HREF="avl.html#IDX59">avltr_force_insert</A>
-<LI><A HREF="avl.html#IDX38">avltr_free</A>
-<LI><A HREF="avl.html#IDX91">avltr_init_traverser</A>
-<LI><A HREF="avl.html#IDX55">avltr_insert</A>
-<LI><A HREF="avl.html#IDX94">avltr_next</A>
-<LI><A HREF="avl.html#IDX14">avltr_node</A>
-<LI><A HREF="avl.html#IDX95">avltr_prev</A>
-<LI><A HREF="avl.html#IDX51">avltr_probe</A>
-<LI><A HREF="avl.html#IDX63">avltr_replace</A>
-<LI><A HREF="avl.html#IDX97">avltr_thread</A>
-<LI><A HREF="avl.html#IDX87">avltr_traverse</A>
-<LI><A HREF="avl.html#IDX18">avltr_traverser</A>
-<LI><A HREF="avl.html#IDX10">avltr_tree</A>
-<LI><A HREF="avl.html#IDX99">avltr_unthread</A>
-<LI><A HREF="avl.html#IDX83">avltr_walk</A>
-</DIR>
-<H2>b</H2>
-<DIR>
-<LI><A HREF="avl.html#IDX2">binary tree</A>
-</DIR>
-<H2>h</H2>
-<DIR>
-<LI><A HREF="avl.html#IDX1">hash table</A>
-</DIR>
-<H2>k</H2>
-<DIR>
-<LI><A HREF="avl.html#IDX102">Knuth, Donald Ervin</A>
-</DIR>
-<H2>l</H2>
-<DIR>
-<LI><A HREF="avl.html#IDX6">Landis, E. M.</A>
-</DIR>
-<H2>p</H2>
-<DIR>
-<LI><A HREF="avl.html#IDX100">Pfaff, Benjamin Levy</A>
-</DIR>
-<H2>r</H2>
-<DIR>
-<LI><A HREF="avl.html#IDX43">rb_copy</A>
-<LI><A HREF="avl.html#IDX47">rb_count</A>
-<LI><A HREF="avl.html#IDX31">rb_create</A>
-<LI><A HREF="avl.html#IDX68">rb_delete</A>
-<LI><A HREF="avl.html#IDX35">rb_destroy</A>
-<LI><A HREF="avl.html#IDX76">rb_find</A>
-<LI><A HREF="avl.html#IDX80">rb_find_close</A>
-<LI><A HREF="avl.html#IDX72">rb_force_delete</A>
-<LI><A HREF="avl.html#IDX60">rb_force_insert</A>
-<LI><A HREF="avl.html#IDX39">rb_free</A>
-<LI><A HREF="avl.html#IDX92">rb_init_traverser</A>
-<LI><A HREF="avl.html#IDX56">rb_insert</A>
-<LI><A HREF="avl.html#IDX24">RB_MAX_HEIGHT</A>
-<LI><A HREF="avl.html#IDX15">rb_node</A>
-<LI><A HREF="avl.html#IDX52">rb_probe</A>
-<LI><A HREF="avl.html#IDX64">rb_replace</A>
-<LI><A HREF="avl.html#IDX88">rb_traverse</A>
-<LI><A HREF="avl.html#IDX19">rb_traverser</A>
-<LI><A HREF="avl.html#IDX11">rb_tree</A>
-<LI><A HREF="avl.html#IDX84">rb_walk</A>
-<LI><A HREF="avl.html#IDX5">rebalancing</A>
-<LI><A HREF="avl.html#IDX3">red-black tree</A>
-<LI><A HREF="avl.html#IDX27">right threads</A>
-</DIR>
-<H2>t</H2>
-<DIR>
-<LI><A HREF="avl.html#IDX26">threads</A>
-</DIR>
-<H2>u</H2>
-<DIR>
-<LI><A HREF="avl.html#IDX25">unthreaded</A>
-</DIR>
-<H2>x</H2>
-<DIR>
-<LI><A HREF="avl.html#IDX48">xmalloc</A>
-</DIR>
-
-</P>
-<P><HR><P>
-<H1>Footnotes</H1>
-<H3><A NAME="FOOT1" HREF="avl.html#DOCF1">(1)</A></H3>
-<P>In tree traversal, <STRONG>inorder</STRONG> refers
+<hr size="6">
+<a name="SEC_Foot"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1>Footnotes</h1>
+<h3><a name="FOOT1" href="#DOCF1">(1)</a></h3>
+<p>In tree traversal, <em>inorder</em> refers
 to visiting the nodes in their sorted order from smallest to largest.
-<H3><A NAME="FOOT2" HREF="avl.html#DOCF2">(2)</A></H3>
-<P>In general, you
+</p><h3><a name="FOOT2" href="#DOCF2">(2)</a></h3>
+<p>In general, you
 should build the sort of tree that you need to use, but occasionally it
 is useful to convert between tree types.
-<H3><A NAME="FOOT3" HREF="avl.html#DOCF3">(3)</A></H3>
-<P>It
+</p><h3><a name="FOOT3" href="#DOCF3">(3)</a></h3>
+<p>It
 can be changed if this would not change the ordering of the nodes in the
 tree; i.e., if this would not cause the data in the node to be less than
-or equal to the previous node's data or greater than or equal to the
-next node's data.
-<P><HR><P>
-This document was generated on 6 October 1999 using the
-<A HREF="http://wwwcn.cern.ch/dci/texi2html/">texi2html</A>
-translator version 1.51a.</P>
-</BODY>
-</HTML>
+or equal to the previous node&rsquo;s data or greater than or equal to the
+next node&rsquo;s data.
+</p><hr size="1">
+<a name="SEC_Contents"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1>Table of Contents</h1>
+<div class="contents">
+
+<ul class="toc">
+  <li><a name="toc-Introduction-to-balanced-binary-trees-1" href="#Introduction-to-balanced-binary-trees">1. Introduction to balanced binary trees</a></li>
+  <li><a name="toc-Introduction-to-threaded-trees-1" href="#Introduction-to-threaded-trees">2. Introduction to threaded trees</a></li>
+  <li><a name="toc-Types-1" href="#Types">3. Types</a></li>
+  <li><a name="toc-Functions-1" href="#Functions">4. Functions</a></li>
+  <li><a name="toc-Tree-Creation-1" href="#Tree-Creation">5. Tree Creation</a></li>
+  <li><a name="toc-Insertion-and-Deletion" href="#Insertion">6. Insertion and Deletion</a></li>
+  <li><a name="toc-Searching-1" href="#Searching">7. Searching</a></li>
+  <li><a name="toc-Iteration-1" href="#Iteration">8. Iteration</a></li>
+  <li><a name="toc-Conversion-1" href="#Conversion">9. Conversion</a></li>
+  <li><a name="toc-Author-1" href="#Author">10. Author</a></li>
+  <li><a name="toc-Index-1" href="#Index">Index</a></li>
+</ul>
+</div>
+<hr size="1">
+<a name="SEC_About"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1>About This Document</h1>
+<p>
+  This document was generated by <em>U-SayC-PC\SayC</em> on <em>August 20, 2013</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+</p>
+<p>
+  The buttons in the navigation panels have the following meaning:
+</p>
+<table border="1">
+  <tr>
+    <th> Button </th>
+    <th> Name </th>
+    <th> Go to </th>
+    <th> From 1.2.3 go to</th>
+  </tr>
+  <tr>
+    <td align="center"> [ &lt; ] </td>
+    <td align="center">Back</td>
+    <td>Previous section in reading order</td>
+    <td>1.2.2</td>
+  </tr>
+  <tr>
+    <td align="center"> [ &gt; ] </td>
+    <td align="center">Forward</td>
+    <td>Next section in reading order</td>
+    <td>1.2.4</td>
+  </tr>
+  <tr>
+    <td align="center"> [ &lt;&lt; ] </td>
+    <td align="center">FastBack</td>
+    <td>Beginning of this chapter or previous chapter</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td align="center"> [ Up ] </td>
+    <td align="center">Up</td>
+    <td>Up section</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td align="center"> [ &gt;&gt; ] </td>
+    <td align="center">FastForward</td>
+    <td>Next chapter</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td align="center"> [Top] </td>
+    <td align="center">Top</td>
+    <td>Cover (top) of document</td>
+    <td> &nbsp; </td>
+  </tr>
+  <tr>
+    <td align="center"> [Contents] </td>
+    <td align="center">Contents</td>
+    <td>Table of contents</td>
+    <td> &nbsp; </td>
+  </tr>
+  <tr>
+    <td align="center"> [Index] </td>
+    <td align="center">Index</td>
+    <td>Index</td>
+    <td> &nbsp; </td>
+  </tr>
+  <tr>
+    <td align="center"> [ ? ] </td>
+    <td align="center">About</td>
+    <td>About (help)</td>
+    <td> &nbsp; </td>
+  </tr>
+</table>
+
+<p>
+  where the <strong> Example </strong> assumes that the current position is at <strong> Subsubsection One-Two-Three </strong> of a document of the following structure:
+</p>
+
+<ul>
+  <li> 1. Section One
+    <ul>
+      <li>1.1 Subsection One-One
+        <ul>
+          <li>...</li>
+        </ul>
+      </li>
+      <li>1.2 Subsection One-Two
+        <ul>
+          <li>1.2.1 Subsubsection One-Two-One</li>
+          <li>1.2.2 Subsubsection One-Two-Two</li>
+          <li>1.2.3 Subsubsection One-Two-Three &nbsp; &nbsp;
+            <strong>&lt;== Current Position </strong></li>
+          <li>1.2.4 Subsubsection One-Two-Four</li>
+        </ul>
+      </li>
+      <li>1.3 Subsection One-Three
+        <ul>
+          <li>...</li>
+        </ul>
+      </li>
+      <li>1.4 Subsection One-Four</li>
+    </ul>
+  </li>
+</ul>
+
+<hr size="1">
+<p>
+ <font size="-1">
+  This document was generated by <em>U-SayC-PC\SayC</em> on <em>August 20, 2013</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>
