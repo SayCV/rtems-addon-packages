@@ -5,7 +5,7 @@ include ../RTEMS_Makefiles/Makefile.common
 
 all:
 	if ! test -f 'stamp_cfg'; then \
-    	$(BINUTILS_SRC_DIR)/bfd/configure \
+    	CFLAGS="-g -O2 -Wno-error" $(BINUTILS_SRC_DIR)/bfd/configure \
     		--host=$(RTEMS_CPU)-rtems \
     		--disable-nls \
     		--prefix=$(exec_prefix) \
