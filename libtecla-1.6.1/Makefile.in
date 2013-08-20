@@ -260,7 +260,7 @@ file_man:
 install_bin: $(BINDIR) $(PROGRAMS) $(PROGRAMS_R)
 	progs="$(PROGRAMS) $(PROGRAMS_R)"; \
 	for prog in $$progs; do \
-	  $(srcdir)/install-sh -c -m 755 -s $$prog $(BINDIR)/; \
+	  $(srcdir)/install-sh -c -m 755 $$prog $(BINDIR)/; \
 	done
 
 install: install_lib install_inc install_man install_bin

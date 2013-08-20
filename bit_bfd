@@ -11,7 +11,7 @@ BINUTILS_SRC_DIR=~/../work_root/tools/binutils-2.23.2
 set -ex
 
 #rm -rf build_bfd_rtems
-mkdir build_bfd_rtems
+mkdir -p build_bfd_rtems
 cd build_bfd_rtems
 make -w BINUTILS_SRC_DIR="$BINUTILS_SRC_DIR" -f ../RTEMS_Makefiles/Makefile.bfd
 cd ..
