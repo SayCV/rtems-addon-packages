@@ -7,12 +7,12 @@
 #
 # Where to find the binutils source
 #
-BINUTILS_SRC_DIR=~/src/RTEMS/bt/binutils-2.13.1
+BINUTILS_SRC_DIR=~/../work_root/tools/binutils-2.23.2
 set -ex
 
-rm -rf build
-mkdir build
-cd build
+#rm -rf build
+mkdir build_rtems
+cd build_rtems
 make -w BINUTILS_SRC_DIR="$BINUTILS_SRC_DIR" -f ../RTEMS_Makefiles/Makefile.bfd
 cd ..
-rm -rf build
+#rm -rf build_rtems
