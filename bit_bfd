@@ -7,12 +7,85 @@
 #
 # Where to find the binutils source
 #
-BINUTILS_SRC_DIR=~/../work_root/tools/binutils-2.23.2
-set -ex
+version_rtems="4.11"
+version_binutils="2.23.2"
 
-#rm -rf build_bfd_rtems
-mkdir -p build_bfd_rtems
-cd build_bfd_rtems
-make -w BINUTILS_SRC_DIR="$BINUTILS_SRC_DIR" -f ../RTEMS_Makefiles/Makefile.bfd
-cd ..
-#rm -rf build_bfd_rtems
+version_patch_binutils="20130326"
+
+export url_download_rtems="ftp://ftp.rtems.com/pub/rtems/SOURCES/$version_rtems"
+
+dir_root="$HOME/../work_root"
+dir_archive="$dir_root/archive"
+dir_tools="$dir_root/tools"
+dir_working="$HOME"
+
+export dir_install="/opt/rtems-$version_rtems-tools"
+
+
+
+function fnct_get_objects {
+    echo -e "Downloading archive and patch files"
+    mkdir -p "$dir_archive" || die
+    cd "$dir_archive" || die
+    if ! test -f 'binutils-$version_binutils.tar.bz2'; then
+        wget -c "$url_download_rtems/binutils-$version_binutils.tar.bz2" || die
+    fi
+    if ! test -f 'binutils-$version_binutils-rtems$version_rtems-$version_patch_binutils.diff'; then
+        wget -c "$url_download_rtems/binutils-$version_binutils-rtems$version_rtems-$version_patch_binutils.diff" || die
+    fi
+}
+
+function fnct_tar_objects_any {
+    mkdir -p "$dir_tools" || die
+    cd "$dir_tools" || die
+    for i in "$dir_archive"/*.tar.gz ; do
+    	echo -e "Extracting archive $i"
+    	tar xzf "$i" || die
+    	echo -e " "
+    done
+    for i in "$dir_archive"/*.tar.bz2 ; do
+    	echo -e "Extracting archive $i"
+    	tar xjf "$i" || die
+    	echo -e " "
+    done
+}
+
+function fnct_tar_objects_tar_bz2 {
+    mkdir -p "$dir_tools" || die
+    cd "$dir_tools" || die
+    the_needed_tar_objects_name="binutils-$version_binutils.tar.bz2"
+    if ! test -d 'binutils-$version_binutils'; then
+        echo -e "Extracting archive $the_needed_tar_objects_name"
+        tar xjf "$the_needed_tar_objects_name" || die
+    fi
+}
+
+function fnct_patch_objects_binutils {
+    cd "$dir_tools/binutils-$version_binutils" || die
+    if ! test -f 'stamp_patch_binutils'; then
+        echo -e "Patching Binutils"
+            patch -p1 < "$dir_archive/binutils-$version_binutils-rtems$version_rtems-$version_patch_binutils.diff" || die
+            touch stamp_patch_binutils
+        echo -e " "
+    fi
+}
+function fnct_build_objects_binutils {
+    BINUTILS_SRC_DIR=~/../work_root/tools/binutils-$version_binutils
+    set -ex
+
+    #rm -rf build_bfd_rtems
+    mkdir -p build_bfd_rtems
+    cd build_bfd_rtems
+    make -w BINUTILS_SRC_DIR="$BINUTILS_SRC_DIR" -f ../RTEMS_Makefiles/Makefile.bfd
+    cd ..
+    #rm -rf build_bfd_rtems
+}
+#
+#
+#
+fnct_get_objects
+fnct_tar_objects_any
+fnct_tar_objects_tar_bz2
+fnct_patch_objects_binutils
+fnct_build_objects_binutils
+
