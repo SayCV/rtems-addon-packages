@@ -35,7 +35,7 @@ rtems_driver_address_table Device_drivers[] = {
   CLOCK_DRIVER_TABLE_ENTRY,
 };
 
-#include <confdefs.h>
+#include <rtems/confdefs.h>
 
 extern int main (int argc, char **argv);
 
