@@ -22,6 +22,11 @@ dir_working="$HOME"
 export dir_install="/opt/rtems-$version_rtems-tools"
 
 
+function die {
+	ret="$?"
+	echo -e "FAILED!"
+	exit "$ret"
+}
 
 function fnct_get_objects {
     echo -e "Downloading archive and patch files"
@@ -56,7 +61,7 @@ function fnct_tar_objects_tar_bz2 {
     the_needed_tar_objects_name="binutils-$version_binutils.tar.bz2"
     if ! test -d 'binutils-$version_binutils'; then
         echo -e "Extracting archive $the_needed_tar_objects_name"
-        tar xjf "$the_needed_tar_objects_name" || die
+        tar xjf "$dir_archive/$the_needed_tar_objects_name" || die
     fi
 }
 
@@ -85,7 +90,7 @@ function fnct_build_objects_binutils {
 #
 #
 fnct_get_objects
-fnct_tar_objects_any
+#fnct_tar_objects_any
 fnct_tar_objects_tar_bz2
 fnct_patch_objects_binutils
 fnct_build_objects_binutils
