@@ -72,7 +72,8 @@ function fnct_patch_objects_binutils {
 function fnct_build_objects_binutils {
     BINUTILS_SRC_DIR=~/../work_root/tools/binutils-$version_binutils
     set -ex
-
+    
+    cd $HOME/repo_RTEMS_App/rtems-addon-packages
     #rm -rf build_bfd_rtems
     mkdir -p build_bfd_rtems
     cd build_bfd_rtems
